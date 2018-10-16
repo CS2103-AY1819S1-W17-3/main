@@ -29,10 +29,11 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#sort-and-find-feature">3.1. Sort and Find feature</a></li>
+<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
+<li><a href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.4. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -712,9 +713,49 @@ The categorisation of <code>Person</code> is not exclusive. One <code>Person</co
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.1. Undo/Redo feature</a></h3>
+<h3 id="sort-and-find-feature"><a class="link" href="#sort-and-find-feature">3.1. Sort and Find feature</a></h3>
+<div class="paragraph">
+<p>The <code>sort</code> command allows the user to sort the displayed persons list according to each person&#8217;s name, email,
+phone number, or address by alphanumerical order.<br></p>
+</div>
+<div class="paragraph">
+<p>This command is executed with the following syntax:<br>
+<code>sort [name|phone|email|address]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>sort name</code>: This command will sort the current displayed list by name by alphanumerical order.</p>
+</div>
+<div class="paragraph">
+<p>The <code>find</code> command allows the user to filter the displayed persons list based on keywords given by the user.<br></p>
+</div>
+<div class="paragraph">
+<p>This command is executed with the following syntax:<br>
+<code>find [a/&lt;keywords&gt;] [s/&lt;keywords&gt;] [n/&lt;keywords&gt;]</code><br></p>
+</div>
+<div class="paragraph">
+<p>The <code>a/</code>, <code>s/</code>, and <code>n/</code></p>
+</div>
+<div class="paragraph">
+<p>The
+user can specify three groups of keywords. A group where the user want all keywords to be matched in the results shown,
+a group where the user want some of the keywords to be matched in the results shown, and lastly a group where the user
+wants none of the keywords matching the results shown.</p>
+</div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The Sort and Find commands modifies the <code>ObservableList&lt;Person&gt;</code> in <code>Model</code> that the UI is bound to.
+<code>ModelManager</code> maintains the <code>sortedPersons</code> list of type <code>SortedList&lt;Person&gt;</code>. <code>sortedPersons</code> is the list displayed in
+the display panel of the GUI. In the current implementation, the <code>sortedPersons</code> list wraps the <code>filteredPersons</code> list
+of type <code>FilteredList&lt;Person&gt;</code>, also maintained by <code>ModelManager</code>. <code>filteredPersons</code> wraps the <code>persons</code> list of type
+<code>ObservableList&lt;Person&gt;</code> maintained by <code>versionedAddressBook</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -844,7 +885,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -914,20 +955,20 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -958,7 +999,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2823,4 +2864,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 09:05:07 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 11:48:57 UTC</div></div></div></body></html>

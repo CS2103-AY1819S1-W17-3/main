@@ -18,7 +18,7 @@
 <li><a href="#editing-a-task-code-changeto-code">3.3. Editing a task : <code>changeto</code></a></li>
 <li><a href="#deleting-a-task-code-delete-del-code">3.4. Deleting a task: <code>delete/del</code></a></li>
 <li><a href="#managing-the-module-list-modules">3.5. Managing the module list: modules</a></li>
-<li><a href="#find-a-task-code-find-findwhere-code">3.6. Find a task: <code>find / findwhere</code></a></li>
+<li><a href="#find-a-task-code-find-code">3.6. Find a task: <code>find</code></a></li>
 <li><a href="#sort-the-list-code-sort-code">3.7. Sort the list: <code>sort</code></a></li>
 <li><a href="#selecting-a-task-code-select-code">3.8. Selecting a task : <code>select</code></a></li>
 <li><a href="#going-back-to-the-parent-task-code-back-b-code">3.9. Going back to the parent task : <code>back / b</code></a></li>
@@ -313,57 +313,49 @@ Format: <code>delete</code>, or the shorthand <code>del</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="find-a-task-code-find-findwhere-code"><a class="link" href="#find-a-task-code-find-findwhere-code">3.6. Find a task: <code>find / findwhere</code></a></h3>
+<h3 id="find-a-task-code-find-code"><a class="link" href="#find-a-task-code-find-code">3.6. Find a task: <code>find</code></a></h3>
 <div class="paragraph">
-<p>Finds tasks and display it on the screen.<br>
-Format: <code>in [Module List] findwhere [TaskParameters] , or in [Module List] find [Name]</code><br>
-Shorthand format: <code>#[Module List] fw [TaskParameters], or #[Module List] f [Name]</code></p>
+<p>The <code>find</code> command searches the AddressBook for specified persons, groups, or meetings, and displays the results on
+the panel.<br></p>
+</div>
+<div class="paragraph">
+<p>Syntax:<br>
+ Longhand: <code>find [person|group|meeting]  *[all]/&lt;keywords&gt; *[some]/&lt;keywords&gt; *[none]/&lt;keywords&gt;</code><br>
+ Shorthand: <code>find [p|g|m] *[a]/&lt;keyword&#8230;&#8203;&gt; *[s]/&lt;keywords&gt; *[n]/&lt;keywords&gt;</code><br></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The first version finds tasks with parameters that match [TaskParameters], while the second version finds tasks with name that match [Name].</p>
+<p><code>[person|group|meeting]</code>, <code>[p|g|m]</code>: This parameter specifies whether to search for persons, groups, or meetings.
+This parameter is required to execute this command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>person</code>, <code>p</code>: Specifies to search for persons.</p>
 </li>
 <li>
-<p>Possible [TaskParameters] are:<br></p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Deadline: “Deadline [on/after/before] DDMMYY” or “dl[=/&gt;/&lt;]DDMMYY”</p>
+<p><code>group</code>, <code>g</code>: Specifies to search for groups.</p>
 </li>
 <li>
-<p>Tag: “tag=[Tag]” or “t=[Tag]”</p>
-</li>
-<li>
-<p>Location: “location=[LocationName]” or “@=[LocationName]”</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>[Module List] can be replaced with “any” or “*” to select all modules</p>
+<p><code>meeting</code>, <code>m</code>: Specifies to search for meetings.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>in MA2101 findwhere tag=high location=S17 deadline before 300918</code></p>
 </li>
 <li>
-<p><code>in CS2103T, CS2101 find LO5.7</code></p>
+<p><code>&lt;keywords&gt;</code>: This tag contains any number of keywords separated by a <kbd>space</kbd>.</p>
 </li>
 <li>
-<p><code>in any findwhere tag=urgent</code></p>
+<p><code>[all]</code>, <code>[a]</code>: This parameter specifies that the results must contain every keyword specified in <code>&lt;keywords&gt;</code>.
+This parameter may be omitted.</p>
 </li>
 <li>
-<p><code>#CS2030,CS2040 fw @=COM1</code></p>
+<p><code>[some]</code>, <code>[s]</code>: This parameter specifies that the results must contain at least one keyword specified in <code>&lt;keywords&gt;</code>.
+This parameter may be omitted.</p>
 </li>
 <li>
-<p><code>#* find lab3</code></p>
+<p><code>[none]</code>, <code>[n]</code>: This parameter specifies that the results must not contain any keyword specified in <code>&lt;keywords&gt;</code>.
+This parameter may be omitted.</p>
 </li>
 </ul>
 </div>
@@ -578,4 +570,4 @@ e.g. <code>select 1</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 09:05:07 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 11:48:57 UTC</div></div></div></body></html>
