@@ -19,7 +19,7 @@
 <li><a href="#deleting-a-task-code-delete-del-code">3.4. Deleting a task: <code>delete/del</code></a></li>
 <li><a href="#managing-the-module-list-modules">3.5. Managing the module list: modules</a></li>
 <li><a href="#find-a-task-code-find-code">3.6. Find a task: <code>find</code></a></li>
-<li><a href="#selecting-a-task-code-select-code">3.7. Selecting a task : <code>select</code></a></li>
+<li><a href="#selecting-a-group-person-code-select-code">3.7. Selecting a group / person : <code>select</code></a></li>
 <li><a href="#add-meeting-to-group-code-meet-code">3.8. Add Meeting to Group: <code>meet</code></a></li>
 <li><a href="#going-back-to-the-parent-task-code-back-b-code">3.9. Going back to the parent task : <code>back / b</code></a></li>
 <li><a href="#listing-all-tasks-code-list-code">3.10. Listing all tasks : <code>list</code></a></li>
@@ -372,25 +372,27 @@ This parameter may be omitted.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-task-code-select-code"><a class="link" href="#selecting-a-task-code-select-code">3.7. Selecting a task : <code>select</code></a></h3>
+<h3 id="selecting-a-group-person-code-select-code"><a class="link" href="#selecting-a-group-person-code-select-code">3.7. Selecting a group / person : <code>select</code></a></h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>Pre-condition: user already list all available tasks using  find/findwhere command
-Select and displays a task from the list obtained using find</p>
+<p>Pre-condition: user already list all available groups / persons using <code>find/findwhere</code> command
+Select and displays a group / person from the list obtained using <code>find</code></p>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>Format: <code>“select [index]” or “s[index]” when [index] is a positive integer (starts from 1)</code></p>
+<p>Format: <code>select [person|group] [index]</code> or <code>s [p|g][index]</code> when <code>[index]</code> is a positive integer (starts from 1)</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>This also display all subtasks of the selected task.
-If a task is already on display, this command instead select a subtask from the displayed tasks’ list of subtasks.</p>
+<p>This will display all person in the group of the selected group if <code>select group</code> is used.</p>
+</li>
+<li>
+<p>If <code>select group</code> is called, the person list will be filtered to show only person who belong to the group.</p>
 </li>
 </ul>
 </div>
@@ -551,8 +553,8 @@ e.g. <code>modules create CS2103T</code></p>
 e.g. <code>in CS2103T find LO5.7</code></p>
 </li>
 <li>
-<p><strong>Selecting a task</strong> : <code>select</code><br>
-e.g. <code>select 1</code></p>
+<p><strong>Selecting a group / person</strong> : <code>select</code><br>
+e.g. <code>select g/1</code></p>
 </li>
 <li>
 <p><strong>Going back to the parent task</strong> : <code>back / b</code></p>
@@ -572,4 +574,4 @@ e.g. <code>select 1</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 14:59:03 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 15:58:32 UTC</div></div></div></body></html>
