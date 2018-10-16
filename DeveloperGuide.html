@@ -31,11 +31,12 @@
 <ul class="sectlevel2">
 <li><a href="#sort-and-find-feature">3.1. Sort and Find feature</a></li>
 <li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
-<li><a href="#export-feature">3.3. Export feature</a></li>
-<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
-<li><a href="#meeting">3.5. Meeting</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#select-feature">3.3. Select feature</a></li>
+<li><a href="#export-feature">3.4. Export feature</a></li>
+<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
+<li><a href="#meeting">3.6. Meeting</a></li>
+<li><a href="#logging">3.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -444,7 +445,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>GroupListPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
@@ -988,9 +989,104 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="export-feature"><a class="link" href="#export-feature">3.3. Export feature</a></h3>
+<h3 id="select-feature"><a class="link" href="#select-feature">3.3. Select feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The select mechanism is facilitated by <code>ModelManager</code>.
+It extends <code>Model</code> with two lists, <code>UniquePersonList</code> and <code>UniqueGroupList</code> and implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#updateFilteredPersonList</code>&#8201;&#8212;&#8201;Updates person list with a specific <code>Predicate</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the select mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time.
+The <code>ModelManager</code> will be initialized with the initial address book state, and both <code>UniquePersonList</code> and <code>UniqueGroupList</code> contains all person and group without filter.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>select g/1</code> command to select the 1st group in the address book.
+The <code>SelectCommandParser</code> parses the command to determine the select type, and the command calls executes the following steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Step 2.1. If the select type is <code>SELECT_TYPE_GROUP</code>, a <code>JumpToGroupListRequestEvent</code> is sent to update the UI to select the group card,
+and <code>Model#updateFilteredPersonList</code> is called to filter <code>UniquePersonList</code> to contain only person that are associated with the group.</p>
+</li>
+<li>
+<p>Step 2.2. If the select type is <code>SELECT_TYPE_PERSON</code>, a <code>JumpToListRequestEvent</code> is sent to the UI to select the person card.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If a group is selected, calling <code>select</code> command with <code>SELECT_TYPE_PERSON</code> will only select the person in the filtered <code>UniquePersonList</code> that contains only person in the selected group.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a <code>select</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="650">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-select-executes"><a class="link" href="#aspect-how-select-executes">Aspect: How select executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use prefix to differentiate between selecting group or person.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Select command becomes too generalized.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Individual command for selecting group and person.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Structurally correct as each command is specialized to executing a specific task.</p>
+</li>
+<li>
+<p>Cons: Requires more code to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="export-feature"><a class="link" href="#export-feature">3.4. Export feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The export mechanism is facilitated by <code>ExportCommand</code>. <code>ExportCommandParser</code> is responsible for parsing the input arguments.<br></p>
 </div>
@@ -1019,7 +1115,7 @@ If there is no filepath provided, <code>export</code> command will return an inv
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-make-export-undo-able"><a class="link" href="#aspect-make-export-undo-able">Aspect: Make export undo-able</a></h5>
 <div class="ulist">
@@ -1056,13 +1152,13 @@ If there is no filepath provided, <code>export</code> command will return an inv
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="meeting"><a class="link" href="#meeting">3.5. Meeting</a></h3>
+<h3 id="meeting"><a class="link" href="#meeting">3.6. Meeting</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/meetCommandSequenceDiagram.png" alt="meetCommandSequenceDiagram" width="500">
@@ -1081,7 +1177,7 @@ If there is no filepath provided, <code>export</code> command will return an inv
 <p>This allows us to modify the <code>Group</code> in the <code>UniqueGroupList</code> by using the <code>Model#updateGroup(Group target, Group editedGroup)</code> method.</p>
 </div>
 <div class="sect3">
-<h4 id="design-consideration"><a class="link" href="#design-consideration">3.5.1. Design Consideration</a></h4>
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.6.1. Design Consideration</a></h4>
 <div class="sect4">
 <h5 id="aspect-specifying-the-group-to-add-the-meeting-to"><a class="link" href="#aspect-specifying-the-group-to-add-the-meeting-to">Aspect: Specifying the Group to add the Meeting to</a></h5>
 <div class="ulist">
@@ -1118,14 +1214,14 @@ If there is no filepath provided, <code>export</code> command will return an inv
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1156,7 +1252,7 @@ If there is no filepath provided, <code>export</code> command will return an inv
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3021,4 +3117,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 12:12:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 12:28:20 UTC</div></div></div></body></html>
