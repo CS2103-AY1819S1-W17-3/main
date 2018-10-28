@@ -1368,51 +1368,213 @@ through <code>ModelManager</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="meeting"><a class="link" href="#meeting">3.9. Meeting</a></h3>
-<div class="imageblock">
-<div class="content">
-<img src="images/MeetCommandSequenceDiagram.png" alt="MeetCommandSequenceDiagram" width="500">
-</div>
-<div class="title">Figure 14. Sequence diagram for the meet command</div>
-</div>
 <div class="paragraph">
-<p>A <code>Meeting</code> can be assigned and remove from a <code>Group</code> using the <code>meet</code> and <code>cancel</code> command, respectively.</p>
+<p><code>Meeting</code> is one of the central feature of this application. It allows the user to create a reminder of an upcoming event associated with a <code>Group</code>.</p>
 </div>
-<div class="paragraph">
-<p>In order to for these commands to function, we have implemented the following methods:
-* <code>Group#setMeeting(Meeting meeting)</code> which set the <code>meeting</code> field of the <code>Group</code> class to <code>Optional</code> of <code>meeting</code>
-* <code>Group#cancelMeeting()</code> which set the <code>meeting</code> field of the <code>Group</code> class to an empty <code>Optional</code></p>
-</div>
-<div class="paragraph">
-<p>This allows us to modify the <code>Group</code> in the <code>UniqueGroupList</code> by using the <code>Model#updateGroup(Group target, Group editedGroup)</code> method.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A <code>Group</code> can only have a maximum of one <code>Meeting</code> at any given time.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
-<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.9.1. Design Consideration</a></h4>
-<div class="sect4">
-<h5 id="aspect-specifying-the-group-to-add-the-meeting-to"><a class="link" href="#aspect-specifying-the-group-to-add-the-meeting-to">Aspect: Specifying the Group to add the Meeting to</a></h5>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.9.1. Current implementation</a></h4>
+<div class="paragraph">
+<p>In the current implementation, <code>Meeting</code> is related to <code>Group</code> by composition. To facilitate the meeting feature, <code>Group</code> implements the following operations:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Directly specify the group name when invoking the command.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: The command syntax becomes natural and intuitive.</p>
+<p><code>Group#hasMeeting</code>&#8201;&#8212;&#8201;This returns <code>true</code> if there is a meeting associated with the group.</p>
 </li>
 <li>
-<p>Cons: The user have to manually find the group name which might be difficult when the number of groups is high (~20+ groups).</p>
+<p><code>Group#getMeeting()</code>&#8201;&#8212;&#8201;This group&#8217;s meeting or <code>null</code> if the group has no meeting.</p>
+</li>
+<li>
+<p><code>Group#setMeeting(Meeting meeting)</code>&#8201;&#8212;&#8201;This assigns <code>meeting</code> to the group.</p>
+</li>
+<li>
+<p><code>Group#cancelMeeting()</code>&#8201;&#8212;&#8201;This removes the meeting associated witht the group.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations can be accessed by retreiving the list of groups using <code>Model#getGroupList()</code> and performing these operations on its members.</p>
+</div>
+<div class="paragraph">
+<p><strong>Given below is an example usage scenario and how the model behaves at each step.</strong></p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application. For simplicity, we assume that the groups <code>Project2103</code>, <code>Presentation</code> and <code>FrisbeeTeam</code> are present in the meeting book. None of these groups have a meeting scheduled.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandStep1Diagram.png" alt="meetCommandStep1Diagram" width="600">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Meeting field in a group without a meeting is an empty <code>Optional</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>meet FrisbeeTeam n/Sunday Practice t/28-10-2018@10:00 l/UTown Green d/Practice for Inter-College Games</code> to schedule a meeting named <code>Sunday Practice</code> associated with the group <code>FrisbeeTeam</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandStep2Diagram.png" alt="meetCommandStep2Diagram" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 3. The user then executes <code>meet Project2103 n/Weekly Meeting&#8230;&#8203;</code> to schedule a meeting called <code>Weekly Meeting</code> with the <code>Project2103</code> Group.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandStep3Diagram.png" alt="meetCommandStep3Diagram" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 4. The user then found out that the meeting <code>Sunday Practice</code> with <code>FrisbeeTeam</code> has been cancelled. Thus, the user calls <code>cancel FrisbeeTeam</code> to cancel meeting with the <code>FrisbeeTeam</code> group.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandStep4Diagram.png" alt="meetCommandStep4Diagram" width="600">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Calling <code>cancel</code> on a group without meeting returns an error
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+calling <code>meet GROUP_NAME</code> without argument is equivalent to calling <code>cancel GROUP_NAME</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 5. The user then discovers that the topic of the meeting with <code>Project2103</code> changed to rehearsal for the upcoming software demo. Therefore, the user calls <code>meet Project2103 n/Demo Preparation&#8230;&#8203;</code> to change the detail of the meeting This overwrites the meeting <code>Weekly Meeting</code> with the new meeting <code>Demo Preparation</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandStep5Diagram.png" alt="meetCommandStep5Diagram" width="600">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This operation creates a new <code>Meeting</code> object which replaces the old one.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>The following sequence diagrams show how the meet and cancel command function.</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandSequenceDiagram.png" alt="meetCommandSequenceDiagram" width="300">
+</div>
+<div class="title">Figure 14. Sequence diagram for meet command</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/cancelCommandSequenceDiagram.png" alt="cancelCommandSequenceDiagram" width="300">
+</div>
+<div class="title">Figure 15. Sequence diagram for cancel command</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.9.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-storage-of-meetings"><a class="link" href="#aspect-storage-of-meetings">Aspect: Storage of meetings</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Storing meetings inside groups</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This design simplifies the source code by not requiring a separate class to store meetings.</p>
+</li>
+<li>
+<p>Cons: This design requires iterating through all groups to retreive the list of meetings</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2 :</strong> Specify the group with it&#8217;s index.</p>
+<p><strong>Alternative 2:</strong> Storing meetings in a separate uniqueMeetingList class</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easier to use when the number of groups is high (~20+ groups).</p>
+<p>Pros: This design simplifies retreival of the list of meetings.</p>
 </li>
 <li>
-<p>Cons: The command syntax becomes unnatural and the program becomes more suspectible to bugs for a benefit that is dubious at best.</p>
+<p>Cons: This design causes the code becomes more complicated and more difficult to test.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-specification-of-target-group-for-meet-and-cancel-commands"><a class="link" href="#aspect-specification-of-target-group-for-meet-and-cancel-commands">Aspect: Specification of target group for meet and cancel commands</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Specifying the group using its name.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This design makes the command syntax natural and intuitive.</p>
+</li>
+<li>
+<p>Cons: This design forces the user have to manually type in the group name.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Specifying the group using its index.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This design is easier to use when the number of groups is high.</p>
+</li>
+<li>
+<p>Cons: This design causes the command syntax to become unnatural, and makes the program more suspectible to errors.</p>
 </li>
 </ul>
 </div>
@@ -1527,7 +1689,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 15. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 16. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -3326,4 +3488,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-28 18:44:47 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-28 19:55:21 UTC</div></div></div></body></html>

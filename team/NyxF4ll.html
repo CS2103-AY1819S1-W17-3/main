@@ -1,0 +1,487 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Pakorn Ueareeworakul - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">MeetingBook</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-W17-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Pakorn Ueareeworakul - Project Portfolio</h1></div><div id="content"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Welcome to Pakorn Ueareeworakul&#8217;s Portfolio!</p>
+</div>
+<div class="paragraph">
+<p>Here you can find details on my contributions to various Software Engineering projects. Specifically, this portfolio contains links to functional and test code I wrote, and excerpts from technical documentation I created.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-meetingbook"><a class="link" href="#project-meetingbook">PROJECT: MeetingBook</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MeetingBook is a desktop scheduler application targeted at university students involved in multiple Co-Curricular Activities and Project-Based modules. The application is a modified contact book with features to group contacts and assign meetings to such groups. MeetingBook is written by a team of 5 students from National University of Singapore&#8217;s School of Computing. It is forked from <a href="https://github.com/nus-cs2103-AY1819S1/addressbook-level4">AddressBook-Level4</a> written by <a href="https://se-edu.github.io/">SE-EDU</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: added <strong>the ability to schedule/cancel meetings</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to add/remove meetings from the specified group.</p>
+</li>
+<li>
+<p>Justification: This feature is essential to morph the AddressBook into a meetingscheduler.</p>
+</li>
+<li>
+<p>Highlights: This enhancement requires major modifications to the Model and addition of new classes such as <a href="https://github.com/CS2103-AY1819S1-W17-3/main/blob/master/src/main/java/seedu/address/model/meeting/Meeting.java">Meeting</a> and <a href="https://github.com/CS2103-AY1819S1-W17-3/main/blob/master/src/main/java/seedu/address/model/meeting/TimeStamp.java">TimeStamp</a>. The implementation is also challenging as it requires extensive coordination between team members due to the level of dependency it has on the group feature.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Moved ModelStub class out to be shared by multiple test files: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/87">#87</a></p>
+</li>
+<li>
+<p>Reorganized files in the Model folder to increase consistency: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/107">#107</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Modified Readme.adoc: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/34">#34</a></p>
+</li>
+<li>
+<p>Updated User Guide and Developer Guide: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/137">#137</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/120">#120</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/126">#126</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/128">#128</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Shown below are my contributions to the User Guide. They demonstrates my ability to write documentation and manuals targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="schedule-meetings-code-meet-code"><a class="link" href="#schedule-meetings-code-meet-code">Schedule meetings: <code>meet</code></a></h4>
+<div class="paragraph">
+<p>To schedule a meeting, use the <code>meet</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>meet GROUP_NAME n/MEETING_NAME t/MEETING_TIME l/MEETING_LOCATION d/MEETING_DESCRIPTION</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Schedules a meeting with the group <code>GROUP_NAME</code></p>
+</li>
+<li>
+<p>Either all or none of the fields must be provided.</p>
+</li>
+<li>
+<p>In case that none of the fields is provided, the command will cancel the meeting associated with the group.</p>
+</li>
+<li>
+<p>Scheduling a new meeting to the same group overwrites the old meeting.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>MEETING_TIME</code> is specified in the format <code>dd-mm-yyyy@hh:mm</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Example 1:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>meet Presentation2101 n/Demo Rehearsal t/26-10-2018@12:30 l/COM1-0218 d/Meeting for Project Demo</code><br>
+(This schedules the meeting)<br></p>
+</li>
+<li>
+<p><code>list meeting</code><br>
+(This displays the list of meetings)</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Example 2:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>meet Presentation2101 n/Demo Rehearsal t/26-10-2018@12:30 l/COM1-0218 d/Meeting for Project Demo</code><br>
+(This schedules the meeting)<br></p>
+</li>
+<li>
+<p><code>list meeting</code><br>
+(This displays <code>Demo Rehearsal</code> as the meeting associated with <code>Presentation 2101</code>)<br></p>
+</li>
+<li>
+<p><code>meet Presentation2101 n/Discussion on Slides t/26-10-2018@12:30 l/COM1-0218 d/Some slides are wrong</code><br>
+(This overwrites <code>Demo Rehearsal</code> with <code>Discussion on Slides</code>)<br></p>
+</li>
+<li>
+<p><code>list meeting</code> (<code>Emergency Meeting</code> is displayed instead of <code>Demo Rehearsal</code>)</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Example 3:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>meet OtherGroup &#8230;&#8203;</code><br>
+(This fails because <code>OtherGroup</code> is not in the MeetingBook)</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is assumed that the group <code>Presentation2101</code> is present and is the only group in the MeetingBook and has no meeting as of the moment before each example starts.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cancel-meetings-code-cancel-code"><a class="link" href="#cancel-meetings-code-cancel-code">Cancel meetings: <code>cancel</code></a></h4>
+<div class="paragraph">
+<p>To cancel a meeting, use the <code>cancel</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>cancel GROUP_NAME</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>cancel Project2103</code> (This cancels the meeting with <code>Project2103</code>)</p>
+</li>
+<li>
+<p><code>cancel Project2103</code><br>
+<code>cancel Project2103</code> (This fails because the meeting is already cancelled)</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is assumed that the group <code>Project2103</code> is present in the MeetingBook and has a meeting.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+calling <code>meet GROUP_NAME</code> without argument is equivalent to calling <code>cancel GROUP_NAME</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Shown below are my contributions to the Developer Guide. They demonstrates my ability to write technical documentation and highlights the depth and technical details of my contributions to the software engineering project MeetingBook.</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="meeting-feature"><a class="link" href="#meeting-feature">Meeting Feature</a></h3>
+<div class="paragraph">
+<p><code>Meeting</code> is one of the central feature of this application. It allows the user to create a reminder of an upcoming event associated with a <code>Group</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A <code>Group</code> can only have a maximum of one <code>Meeting</code> at any given time.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current implementation</a></h4>
+<div class="paragraph">
+<p>In the current implementation, <code>Meeting</code> is related to <code>Group</code> by composition. To facilitate the meeting feature, <code>Group</code> implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Group#hasMeeting</code>&#8201;&#8212;&#8201;This returns <code>true</code> if there is a meeting associated with the group</p>
+</li>
+<li>
+<p><code>Group#getMeeting()</code>&#8201;&#8212;&#8201;This group&#8217;s meeting or <code>null</code> if the group has no meeting.</p>
+</li>
+<li>
+<p><code>Group#setMeeting(Meeting meeting)</code>&#8201;&#8212;&#8201;This assigns <code>meeting</code> to the group.</p>
+</li>
+<li>
+<p><code>Group#cancelMeeting()</code>&#8201;&#8212;&#8201;This removes the meeting associated witht the group.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations can be accessed by retreiving the list of groups using <code>Model#getGroupList()</code> and performing these operations on its members.</p>
+</div>
+<div class="paragraph">
+<p><strong>Given below is an example usage scenario and how the model behaves at each step.</strong></p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application. For simplicity, we assume that the groups <code>Project2103</code>, <code>Presentation</code> and <code>FrisbeeTeam</code> are present in the meeting book. None of these groups have a meeting scheduled.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/meetCommandStep1Diagram.png" alt="meetCommandStep1Diagram" width="600">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Meeting field in a group without a meeting is an empty <code>Optional</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>meet FrisbeeTeam n/Sunday Practice t/28-10-2018@10:00 l/UTown Green d/Practice for Inter-College Games</code> to schedule a meeting named <code>Sunday Practice</code> associated with the group <code>FrisbeeTeam</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/meetCommandStep2Diagram.png" alt="meetCommandStep2Diagram" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 3. The user then executes <code>meet Project2103 n/Weekly Meeting&#8230;&#8203;</code> to schedule a meeting called <code>Weekly Meeting</code> with the <code>Project2103</code> Group.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/meetCommandStep3Diagram.png" alt="meetCommandStep3Diagram" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 4. The user then found out that the meeting <code>Sunday Practice</code> with <code>FrisbeeTeam</code> has been cancelled. Thus, the user calls <code>cancel FrisbeeTeam</code> to cancel meeting with the <code>FrisbeeTeam</code> group.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/meetCommandStep4Diagram.png" alt="meetCommandStep4Diagram" width="600">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Calling <code>cancel</code> on a group without meeting returns an error
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+calling <code>meet GROUP_NAME</code> without argument is equivalent to calling <code>cancel GROUP_NAME</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 5. The user then discovers that the topic of the meeting with <code>Project2103</code> changed to rehearsal for the upcoming software demo. Therefore, the user calls <code>meet Project2103 n/Demo Preparation&#8230;&#8203;</code> to change the detail of the meeting This overwrites the meeting <code>Weekly Meeting</code> with the new meeting <code>Demo Preparation</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/meetCommandStep5Diagram.png" alt="meetCommandStep5Diagram" width="600">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This operation creates a new <code>Meeting</code> object which replaces the old one.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>The following sequence diagrams show how the meet and cancel command function.</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/meetCommandSequenceDiagram.png" alt="meetCommandSequenceDiagram" width="300">
+</div>
+<div class="title">Figure 1. Sequence diagram for meet command</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/cancelCommandSequenceDiagram.png" alt="cancelCommandSequenceDiagram" width="300">
+</div>
+<div class="title">Figure 2. Sequence diagram for cancel command</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-storage-of-meetings"><a class="link" href="#aspect-storage-of-meetings">Aspect: Storage of meetings</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Storing meetings inside groups</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This design simplifies the source code by not requiring a separate class to store meetings.</p>
+</li>
+<li>
+<p>Cons: This design requires iterating through all groups to retreive the list of meetings</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Storing meetings in a separate uniqueMeetingList class</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This design simplifies retreival of the list of meetings.</p>
+</li>
+<li>
+<p>Cons: This design causes the code becomes more complicated and more difficult to test.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-specification-of-target-group-for-meet-and-cancel-commands"><a class="link" href="#aspect-specification-of-target-group-for-meet-and-cancel-commands">Aspect: Specification of target group for meet and cancel commands</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Specifying the group using its name.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This design makes the command syntax natural and intuitive.</p>
+</li>
+<li>
+<p>Cons: This design forces the user have to manually type in the group name.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Specifying the group using its index.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This design is easier to use when the number of groups is high.</p>
+</li>
+<li>
+<p>Cons: This design causes the command syntax to become unnatural, and makes the program more suspectible to errors.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-28 19:55:21 UTC</div></div></div></body></html>
