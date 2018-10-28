@@ -17,16 +17,20 @@
 <li><a href="#adding-a-new-member-code-addmember-code">3.2. Adding a new member: <code>addMember</code></a></li>
 <li><a href="#editing-a-person-code-edit-code">3.3. Editing a person : <code>edit</code></a></li>
 <li><a href="#deleting-a-person-code-delete-del-code">3.4. Deleting a person: <code>delete/del</code></a></li>
-<li><a href="#find-a-group-person-meeting-code-find-code">3.5. Find a group / person / meeting: <code>find</code></a></li>
-<li><a href="#selecting-a-group-person-code-select-code">3.6. Selecting a group / person : <code>select</code></a></li>
-<li><a href="#add-meeting-to-group-code-meet-code">3.7. Add Meeting to Group: <code>meet</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">3.8. Listing all persons : <code>list</code></a></li>
-<li><a href="#import-data-code-import-code">3.9. Import data : <code>import</code></a></li>
-<li><a href="#export-data-code-export-code">3.10. Export data : <code>export</code></a></li>
-<li><a href="#change-storage-location-code-filepath-code">3.11. Change Storage Location: <code>filepath</code></a></li>
-<li><a href="#saving-the-data">3.12. Saving the data</a></li>
-<li><a href="#autocomplete-code-coming-in-v2-0-code">3.13. Autocomplete <code>[coming in v2.0]</code></a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.14. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#adding-a-new-group-code-addgroup-code">3.5. Adding a new group: <code>addGroup</code></a></li>
+<li><a href="#deleting-a-group-code-deletegroup-code">3.6. Deleting a group: <code>deleteGroup</code></a></li>
+<li><a href="#finding-a-group-person-meeting-code-find-code">3.7. Finding a group / person / meeting: <code>find</code></a></li>
+<li><a href="#selecting-a-group-person-code-select-code">3.8. Selecting a group / person : <code>select</code></a></li>
+<li><a href="#adding-meeting-to-group-code-meet-code">3.9. Adding Meeting to Group: <code>meet</code></a></li>
+<li><a href="#joining-a-person-to-group-code-join-code">3.10. Joining a person to group: <code>join</code></a></li>
+<li><a href="#removing-a-person-from-group-code-leave-code">3.11. Removing a person from group: <code>leave</code></a></li>
+<li><a href="#listing-all-persons-code-list-code">3.12. Listing all persons : <code>list</code></a></li>
+<li><a href="#importing-data-code-import-code">3.13. Importing data : <code>import</code></a></li>
+<li><a href="#exporting-data-code-export-code">3.14. Exporting data : <code>export</code></a></li>
+<li><a href="#changing-storage-location-code-filepath-code">3.15. Changing Storage Location: <code>filepath</code></a></li>
+<li><a href="#saving-the-data">3.16. Saving the data</a></li>
+<li><a href="#autocomplete-code-coming-in-v2-0-code">3.17. Autocomplete <code>[coming in v2.0]</code></a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.18. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -123,7 +127,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="adding-a-new-member-code-addmember-code"><a class="link" href="#adding-a-new-member-code-addmember-code">3.2. Adding a new member: <code>addMember</code></a></h3>
 <div class="paragraph">
-<p>Add a new person named [Name] with parameters described in [Person Parameters] to the MeetingBook.
+<p>Add a new person named [Name] with parameters described in [Person Parameters] to the MeetingBook.<br>
 Format: <code>addMember n/[Name] p/[Phone] e/[Email] a/[Address] t/[Tag] g/[Group Tag]</code></p>
 </div>
 <div class="ulist">
@@ -227,7 +231,55 @@ Deletes the fourth person in the person list.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="find-a-group-person-meeting-code-find-code"><a class="link" href="#find-a-group-person-meeting-code-find-code">3.5. Find a group / person / meeting: <code>find</code></a></h3>
+<h3 id="adding-a-new-group-code-addgroup-code"><a class="link" href="#adding-a-new-group-code-addgroup-code">3.5. Adding a new group: <code>addGroup</code></a></h3>
+<div class="paragraph">
+<p>Add a new group with user input title into MeetingBook.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>addGroup n/[Name]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addGroup n/CS2103T</code><br>
+Adds a new group with title 'CS2103T' into the MeetingBook.</p>
+</li>
+<li>
+<p><code>addGroup n/Discussion Group 1</code><br>
+Adds a new group with title 'Discussion Group 1' into the MeetingBook.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-group-code-deletegroup-code"><a class="link" href="#deleting-a-group-code-deletegroup-code">3.6. Deleting a group: <code>deleteGroup</code></a></h3>
+<div class="paragraph">
+<p>Remove the group that matches use input title.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>deleteGroup n/[Name]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deleteGroup n/CS2103T</code><br>
+Removes the group with title 'CS2103T', which is added previously, from MeetingBook.</p>
+</li>
+<li>
+<p><code>deleteGroup n/Discussion Group 1</code><br>
+Removes the group with title 'Discussion Group 1', which is added previously, from MeetingBook.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-a-group-person-meeting-code-find-code"><a class="link" href="#finding-a-group-person-meeting-code-find-code">3.7. Finding a group / person / meeting: <code>find</code></a></h3>
 <div class="paragraph">
 <p>The <code>find</code> command searches the MeetingBook for specified person, group, or meeting, and displays the results on
 the panel.<br></p>
@@ -286,7 +338,7 @@ This parameter may be omitted.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-group-person-code-select-code"><a class="link" href="#selecting-a-group-person-code-select-code">3.6. Selecting a group / person : <code>select</code></a></h3>
+<h3 id="selecting-a-group-person-code-select-code"><a class="link" href="#selecting-a-group-person-code-select-code">3.8. Selecting a group / person : <code>select</code></a></h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -314,7 +366,7 @@ Select and displays a group / person from the list obtained using <code>find</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-meeting-to-group-code-meet-code"><a class="link" href="#add-meeting-to-group-code-meet-code">3.7. Add Meeting to Group: <code>meet</code></a></h3>
+<h3 id="adding-meeting-to-group-code-meet-code"><a class="link" href="#adding-meeting-to-group-code-meet-code">3.9. Adding Meeting to Group: <code>meet</code></a></h3>
 <div class="paragraph">
 <p>Add a meeting to the group specified by its name.</p>
 </div>
@@ -334,20 +386,85 @@ Select and displays a group / person from the list obtained using <code>find</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.8. Listing all persons : <code>list</code></a></h3>
+<h3 id="joining-a-person-to-group-code-join-code"><a class="link" href="#joining-a-person-to-group-code-join-code">3.10. Joining a person to group: <code>join</code></a></h3>
+<div class="paragraph">
+<p>Add a person, specified by name, into a group, specified by the group title.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>join n/[Name] g/[Group]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>join n/Derek g/CS2103T</code><br>
+Makes the person 'Derek' to be a member of group 'CS2103T'.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Both the person and group should exist in the MeetingBook.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removing-a-person-from-group-code-leave-code"><a class="link" href="#removing-a-person-from-group-code-leave-code">3.11. Removing a person from group: <code>leave</code></a></h3>
+<div class="paragraph">
+<p>Remove a person, specified by name, from a group, specified by the group title.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>leave n/[Name] g/[Group]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>leave n/Derek g/CS2101</code><br>
+Removes the person 'Derek' from the group 'CS2101'.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Both the person and group should exist in the MeetingBook.
+The person should also be an existing member of the group.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.12. Listing all persons : <code>list</code></a></h3>
 <div class="paragraph">
 <p>Display all existing persons on the person list display.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="import-data-code-import-code"><a class="link" href="#import-data-code-import-code">3.9. Import data : <code>import</code></a></h3>
+<h3 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">3.13. Importing data : <code>import</code></a></h3>
 <div class="paragraph">
 <p>User is able to import other data.<br>
 Format: <code>import &lt;relative filepath&gt;</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="export-data-code-export-code"><a class="link" href="#export-data-code-export-code">3.10. Export data : <code>export</code></a></h3>
+<h3 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">3.14. Exporting data : <code>export</code></a></h3>
 <div class="paragraph">
 <p>User is able to export data to store as backup elsewhere or send data to other users of MeetingBook.<br>
 Format:<br>
@@ -363,7 +480,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="change-storage-location-code-filepath-code"><a class="link" href="#change-storage-location-code-filepath-code">3.11. Change Storage Location: <code>filepath</code></a></h3>
+<h3 id="changing-storage-location-code-filepath-code"><a class="link" href="#changing-storage-location-code-filepath-code">3.15. Changing Storage Location: <code>filepath</code></a></h3>
 <div class="paragraph">
 <p>Change the storage location of MeetingBook.<br>
 Format:<br>
@@ -382,19 +499,19 @@ Format:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.12. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.16. Saving the data</a></h3>
 <div class="paragraph">
 <p>MeetingBook data are saved in the hard disk automatically after any command that changes the data.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="autocomplete-code-coming-in-v2-0-code"><a class="link" href="#autocomplete-code-coming-in-v2-0-code">3.13. Autocomplete <code>[coming in v2.0]</code></a></h3>
+<h3 id="autocomplete-code-coming-in-v2-0-code"><a class="link" href="#autocomplete-code-coming-in-v2-0-code">3.17. Autocomplete <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>To assist user to speed up typing of command, user can &lt;TAB&gt; to autocomplete the command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.14. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.18. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
@@ -436,7 +553,23 @@ e.g. <code>addMember Derek p/87654321 e/cs2103t@comp.nus.edu.sg a/NUS School of 
 e.g. <code>edit 2 n/Jeffrey</code></p>
 </li>
 <li>
-<p><strong>Delete a person</strong> : <code>delete</code></p>
+<p><strong>Deleting a person</strong> : <code>delete</code><br></p>
+</li>
+<li>
+<p><strong>Adding a new group</strong> : <code>addGroup n/[Name]</code><br>
+e.g. <code>addGroup CS2103T</code></p>
+</li>
+<li>
+<p><strong>Deleting a new group</strong> : <code>deleteGroup n/[Name]</code><br>
+e.g. <code>deleteGroup CS2101</code></p>
+</li>
+<li>
+<p><strong>Joining a person to group</strong> : <code>join n/[Name] g/[Group]</code><br>
+e.g. <code>join Derek CS2103T</code></p>
+</li>
+<li>
+<p><strong>Removing a person from group</strong> : <code>leave n/[Name] g/[Group]</code><br>
+e.g. <code>leave Derek CS2101</code></p>
 </li>
 <li>
 <p><strong>Find a person / group / meeting</strong> : <code>find [person|group|meeting]  *[all]/&lt;keywords&gt; *[some]/&lt;keywords&gt; *[none]/&lt;keywords&gt;</code></p>
@@ -457,4 +590,4 @@ e.g. <code>select g/1</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-28 07:39:28 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-28 15:32:49 UTC</div></div></div></body></html>
