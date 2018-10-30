@@ -29,17 +29,20 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#sort-and-find-feature">3.1. Sort and Find feature</a></li>
-<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
-<li><a href="#select-feature">3.3. Select feature</a></li>
-<li><a href="#export-feature">3.4. Export feature</a></li>
-<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
-<li><a href="#group">3.6. Group</a></li>
-<li><a href="#addgroup-and-deletegroup-feature">3.7. AddGroup and DeleteGroup feature</a></li>
-<li><a href="#join-and-leave-feature">3.8. Join and Leave feature</a></li>
-<li><a href="#meeting">3.9. Meeting</a></li>
-<li><a href="#logging">3.10. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.11. Configuration</a></li>
+<li><a href="#person-feature">3.1. Person feature</a></li>
+<li><a href="#group-feature">3.2. Group feature</a></li>
+<li><a href="#uniquegrouplist-feature">3.3. UniqueGroupList feature</a></li>
+<li><a href="#addgroup-and-deletegroup-feature">3.4. AddGroup and DeleteGroup feature</a></li>
+<li><a href="#join-and-leave-feature">3.5. Join and Leave feature</a></li>
+<li><a href="#meeting-feature">3.6. Meeting feature</a></li>
+<li><a href="#addressbook-feature">3.7. AddressBook feature</a></li>
+<li><a href="#sort-and-find-feature">3.8. Sort and Find feature</a></li>
+<li><a href="#undo-redo-feature">3.9. Undo/Redo feature</a></li>
+<li><a href="#select-feature">3.10. Select feature</a></li>
+<li><a href="#export-feature">3.11. Export feature</a></li>
+<li><a href="#proposed-data-encryption">3.12. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.13. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.14. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -531,7 +534,8 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>stores the MeetingBook data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> and an unmodifiable <code>ObservableList&lt;Group&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> and an unmodifiable <code>ObservableList&lt;Group&gt;</code> that can be 'observed'
+e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -545,163 +549,9 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>MeetingBook</code>, which <code>Person</code> can reference.
-This would allow <code>MeetingBook</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object.
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/GroupClassDiagram.png" alt="GroupClassDiagram" width="300">
-</div>
-<div class="title">Figure 9. The new Group class</div>
-</div>
-<div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/group/Group.java"><code>Group.java</code></a></p>
-</div>
-<div class="paragraph">
-<p>The <code>Group</code>,</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>is identified by <code>Title</code> and <code>Description</code>.</p>
-</li>
-<li>
-<p>contains the <code>Meeting</code> details for this particular group. This is an optional field.</p>
-</li>
-<li>
-<p>keeps track of its members in a <code>UniquePersonList</code>. The method <code>hasMember(Person person)</code> can check the enrollment of a particular <code>Person</code>.</p>
-</li>
-<li>
-<p>supports add and remove member using methods <code>addMember(Person toAdd)</code> and <code>removeMember(Person toRemove)</code>.</p>
-</li>
-<li>
-<p>exposes an unmodifiable <code>List&lt;Person&gt;</code> for observation of member enrollment status by <code>getMembersView()</code>.</p>
-</li>
-<li>
-<p>supports set and cancel of <code>Meeting</code> of this group by methods <code>setMeeting(Meeting meeting)</code> and <code>cancelMeeting()</code>.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/uniqueGroupListClassDiagram.png" alt="uniqueGroupListClassDiagram" width="500">
-</div>
-<div class="title">Figure 10. The UniqueGroupList class</div>
-</div>
-<div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/group/UniqueGroupList.java"><code>UniqueGroupList.java</code></a></p>
-</div>
-<div class="paragraph">
-<p>The <code>UniqueGroupList</code>,</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>ensures a list of <code>Group</code> objects without duplicates.</p>
-</li>
-<li>
-<p>supports <code>add</code>, <code>remove</code> and <code>replace</code> operations on groups in the list.</p>
-</li>
-<li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Group&gt;</code> for observation of the list.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Both <code>UniqueGroupList</code> and <code>UniquePersonList</code> implements <code>Iterable</code> interface.
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/meetingClassDiagram.png" alt="meetingClassDiagram" width="300">
-</div>
-<div class="title">Figure 11. The Meeting class</div>
-</div>
-<div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/group/Meeting.java"><code>Meeting.java</code></a></p>
-</div>
-<div class="paragraph">
-<p>The <code>Meeting</code>,</p>
-</div>
-<div class="paragraph">
-<p>Meeting encapsulates information of a meeting.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>contains the title, time, location and description of a meeting.</p>
-</li>
-<li>
-<p>resides in <code>Group</code> objects and can be assigned to a group using the <code>meet</code> command which utilises the <code>updateGroup</code> method of the <code>Model</code> interface.</p>
-</li>
-<li>
-<p>each <code>Group</code> object can have a maximum of one meeting.</p>
-</li>
-<li>
-<p>two <code>Meetings</code> are considered similiar if they share the same title, time, and location</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/PersonClassDiagram.png" alt="PersonClassDiagram" width="300">
-</div>
-<div class="title">Figure 12. The enhanced Person class</div>
-</div>
-<div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person.java</code></a></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Person</code> now supports group identification. Every person will keep a list of groups that he/she has enrolled in.</p>
-</li>
-<li>
-<p>Every <code>Person</code> in MeetingBook can be added or removed from an existing group. Use the methods <code>addGroup()</code> and <code>removeGroup</code>.</p>
-</li>
-<li>
-<p><code>Person</code> can check whether he/she is in a particular group by <code>hasGroup(Group group)</code> method.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>The enhanced <code>AddressBook</code></strong>,</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>versionedAddressBook</code> now also contains group list, which supports categorisation of persons in MeetingBook.</p>
-</li>
-<li>
-<p><code>Group</code> can be created or removed from the MeetingBook.</p>
-</li>
-<li>
-<p>When a <code>Group</code> is removed from the MeetingBook, all members will be removed from this group.</p>
-</li>
-<li>
-<p>When a <code>Person</code> is removed from the MeetingBook, all groups containing this person as member will remove this person from the group.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The categorisation of <code>Person</code> is not exclusive. One <code>Person</code> can be enrolled in multiple groups at the same time.
+As a more OOP model, we can store a <code>Tag</code> list and a <code>Group</code> list in <code>MeetingBook</code>, which <code>Person</code> can reference.
+This would allow <code>MeetingBook</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, and one <code>Group</code> object per
+unique <code>Group</code>, instead of each <code>Person</code> needing their own <code>Tag</code> and <code>Group</code> object.
 </td>
 </tr>
 </table>
@@ -713,7 +563,7 @@ The categorisation of <code>Person</code> is not exclusive. One <code>Person</co
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
 </div>
-<div class="title">Figure 13. Structure of the Storage Component</div>
+<div class="title">Figure 9. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -747,13 +597,592 @@ The categorisation of <code>Person</code> is not exclusive. One <code>Person</co
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="sort-and-find-feature"><a class="link" href="#sort-and-find-feature">3.1. Sort and Find feature</a></h3>
+<h3 id="person-feature"><a class="link" href="#person-feature">3.1. Person feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/PersonClassDiagram.png" alt="PersonClassDiagram" width="300">
+</div>
+<div class="title">Figure 10. The enhanced Person class</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person.java</code></a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Person</code> now supports group identification. Every person will keep a list of groups that he/she has enrolled in.</p>
+</li>
+<li>
+<p>Every <code>Person</code> in MeetingBook can be added or removed from an existing group. Use the methods <code>addGroup()</code> and <code>removeGroup</code>.</p>
+</li>
+<li>
+<p><code>Person</code> can check whether he/she is in a particular group by <code>hasGroup(Group group)</code> method.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="group-feature"><a class="link" href="#group-feature">3.2. Group feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/GroupClassDiagram.png" alt="GroupClassDiagram" width="300">
+</div>
+<div class="title">Figure 11. The new Group class</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/group/Group.java"><code>Group.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Group</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>is identified by <code>Title</code> and <code>Description</code>.</p>
+</li>
+<li>
+<p>contains the <code>Meeting</code> details for this particular group. This is an optional field.</p>
+</li>
+<li>
+<p>keeps track of its members in a <code>UniquePersonList</code>. The method <code>hasMember(Person person)</code> can check the enrollment of a particular <code>Person</code>.</p>
+</li>
+<li>
+<p>supports add and remove member using methods <code>addMember(Person toAdd)</code> and <code>removeMember(Person toRemove)</code>.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>List&lt;Person&gt;</code> for observation of member enrollment status by <code>getMembersView()</code>.</p>
+</li>
+<li>
+<p>supports set and cancel of <code>Meeting</code> of this group by methods <code>setMeeting(Meeting meeting)</code> and <code>cancelMeeting()</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="usage-of-group-class"><a class="link" href="#usage-of-group-class">3.2.2. Usage of Group class</a></h4>
+<div class="paragraph">
+<p>A <code>Group</code> can be added and removed from <code>MeetingBook</code> using <code>addGroup</code> and <code>deleteGroup</code> command respectively.</p>
+</div>
+<div class="paragraph">
+<p>Once the <code>Group</code> exists in the <code>AddressBook</code>, the existing <code>Person</code> can be assigned to that group using <code>join</code> command.
+The person can also be removed from the group by <code>leave</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Each <code>Group</code> can keep track of a list of its members. This is supported by <code>UniquePersonList</code> class.</p>
+</div>
+<div class="paragraph">
+<p>Each <code>Person</code> can also keep a list of groups he/she enrols in. An <code>UniqueGroupList</code> is added to support this functionality.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.2.3. Design Consideration</a></h4>
+<div class="sect4">
+<h5 id="aspect-management-of-group-relationship"><a class="link" href="#aspect-management-of-group-relationship">Aspect: Management of group relationship</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> The <code>add</code> and <code>remove</code> operations support bidirectional update of relationships.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less complexity in current project structure.</p>
+</li>
+<li>
+<p>Cons: The future optimisation of these operations is less flexible.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use a central <code>groupManager</code> to manage the group-person relationships on the <code>AddressBook level</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Greater room for possible future improvement, and ability to contain more complex relationships required by potential users.</p>
+</li>
+<li>
+<p>Cons: The idea is less compatible with the current project structure. Extensive change in structure and logic must be performed, and is error-prone.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="uniquegrouplist-feature"><a class="link" href="#uniquegrouplist-feature">3.3. UniqueGroupList feature</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/uniqueGroupListClassDiagram.png" alt="uniqueGroupListClassDiagram" width="500">
+</div>
+<div class="title">Figure 12. The UniqueGroupList class</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/group/UniqueGroupList.java"><code>UniqueGroupList.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>UniqueGroupList</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ensures a list of <code>Group</code> objects without duplicates.</p>
+</li>
+<li>
+<p>supports <code>add</code>, <code>remove</code> and <code>replace</code> operations on groups in the list.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;Group&gt;</code> for observation of the list.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Both <code>UniqueGroupList</code> and <code>UniquePersonList</code> implements <code>Iterable</code> interface.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="addgroup-and-deletegroup-feature"><a class="link" href="#addgroup-and-deletegroup-feature">3.4. AddGroup and DeleteGroup feature</a></h3>
+<div class="paragraph">
+<p>The AddGroup and DeleteGroup commands modify the <code>UniqueGroupList</code> in the <code>versionedAddressBook</code>.
+This section shows how the addGroup and deleteGroup commands are implemented.</p>
+</div>
+<div class="sect3">
+<h4 id="code-addgroup-code-command-usage"><a class="link" href="#code-addgroup-code-command-usage">3.4.1. <code>addGroup</code> command usage</a></h4>
+<div class="paragraph">
+<p>The <code>addGroup</code> command allows user to add a new group with user input title to the MeetingBook.
+This command is executed with the following syntax:<br></p>
+</div>
+<div class="paragraph">
+<p>Syntax: <code>addGroup n/[Name]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>addGroup n/CS2103T</code>: adds a new group with title 'CS2103T' into the MeetingBook.</p>
+</div>
+<div class="paragraph">
+<p><strong>The follow sequence diagram shows how addGroup command functions.</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddGroupCommand.png" alt="AddGroupCommand" width="350">
+</div>
+<div class="title">Figure 13. Sequence diagram for addGroup command</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-deletegroup-code-command-usage"><a class="link" href="#code-deletegroup-code-command-usage">3.4.2. <code>deleteGroup</code> command usage</a></h4>
+<div class="paragraph">
+<p>The <code>deleteGroup</code> command allows user to remove an existing group from the MeetingBook.
+This command is executed with the following syntax:<br></p>
+</div>
+<div class="paragraph">
+<p>Syntax: <code>deleteGroup n/[Name]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>deleteGroup n/CS2101</code>: removes the existing group with title 'CS2101' from the MeetingBook.</p>
+</div>
+<div class="paragraph">
+<p><strong>The follow sequence diagram shows how deleteGroup command functions.</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteGroupCommand.png" alt="DeleteGroupCommand" width="350">
+</div>
+<div class="title">Figure 14. Sequence diagram for deleteGroup command</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-of-code-addgroup-code-and-code-deletegroup-code-commands"><a class="link" href="#implementation-of-code-addgroup-code-and-code-deletegroup-code-commands">3.4.3. Implementation of <code>addGroup</code> and <code>deleteGroup</code> commands</a></h4>
+<div class="paragraph">
+<p>The <code>versionedAddressBook</code> maintains a <code>UniqueGroupList</code> to keep track of all groups
+that exist in this MeetingBook. The commands thus modify and update this list of groups through <code>ModelManager</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="join-and-leave-feature"><a class="link" href="#join-and-leave-feature">3.5. Join and Leave feature</a></h3>
+<div class="paragraph">
+<p>The Join and Leave commands modify the relationship between groups existed in the <code>UniqueGroupList</code> and
+people in the <code>UniquePersonList</code> maintained by `versionedAddressBook. This section provides description of the usage
+and implementation of these commands.</p>
+</div>
+<div class="sect3">
+<h4 id="code-join-code-command-usage"><a class="link" href="#code-join-code-command-usage">3.5.1. <code>join</code> command usage</a></h4>
+<div class="paragraph">
+<p>The <code>join</code> command updates relationship between a person and a group existed in the MeetingBook.
+The person specified by name now becomes a member of the group specified by title.
+This command is executed with the following syntax:<br></p>
+</div>
+<div class="paragraph">
+<p>Syntax: <code>join n/[Name] g/[Group]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>join n/Derek g/CS2101</code>: makes the person 'Derek' become a member of group 'CS2101'</p>
+</div>
+<div class="paragraph">
+<p><strong>The follow sequence diagram shows how join command functions.</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/JoinCommand.png" alt="JoinCommand" width="500">
+</div>
+<div class="title">Figure 15. Sequence diagram for join command</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-leave-code-command-usage"><a class="link" href="#code-leave-code-command-usage">3.5.2. <code>leave</code> command usage</a></h4>
+<div class="paragraph">
+<p>The <code>leave</code> command updates relationship between person and group in the same way as the <code>join</code> command.
+The person specified by name now stops to be a member of the group specified by title.
+And the person is removed from this group. This command is executed with the following syntax:<br></p>
+</div>
+<div class="paragraph">
+<p>Syntax: <code>leave n/[Name] g/[Group]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>leave n/Ben g/CS2103T</code>: removes the person <code>Ben</code> from the group <code>CS2103T</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>The follow sequence diagram shows how leave command functions.</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LeaveCommand.png" alt="LeaveCommand" width="500">
+</div>
+<div class="title">Figure 16. Sequence diagram for leave command</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-of-code-join-code-and-code-leave-code-commands"><a class="link" href="#implementation-of-code-join-code-and-code-leave-code-commands">3.5.3. Implementation of <code>join</code> and <code>leave</code> commands</a></h4>
+<div class="paragraph">
+<p>The <code>versionedAddressBook</code> maintains a <code>UniqueGroupList</code> to keep track of all groups that exist in this MeetingBook.
+It also maintains a <code>UniquePersonList</code> to keep track of all people that exist in this MeetingBook.
+The commands thus modify and update a pair of person and group, as specified by user input, in their respective list
+through <code>ModelManager</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="meeting-feature"><a class="link" href="#meeting-feature">3.6. Meeting feature</a></h3>
+<div class="paragraph">
+<p><code>Meeting</code> is one of the central feature of this application. It allows the user to create a reminder of an upcoming event associated with a <code>Group</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A <code>Group</code> can only have a maximum of one <code>Meeting</code> at any given time.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.6.1. Current Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetingClassDiagram.png" alt="meetingClassDiagram" width="300">
+</div>
+<div class="title">Figure 17. The Meeting class</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/group/Meeting.java"><code>Meeting.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Meeting</code>,</p>
+</div>
+<div class="paragraph">
+<p>Meeting encapsulates information of a meeting.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>contains the title, time, location and description of a meeting.</p>
+</li>
+<li>
+<p>resides in <code>Group</code> objects and can be assigned to a group using the <code>meet</code> command which utilises the <code>updateGroup</code> method of the <code>Model</code> interface.</p>
+</li>
+<li>
+<p>each <code>Group</code> object can have a maximum of one meeting.</p>
+</li>
+<li>
+<p>two <code>Meetings</code> are considered similar if they share the same title, time, and location</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="usage-of-meeting-class"><a class="link" href="#usage-of-meeting-class">3.6.2. Usage of Meeting class</a></h4>
+<div class="paragraph">
+<p>In the current implementation, <code>Meeting</code> is related to <code>Group</code> by composition. To facilitate the meeting feature, <code>Group</code> implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Group#hasMeeting</code>&#8201;&#8212;&#8201;This returns <code>true</code> if there is a meeting associated with the group.</p>
+</li>
+<li>
+<p><code>Group#getMeeting()</code>&#8201;&#8212;&#8201;This group&#8217;s meeting or <code>null</code> if the group has no meeting.</p>
+</li>
+<li>
+<p><code>Group#setMeeting(Meeting meeting)</code>&#8201;&#8212;&#8201;This assigns <code>meeting</code> to the group.</p>
+</li>
+<li>
+<p><code>Group#cancelMeeting()</code>&#8201;&#8212;&#8201;This removes the meeting associated witht the group.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These operations can be accessed by retreiving the list of groups using <code>Model#getGroupList()</code> and performing these operations on its members.</p>
+</div>
+<div class="paragraph">
+<p><strong>Given below is an example usage scenario and how the model behaves at each step.</strong></p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application. For simplicity, we assume that the groups <code>Project2103</code>, <code>Presentation</code> and <code>FrisbeeTeam</code> are present in the meeting book. None of these groups have a meeting scheduled.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandStep1Diagram.png" alt="meetCommandStep1Diagram" width="600">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Meeting field in a group without a meeting is an empty <code>Optional</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>meet FrisbeeTeam n/Sunday Practice t/28-10-2018@10:00 l/UTown Green d/Practice for Inter-College Games</code> to schedule a meeting named <code>Sunday Practice</code> associated with the group <code>FrisbeeTeam</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandStep2Diagram.png" alt="meetCommandStep2Diagram" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 3. The user then executes <code>meet Project2103 n/Weekly Meeting&#8230;&#8203;</code> to schedule a meeting called <code>Weekly Meeting</code> with the <code>Project2103</code> Group.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandStep3Diagram.png" alt="meetCommandStep3Diagram" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 4. The user then found out that the meeting <code>Sunday Practice</code> with <code>FrisbeeTeam</code> has been cancelled. Thus, the user calls <code>cancel FrisbeeTeam</code> to cancel meeting with the <code>FrisbeeTeam</code> group.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandStep4Diagram.png" alt="meetCommandStep4Diagram" width="600">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Calling <code>cancel</code> on a group without meeting returns an error
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+calling <code>meet GROUP_NAME</code> without argument is equivalent to calling <code>cancel GROUP_NAME</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 5. The user then discovers that the topic of the meeting with <code>Project2103</code> changed to rehearsal for the upcoming software demo. Therefore, the user calls <code>meet Project2103 n/Demo Preparation&#8230;&#8203;</code> to change the detail of the meeting This overwrites the meeting <code>Weekly Meeting</code> with the new meeting <code>Demo Preparation</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandStep5Diagram.png" alt="meetCommandStep5Diagram" width="600">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This operation creates a new <code>Meeting</code> object which replaces the old one.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>The following sequence diagrams show how the meet and cancel command function.</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MeetCommandSequenceDiagram.png" alt="MeetCommandSequenceDiagram" width="300">
+</div>
+<div class="title">Figure 18. Sequence diagram for meet command</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/cancelCommandSequenceDiagram.png" alt="cancelCommandSequenceDiagram" width="300">
+</div>
+<div class="title">Figure 19. Sequence diagram for cancel command</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.6.3. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-storage-of-meetings"><a class="link" href="#aspect-storage-of-meetings">Aspect: Storage of meetings</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Storing meetings inside groups</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This design simplifies the source code by not requiring a separate class to store meetings.</p>
+</li>
+<li>
+<p>Cons: This design requires iterating through all groups to retreive the list of meetings</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Storing meetings in a separate uniqueMeetingList class</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This design simplifies retreival of the list of meetings.</p>
+</li>
+<li>
+<p>Cons: This design causes the code becomes more complicated and more difficult to test.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-specification-of-target-group-for-meet-and-cancel-commands"><a class="link" href="#aspect-specification-of-target-group-for-meet-and-cancel-commands">Aspect: Specification of target group for meet and cancel commands</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Specifying the group using its name.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This design makes the command syntax natural and intuitive.</p>
+</li>
+<li>
+<p>Cons: This design forces the user have to manually type in the group name.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Specifying the group using its index.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This design is easier to use when the number of groups is high.</p>
+</li>
+<li>
+<p>Cons: This design causes the command syntax to become unnatural, and makes the program more suspectible to errors.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="addressbook-feature"><a class="link" href="#addressbook-feature">3.7. AddressBook feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.7.1. Current Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/addressbookObject.png" alt="addressbookObject" width="350">
+</div>
+<div class="title">Figure 20. The object diagram of AddressBook</div>
+</div>
+<div class="paragraph">
+<p><strong>Enhancements:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>versionedAddressBook</code> now also contains group list and meeting list, which supports categorisation of persons in MeetingBook.</p>
+</li>
+<li>
+<p><code>Group</code> can be created or removed from the MeetingBook.</p>
+</li>
+<li>
+<p><code>Meeting</code> can be scheduled or cancelled from the MeetingBook.</p>
+</li>
+<li>
+<p>When a <code>Group</code> is removed from the MeetingBook, all members will be removed from this group.</p>
+</li>
+<li>
+<p>When a <code>Person</code> is removed from the MeetingBook, all groups containing this person as member will remove this person from the group.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The categorisation of <code>Person</code> is not exclusive. One <code>Person</code> can be enrolled in multiple groups at the same time.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sort-and-find-feature"><a class="link" href="#sort-and-find-feature">3.8. Sort and Find feature</a></h3>
 <div class="paragraph">
 <p>The Sort and Find commands modifies the <code>ObservableList&lt;Person&gt;</code> in <code>Model</code> that the UI is bound to. This section will
 detail how the sort and find commands are implemented.</p>
 </div>
 <div class="sect3">
-<h4 id="code-sort-code-command-usage"><a class="link" href="#code-sort-code-command-usage">3.1.1. <code>sort</code> command usage</a></h4>
+<h4 id="code-sort-code-command-usage"><a class="link" href="#code-sort-code-command-usage">3.8.1. <code>sort</code> command usage</a></h4>
 <div class="paragraph">
 <p>The <code>sort</code> command allows the user to sort the displayed persons list according to each person&#8217;s name, email,
 phone number, or address by alphanumerical order. This command is executed with the following syntax:<br></p>
@@ -766,7 +1195,7 @@ phone number, or address by alphanumerical order. This command is executed with 
 </div>
 </div>
 <div class="sect3">
-<h4 id="code-find-code-command-usage"><a class="link" href="#code-find-code-command-usage">3.1.2. <code>find</code> command usage</a></h4>
+<h4 id="code-find-code-command-usage"><a class="link" href="#code-find-code-command-usage">3.8.2. <code>find</code> command usage</a></h4>
 <div class="paragraph">
 <p>The <code>find</code> command allows the user to filter the displayed persons list by each person&#8217;s name based on
 keywords given by the user. This command is executed with the following syntax:<br></p>
@@ -814,7 +1243,7 @@ results will contain "alice" and "bob", either "shirlene" or "david", and none o
 </div>
 </div>
 <div class="sect3">
-<h4 id="implementation-of-code-sort-code-and-code-find-code-commands"><a class="link" href="#implementation-of-code-sort-code-and-code-find-code-commands">3.1.3. Implementation of <code>sort</code> and <code>find</code> commands</a></h4>
+<h4 id="implementation-of-code-sort-code-and-code-find-code-commands"><a class="link" href="#implementation-of-code-sort-code-and-code-find-code-commands">3.8.3. Implementation of <code>sort</code> and <code>find</code> commands</a></h4>
 <div class="paragraph">
 <p><code>ModelManager</code> maintains a <code>sortedPersons</code> list of type <code>SortedList&lt;Person&gt;</code> and a <code>filteredPersons</code> list of type
 <code>FilteredList&lt;Person&gt;</code>.<br></p>
@@ -848,7 +1277,7 @@ and the <code>Predicate&lt;Person&gt;</code> will be applied to the <code>person
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.4. Design considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.8.4. Design considerations</a></h4>
 <div class="paragraph">
 <p>Due to this two-layered structure. The user can chain <code>find</code> and <code>sort</code> commands back-to-back to display the desired
 list.</p>
@@ -856,9 +1285,9 @@ list.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.9. Undo/Redo feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.2.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.9.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -988,7 +1417,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.9.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1058,9 +1487,9 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="select-feature"><a class="link" href="#select-feature">3.3. Select feature</a></h3>
+<h3 id="select-feature"><a class="link" href="#select-feature">3.10. Select feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.10.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The select mechanism is facilitated by <code>ModelManager</code>.
 It extends <code>Model</code> with two lists, <code>UniquePersonList</code> and <code>UniqueGroupList</code> and implements the following operations:</p>
@@ -1116,7 +1545,7 @@ If a group is selected, calling <code>select</code> command with <code>SELECT_TY
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.10.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-select-executes"><a class="link" href="#aspect-how-select-executes">Aspect: How select executes</a></h5>
 <div class="ulist">
@@ -1153,9 +1582,9 @@ If a group is selected, calling <code>select</code> command with <code>SELECT_TY
 </div>
 </div>
 <div class="sect2">
-<h3 id="export-feature"><a class="link" href="#export-feature">3.4. Export feature</a></h3>
+<h3 id="export-feature"><a class="link" href="#export-feature">3.11. Export feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.11.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The export mechanism is facilitated by <code>ExportCommand</code>. <code>ExportCommandParser</code> is responsible for parsing the input arguments.<br></p>
 </div>
@@ -1184,7 +1613,7 @@ If there is no filepath provided, <code>export</code> command will return an inv
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration"><a class="link" href="#design-consideration">3.4.2. Design Consideration</a></h4>
+<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.11.2. Design Consideration</a></h4>
 <div class="sect4">
 <h5 id="aspect-make-export-undoable"><a class="link" href="#aspect-make-export-undoable">Aspect: Make export undoable</a></h5>
 <div class="ulist">
@@ -1234,378 +1663,20 @@ If there is no filepath provided, <code>export</code> command will return an inv
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.12. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="group"><a class="link" href="#group">3.6. Group</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.6.1. Current Implementation</a></h4>
-<div class="paragraph">
-<p>A <code>Group</code> can be added and removed from <code>MeetingBook</code> using <code>addGroup</code> and <code>deleteGroup</code> command respectively.</p>
-</div>
-<div class="paragraph">
-<p>Once the <code>Group</code> exists in the <code>AddressBook</code>, the existing <code>Person</code> can be assigned to that group using <code>join</code> command.
-The person can also be removed from the group by <code>leave</code> command.</p>
-</div>
-<div class="paragraph">
-<p>Each <code>Group</code> can keep track of a list of its members. This is supported by <code>UniquePersonList</code> class.</p>
-</div>
-<div class="paragraph">
-<p>Each <code>Person</code> can also keep a list of groups he/she enrols in. An <code>UniqueGroupList</code> is added to support this functionality.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.6.2. Design Consideration</a></h4>
-<div class="sect4">
-<h5 id="aspect-management-of-group-relationship"><a class="link" href="#aspect-management-of-group-relationship">Aspect: Management of group relationship</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> The <code>add</code> and <code>remove</code> operations support bidirectional update of relationships.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Less complexity in current project structure.</p>
-</li>
-<li>
-<p>Cons: The future optimisation of these operations is less flexible.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Use a central <code>groupManager</code> to manage the group-person relationships on the <code>AddressBook level</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Greater room for possible future improvement, and ability to contain more complex relationships required by potential users.</p>
-</li>
-<li>
-<p>Cons: The idea is less compatible with the current project structure. Extensive change in structure and logic must be performed, and is error-prone.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="addgroup-and-deletegroup-feature"><a class="link" href="#addgroup-and-deletegroup-feature">3.7. AddGroup and DeleteGroup feature</a></h3>
-<div class="paragraph">
-<p>The AddGroup and DeleteGroup commands modify the <code>UniqueGroupList</code> in the <code>versionedAddressBook</code>.
-This section shows how the addGroup and deleteGroup commands are implemented.</p>
-</div>
-<div class="sect3">
-<h4 id="code-addgroup-code-command-usage"><a class="link" href="#code-addgroup-code-command-usage">3.7.1. <code>addGroup</code> command usage</a></h4>
-<div class="paragraph">
-<p>The <code>addGroup</code> command allows user to add a new group with user input title to the MeetingBook.
-This command is executed with the following syntax:<br></p>
-</div>
-<div class="paragraph">
-<p>Syntax: <code>addGroup n/[Name]</code><br></p>
-</div>
-<div class="paragraph">
-<p>Example: <code>addGroup n/CS2103T</code>: adds a new group with title 'CS2103T' into the MeetingBook.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="code-deletegroup-code-command-usage"><a class="link" href="#code-deletegroup-code-command-usage">3.7.2. <code>deleteGroup</code> command usage</a></h4>
-<div class="paragraph">
-<p>The <code>deleteGroup</code> command allows user to remove an existing group from the MeetingBook.
-This command is executed with the following syntax:<br></p>
-</div>
-<div class="paragraph">
-<p>Syntax: <code>deleteGroup n/[Name]</code><br></p>
-</div>
-<div class="paragraph">
-<p>Example: <code>deleteGroup n/CS2101</code>: removes the existing group with title 'CS2101' from the MeetingBook.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="implementation-of-code-addgroup-code-and-code-deletegroup-code-commands"><a class="link" href="#implementation-of-code-addgroup-code-and-code-deletegroup-code-commands">3.7.3. Implementation of <code>addGroup</code> and <code>deleteGroup</code> commands</a></h4>
-<div class="paragraph">
-<p>The <code>versionedAddressBook</code> maintains a <code>UniqueGroupList</code> to keep track of all groups
-that exist in this MeetingBook. The commands thus modify and update this list of groups through <code>ModelManager</code>.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="join-and-leave-feature"><a class="link" href="#join-and-leave-feature">3.8. Join and Leave feature</a></h3>
-<div class="paragraph">
-<p>The Join and Leave commands modify the relationship between groups existed in the <code>UniqueGroupList</code> and
-people in the <code>UniquePersonList</code> maintained by `versionedAddressBook. This section provides description of the usage
-and implementation of these commands.</p>
-</div>
-<div class="sect3">
-<h4 id="code-join-code-command-usage"><a class="link" href="#code-join-code-command-usage">3.8.1. <code>join</code> command usage</a></h4>
-<div class="paragraph">
-<p>The <code>join</code> command updates relationship between a person and a group existed in the MeetingBook.
-The person specified by name now becomes a member of the group specified by title.
-This command is executed with the following syntax:<br></p>
-</div>
-<div class="paragraph">
-<p>Syntax: <code>join n/[Name] g/[Group]</code><br></p>
-</div>
-<div class="paragraph">
-<p>Example: <code>join n/Derek g/CS2101</code>: makes the person 'Derek' become a member of group 'CS2101'</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="code-leave-code-command-usage"><a class="link" href="#code-leave-code-command-usage">3.8.2. <code>leave</code> command usage</a></h4>
-<div class="paragraph">
-<p>The <code>leave</code> command updates relationship between person and group in the same way as the <code>join</code> command.
-The person specified by name now stops to be a member of the group specified by title.
-And the person is removed from this group. This command is executed with the following syntax:<br></p>
-</div>
-<div class="paragraph">
-<p>Syntax: <code>leave n/[Name] g/[Group]</code><br></p>
-</div>
-<div class="paragraph">
-<p>Example: <code>leave n/Ben g/CS2103T</code>: removes the person <code>Ben</code> from the group <code>CS2103T</code>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="implementation-of-code-join-code-and-code-leave-code-commands"><a class="link" href="#implementation-of-code-join-code-and-code-leave-code-commands">3.8.3. Implementation of <code>join</code> and <code>leave</code> commands</a></h4>
-<div class="paragraph">
-<p>The <code>versionedAddressBook</code> maintains a <code>UniqueGroupList</code> to keep track of all groups that exist in this MeetingBook.
-It also maintains a <code>UniquePersonList</code> to keep track of all people that exist in this MeetingBook.
-The commands thus modify and update a pair of person and group, as specified by user input, in their respective list
-through <code>ModelManager</code>.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="meeting"><a class="link" href="#meeting">3.9. Meeting</a></h3>
-<div class="paragraph">
-<p><code>Meeting</code> is one of the central feature of this application. It allows the user to create a reminder of an upcoming event associated with a <code>Group</code>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-A <code>Group</code> can only have a maximum of one <code>Meeting</code> at any given time.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.9.1. Current implementation</a></h4>
-<div class="paragraph">
-<p>In the current implementation, <code>Meeting</code> is related to <code>Group</code> by composition. To facilitate the meeting feature, <code>Group</code> implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Group#hasMeeting</code>&#8201;&#8212;&#8201;This returns <code>true</code> if there is a meeting associated with the group.</p>
-</li>
-<li>
-<p><code>Group#getMeeting()</code>&#8201;&#8212;&#8201;This group&#8217;s meeting or <code>null</code> if the group has no meeting.</p>
-</li>
-<li>
-<p><code>Group#setMeeting(Meeting meeting)</code>&#8201;&#8212;&#8201;This assigns <code>meeting</code> to the group.</p>
-</li>
-<li>
-<p><code>Group#cancelMeeting()</code>&#8201;&#8212;&#8201;This removes the meeting associated witht the group.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>These operations can be accessed by retreiving the list of groups using <code>Model#getGroupList()</code> and performing these operations on its members.</p>
-</div>
-<div class="paragraph">
-<p><strong>Given below is an example usage scenario and how the model behaves at each step.</strong></p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application. For simplicity, we assume that the groups <code>Project2103</code>, <code>Presentation</code> and <code>FrisbeeTeam</code> are present in the meeting book. None of these groups have a meeting scheduled.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/meetCommandStep1Diagram.png" alt="meetCommandStep1Diagram" width="600">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Meeting field in a group without a meeting is an empty <code>Optional</code>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>meet FrisbeeTeam n/Sunday Practice t/28-10-2018@10:00 l/UTown Green d/Practice for Inter-College Games</code> to schedule a meeting named <code>Sunday Practice</code> associated with the group <code>FrisbeeTeam</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/meetCommandStep2Diagram.png" alt="meetCommandStep2Diagram" width="600">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 3. The user then executes <code>meet Project2103 n/Weekly Meeting&#8230;&#8203;</code> to schedule a meeting called <code>Weekly Meeting</code> with the <code>Project2103</code> Group.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/meetCommandStep3Diagram.png" alt="meetCommandStep3Diagram" width="600">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 4. The user then found out that the meeting <code>Sunday Practice</code> with <code>FrisbeeTeam</code> has been cancelled. Thus, the user calls <code>cancel FrisbeeTeam</code> to cancel meeting with the <code>FrisbeeTeam</code> group.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/meetCommandStep4Diagram.png" alt="meetCommandStep4Diagram" width="600">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Calling <code>cancel</code> on a group without meeting returns an error
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-calling <code>meet GROUP_NAME</code> without argument is equivalent to calling <code>cancel GROUP_NAME</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 5. The user then discovers that the topic of the meeting with <code>Project2103</code> changed to rehearsal for the upcoming software demo. Therefore, the user calls <code>meet Project2103 n/Demo Preparation&#8230;&#8203;</code> to change the detail of the meeting This overwrites the meeting <code>Weekly Meeting</code> with the new meeting <code>Demo Preparation</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/meetCommandStep5Diagram.png" alt="meetCommandStep5Diagram" width="600">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This operation creates a new <code>Meeting</code> object which replaces the old one.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><strong>The following sequence diagrams show how the meet and cancel command function.</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/MeetCommandSequenceDiagram.png" alt="MeetCommandSequenceDiagram" width="300">
-</div>
-<div class="title">Figure 14. Sequence diagram for meet command</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/cancelCommandSequenceDiagram.png" alt="cancelCommandSequenceDiagram" width="300">
-</div>
-<div class="title">Figure 15. Sequence diagram for cancel command</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.9.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-storage-of-meetings"><a class="link" href="#aspect-storage-of-meetings">Aspect: Storage of meetings</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Storing meetings inside groups</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: This design simplifies the source code by not requiring a separate class to store meetings.</p>
-</li>
-<li>
-<p>Cons: This design requires iterating through all groups to retreive the list of meetings</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Storing meetings in a separate uniqueMeetingList class</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: This design simplifies retreival of the list of meetings.</p>
-</li>
-<li>
-<p>Cons: This design causes the code becomes more complicated and more difficult to test.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-specification-of-target-group-for-meet-and-cancel-commands"><a class="link" href="#aspect-specification-of-target-group-for-meet-and-cancel-commands">Aspect: Specification of target group for meet and cancel commands</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Specifying the group using its name.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: This design makes the command syntax natural and intuitive.</p>
-</li>
-<li>
-<p>Cons: This design forces the user have to manually type in the group name.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Specifying the group using its index.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: This design is easier to use when the number of groups is high.</p>
-</li>
-<li>
-<p>Cons: This design causes the command syntax to become unnatural, and makes the program more suspectible to errors.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.10. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.13. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.11, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.14, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1636,7 +1707,7 @@ This operation creates a new <code>Meeting</code> object which replaces the old 
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.11. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.14. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1702,7 +1773,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 16. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 21. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -3478,4 +3549,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 12:11:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 14:58:18 UTC</div></div></div></body></html>
