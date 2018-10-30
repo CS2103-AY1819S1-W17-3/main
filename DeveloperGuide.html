@@ -1,9 +1,9 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>MeetingBook - Developer Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">MeetingBook</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-W17-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>MeetingBook - Developer Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">MeetingBook</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-W17-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>MeetingBook - Developer Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team CS2103T-AY1819S1-W17-3</code>      Since: <code>Sep 2018</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team CS2103T-AY1819S1-W17-3</code>      Since: <code>Aug 2018</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -406,7 +406,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Note how the <code>Model</code> simply raises a <code>AddressBookChangedEvent</code> when the Address Book data are changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
+Note how the <code>Model</code> simply raises a <code>AddressBookChangedEvent</code> when MeetingBook data are changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
 </td>
 </tr>
 </table>
@@ -528,7 +528,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the Address Book data.</p>
+<p>stores the MeetingBook data.</p>
 </li>
 <li>
 <p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> and an unmodifiable <code>ObservableList&lt;Group&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
@@ -545,8 +545,8 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference.
-This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object.
+As a more OOP model, we can store a <code>Tag</code> list in <code>MeetingBook</code>, which <code>Person</code> can reference.
+This would allow <code>MeetingBook</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object.
 </td>
 </tr>
 </table>
@@ -668,7 +668,7 @@ Both <code>UniqueGroupList</code> and <code>UniquePersonList</code> implements <
 <p><code>Person</code> now supports group identification. Every person will keep a list of groups that he/she has enrolled in.</p>
 </li>
 <li>
-<p>Every <code>Person</code> in address book can be added or removed from an existing group. Use the methods <code>addGroup()</code> and <code>removeGroup</code>.</p>
+<p>Every <code>Person</code> in MeetingBook can be added or removed from an existing group. Use the methods <code>addGroup()</code> and <code>removeGroup</code>.</p>
 </li>
 <li>
 <p><code>Person</code> can check whether he/she is in a particular group by <code>hasGroup(Group group)</code> method.</p>
@@ -681,16 +681,16 @@ Both <code>UniqueGroupList</code> and <code>UniquePersonList</code> implements <
 <div class="ulist">
 <ul>
 <li>
-<p><code>versionedAddressBook</code> now also contains group list, which supports categorisation of persons in address book.</p>
+<p><code>versionedAddressBook</code> now also contains group list, which supports categorisation of persons in MeetingBook.</p>
 </li>
 <li>
-<p><code>Group</code> can be created or removed from the address book.</p>
+<p><code>Group</code> can be created or removed from the MeetingBook.</p>
 </li>
 <li>
-<p>When a <code>Group</code> is removed from the address book, all members will be removed from this group.</p>
+<p>When a <code>Group</code> is removed from the MeetingBook, all members will be removed from this group.</p>
 </li>
 <li>
-<p>When a <code>Person</code> is removed from the address book, all groups containing this person as member will remove this person from the group.</p>
+<p>When a <code>Person</code> is removed from the MeetingBook, all groups containing this person as member will remove this person from the group.</p>
 </li>
 </ul>
 </div>
@@ -727,7 +727,7 @@ The categorisation of <code>Person</code> is not exclusive. One <code>Person</co
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Address Book data in xml format and read it back.</p>
+<p>can save the MeetingBook data in xml format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -867,13 +867,13 @@ Additionally, it implements the following operations:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>VersionedAddressBook#commit()</code>&#8201;&#8212;&#8201;Saves the current address book state in its history.</p>
+<p><code>VersionedAddressBook#commit()</code>&#8201;&#8212;&#8201;Saves the current MeetingBook state in its history.</p>
 </li>
 <li>
-<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous address book state from its history.</p>
+<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous MeetingBook state from its history.</p>
 </li>
 <li>
-<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone address book state from its history.</p>
+<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone MeetingBook state from its history.</p>
 </li>
 </ul>
 </div>
@@ -884,7 +884,7 @@ Additionally, it implements the following operations:</p>
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single address book state.</p>
+<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial MeetingBook state, and the <code>currentStatePointer</code> pointing to that single MeetingBook state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -892,7 +892,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
+<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the MeetingBook. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the MeetingBook after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted MeetingBook state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -900,7 +900,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
+<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified MeetingBook state to be saved into the <code>addressBookStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -914,13 +914,13 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the address book state will not be saved into the <code>addressBookStateList</code>.
+If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the MeetingBook state will not be saved into the <code>addressBookStateList</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
+<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous MeetingBook state, and restores the MeetingBook to that state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -934,7 +934,7 @@ If a command fails its execution, it will not call <code>Model#commitAddressBook
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the <code>currentStatePointer</code> is at index 0, pointing to the initial MeetingBook state, then there are no previous MeetingBook states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 </td>
 </tr>
 </table>
@@ -948,7 +948,7 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial a
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoAddressBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the address book to that state.</p>
+<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoAddressBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the MeetingBook to that state.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -957,13 +957,13 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial a
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest MeetingBook state, then there are no undone MeetingBook states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
+<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the MeetingBook, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -971,7 +971,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
+<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all MeetingBook states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -994,7 +994,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire address book.</p>
+<p><strong>Alternative 1 (current choice):</strong> Saves the entire MeetingBook.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1027,7 +1027,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
+<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of MeetingBook states.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1077,10 +1077,10 @@ It extends <code>Model</code> with two lists, <code>UniquePersonList</code> and 
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application for the first time.
-The <code>ModelManager</code> will be initialized with the initial address book state, and both <code>UniquePersonList</code> and <code>UniqueGroupList</code> contains all person and group without filter.</p>
+The <code>ModelManager</code> will be initialized with the initial MeetingBook state, and both <code>UniquePersonList</code> and <code>UniqueGroupList</code> contains all person and group without filter.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>select g/1</code> command to select the 1st group in the address book.
+<p>Step 2. The user executes <code>select g/1</code> command to select the 1st group in the MeetingBook.
 The <code>SelectCommandParser</code> parses the command to determine the select type, and the command calls executes the following steps:</p>
 </div>
 <div class="ulist">
@@ -1166,7 +1166,7 @@ If a group is selected, calling <code>select</code> command with <code>SELECT_TY
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If there is no filepath provided, <code>export</code> command will return an invalid messgae, which the usage information to the user.
+If there is no filepath provided, <code>export</code> command will return an invalid message, which the usage information to the user.
 </td>
 </tr>
 </table>
@@ -1176,43 +1176,56 @@ If there is no filepath provided, <code>export</code> command will return an inv
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/ExportCommandSeqDiagram.png" alt="ExportCommandSeqDiagram" width="650">
+<img src="images/ExportCommandSeqDiagram.png" alt="ExportCommandSeqDiagram" width="1000">
 </div>
 </div>
 <div class="paragraph">
-<p>The program will raise a <code>AddressBookExportEvent</code> to EventCenter. StorageManager which subscribed to the EventCenter which will trigger <code>handleAddressBookExportEvent</code> when received <code>AddressBookExportEvent</code>. This method will then export the data using <code>Model#exportAddressBook</code>.</p>
+<p>The program will raise a <code>AddressBookExportEvent</code> to <code>EventCenter</code>. <code>StorageManager</code> which subscribed to the <code>EventCenter</code> which will trigger <code>handleAddressBookExportEvent</code> when received <code>AddressBookExportEvent</code>. This method will then export the data as a XML file using <code>Model#exportAddressBook</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.4.2. Design Consideration</a></h4>
 <div class="sect4">
-<h5 id="aspect-make-export-undo-able"><a class="link" href="#aspect-make-export-undo-able">Aspect: Make export undo-able</a></h5>
+<h5 id="aspect-make-export-undoable"><a class="link" href="#aspect-make-export-undoable">Aspect: Make export undoable</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Does not allow it to be undo</p>
+<p><strong>Alternative 1 (current choice):</strong> Does not allow it to be undo.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: Easy to implement and verify if the command is executed successfully.</p>
 </li>
 <li>
-<p>Cons: May have performance issues in terms of memory usage.</p>
+<p>Cons: User have to manually navigate through the directory to delete the XML file to achieve the same result as undoing the command.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2: </strong> Allow it to be undo</p>
+<p><strong>Alternative 2: </strong> Allow it to be undoable.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: Allow user to undo the command.</p>
 </li>
 <li>
-<p>Cons: User may accidentally undo the command and does not know about it, thinking that his data has been exported.</p>
+<p>Cons: Make it difficult to implement as there is a need to consider on how to resolve the following scenarios:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>After user export data, user may directly make changes to the XML file exported. Does undoing the operation deletes the file or not since it have been modified after the export command?</p>
+</li>
+<li>
+<p>After user export data, user rename the XML file or move the XML file. This causes the original file referenced by the <code>export</code> command to be lost and unable to continue the undo operation.</p>
 </li>
 </ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These scenarios create unnecessary complications when we want to attempt undoing the operation. Therefore we do not allow the command to be undoable.</p>
 </div>
 </li>
 </ul>
@@ -1245,7 +1258,7 @@ The person can also be removed from the group by <code>leave</code> command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration"><a class="link" href="#design-consideration">3.6.2. Design Consideration</a></h4>
+<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.6.2. Design Consideration</a></h4>
 <div class="sect4">
 <h5 id="aspect-management-of-group-relationship"><a class="link" href="#aspect-management-of-group-relationship">Aspect: Management of group relationship</a></h5>
 <div class="ulist">
@@ -1515,7 +1528,7 @@ This operation creates a new <code>Meeting</code> object which replaces the old 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.9.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.9.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-storage-of-meetings"><a class="link" href="#aspect-storage-of-meetings">Aspect: Storage of meetings</a></h5>
 <div class="ulist">
@@ -2014,7 +2027,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="sect2">
 <h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">6.6. Managing Dependencies</a></h3>
 <div class="paragraph">
-<p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
+<p>A project often depends on third-party libraries. For example, MeetingBook depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
 b. Require developers to download those libraries manually (this creates extra work for developers)</p>
 </div>
@@ -2107,7 +2120,7 @@ Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8
 </div>
 <h4 id="code-model-code-component" class="discrete"><code>Model</code> component</h4>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>model</code>. One day, the <code>logic</code>-in-charge approaches you for help. He wants to implement a command such that the user is able to remove a particular tag from everyone in the address book, but the model API does not support such a functionality at the moment. Your job is to implement an API method, so that your teammate can use your API to implement his command.</p>
+<p><strong>Scenario:</strong> You are in charge of <code>model</code>. One day, the <code>logic</code>-in-charge approaches you for help. He wants to implement a command such that the user is able to remove a particular tag from everyone in the MeetingBook, but the model API does not support such a functionality at the moment. Your job is to implement an API method, so that your teammate can use your API to implement his command.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2124,7 +2137,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a <code>removeTag(Tag)</code> method. The specified tag will be removed from everyone in the address book.</p>
+<p>Add a <code>removeTag(Tag)</code> method. The specified tag will be removed from everyone in the MeetingBook.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -2173,7 +2186,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 </div>
 <h4 id="code-ui-code-component" class="discrete"><code>Ui</code> component</h4>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>ui</code>. During a beta testing session, your team is observing how the users use your address book application. You realize that one of the users occasionally tries to delete non-existent tags from a contact, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn&#8217;t prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last person in the list. Your job is to implement improvements to the UI to solve all these problems.</p>
+<p><strong>Scenario:</strong> You are in charge of <code>ui</code>. During a beta testing session, your team is observing how the users use your MeetingBook application. You realize that one of the users occasionally tries to delete non-existent tags from a contact, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn&#8217;t prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last person in the list. Your job is to implement improvements to the UI to solve all these problems.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2329,7 +2342,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 </div>
 </li>
 <li>
-<p>Modify the <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book.</p>
+<p>Modify the <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the MeetingBook.</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -2358,7 +2371,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <p><a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/resources/view/StatusBarFooter.fxml"><code>StatusBarFooter.fxml</code></a> will need a new <code>StatusBar</code>. Be sure to set the <code>GridPane.columnIndex</code> properly for each <code>StatusBar</code> to avoid misalignment!</p>
 </li>
 <li>
-<p><a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the address book is updated.</p>
+<p><a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the MeetingBook is updated.</p>
 </li>
 </ul>
 </div>
@@ -2394,7 +2407,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 </div>
 <h4 id="code-storage-code-component" class="discrete"><code>Storage</code> component</h4>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>storage</code>. For your next project milestone, your team plans to implement a new feature of saving the address book to the cloud. However, the current implementation of the application constantly saves the address book after the execution of each command, which is not ideal if the user is working on limited internet connection. Your team decided that the application should instead save the changes to a temporary local backup file first, and only upload to the cloud after the user closes the application. Your job is to implement a backup API for the address book storage.</p>
+<p><strong>Scenario:</strong> You are in charge of <code>storage</code>. For your next project milestone, your team plans to implement a new feature of saving the MeetingBook to the cloud. However, the current implementation of the application constantly saves the MeetingBook after the execution of each command, which is not ideal if the user is working on limited internet connection. Your team decided that the application should instead save the changes to a temporary local backup file first, and only upload to the cloud after the user closes the application. Your job is to implement a backup API for the MeetingBook storage.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2411,7 +2424,7 @@ Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage componen
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a new method <code>backupAddressBook(ReadOnlyAddressBook)</code>, so that the address book can be saved in a fixed temporary location.</p>
+<p>Add a new method <code>backupAddressBook(ReadOnlyAddressBook)</code>, so that the MeetingBook can be saved in a fixed temporary location.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -2801,44 +2814,32 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add a new task</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a new person</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">edit tasks</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">make changes to existing tasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">make changes to existing group</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user with many tasks</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">find tasks</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">retrieve relevant tasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user with many groups</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">retrieve relevant groups</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">check tasks as done</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">know which tasks are completed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">schedule meeting</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">organized user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">categorize tasks by module</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">navigate tasks list more easily</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">forgetful user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">be reminded of deadlines</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">reschedule and prioritize to work on urgent tasks</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see overdue tasks</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">reschedule to make up for it</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">categorize persons by group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">navigate person list more easily</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -2849,8 +2850,8 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">organized user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">assign tags to tasks</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">navigate task list easily and generate default template for each type of task to reduce time needed to add task</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">assign meeting to group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">know that I am scheduled to meet the group</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2861,14 +2862,14 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">import and export data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">transfer data between machines</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit meeting</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reschedule the meeting</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add estimated duration for task</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">estimate time needed to complete the task</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">import and export data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">transfer data between machines</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2878,21 +2879,15 @@ for <code>RemarkCommandParser</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">advanced user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add subtask to certain task</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">break down huge task to smaller manageable tasks</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see an overview of task list for the day</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see an overview of meeting list for the day</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">plan schedule for the day</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">pin some tasks on top</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">be reminded of information of highest importance (not limited to deadline)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pin some meeting on top</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">be reminded of meeting of highest importance</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2903,13 +2898,13 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">highlight task as urgent</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">highlight meeting as urgent</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">prioritize schedule</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">see upcoming deadline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">see meeting</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">prioritize schedule</p></td>
 </tr>
 <tr>
@@ -2934,7 +2929,7 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">multi-device user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">have access from smartphone</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">check task list on the go without computer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">check meeting list on the go without computer</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
@@ -2953,22 +2948,28 @@ for <code>RemarkCommandParser</code>.</p>
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix D: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>Flashbook</code> and the <strong>Actor</strong> is the <code>student</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is the <code>MeetingBook</code> and the <strong>Actor</strong> is the <code>student</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-add-task" class="discrete">Use case: Add task</h3>
+<h3 id="use-case-add-person" class="discrete">Use case: Add person</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Student enters add command with relevant parameters such as name, description, deadline of the tasks.</p>
+<p>Student start up MeetingBook.</p>
 </li>
 <li>
-<p>Flashbook updates the task list.</p>
+<p>MeetingBook starts up.</p>
 </li>
 <li>
-<p>Flashbook informs the student that the task has been successfully added, and refreshes the main page to reflect the newly updated task list.</p>
+<p>Student enters add command with relevant parameters such as name, number, address of the person.</p>
+</li>
+<li>
+<p>MeetingBook updates the person list.</p>
+</li>
+<li>
+<p>MeetingBook informs the student that the person has been successfully added, and refreshes the main page to reflect the newly updated person list.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2981,11 +2982,11 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. Student enters invalid parameter.</p>
+<p>5a. Student enters invalid parameter.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. Flashbook informs the student that he/she has entered invalid parameters.</p>
+<p>5a1. MeetingBook informs the student that he/she has entered invalid parameters.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2995,189 +2996,26 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-find-task" class="discrete">Use case: Find task</h3>
+<h3 id="use-case-add-group-category" class="discrete">Use case: Add group category</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Student enters command and keyword of task on command field.</p>
+<p>Student start up MeetingBook.</p>
 </li>
 <li>
-<p>Flashbook returns a list of tasks that matches the keyword.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
+<p>MeetingBook starts up.</p>
 </li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a. Student enters keyword that does not exist in the database.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a1. Flashbook informs the student that there are no tasks that match the keyword entered.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-check-tasks-as-done" class="discrete">Use case: Check tasks as done</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Student enters command and the task to check as done on command field.</p>
-</li>
-<li>
-<p>Flashbook returns a feedback to inform student that the task has been marked as done successfully.</p>
-</li>
-<li>
-<p>Flashbook updates the task list to remove the task that is marked as done.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>1a. Student enters task that is already done.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-<li>
-<p>1b. Student enters task that does not exist in the database.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-<li>
-<p>2a. Student can use find command to get a list of relevant tasks he/she is looking for.</p>
-</li>
-</ul>
-</div>
-<h3 id="use-case-edit-task" class="discrete">Use case: Edit task</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Student enters command and the task with relevant fields that he/she wishes to edit.</p>
-</li>
-<li>
-<p>Flashbook returns a feedback to inform user that the task has been successfully edited.</p>
-</li>
-<li>
-<p>Flashbook updates the task list with updated information.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a. Student enters invalid field.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-<li>
-<p>2b. Student enters task that does not exist in the database.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-<li>
-<p>2c. Student enters task that is already marked as done.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-add-sub-task" class="discrete">Use case: Add sub task</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Student enters command to add task with an additional parameter [parent task] and press enter.</p>
-</li>
-<li>
-<p>Flashbook returns feedback to inform user that the task has been added and attached to parent task.</p>
-</li>
-<li>
-<p>Flashbook updates the task list with newly added task.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a. Student enters parent task does not exist in the database.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-<li>
-<p>2b. Student enters parent task is already marked as done.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-<li>
-<p>2c. Student enters invalid parameters for child task.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-add-module-category" class="discrete">Use case: Add module category</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
 <li>
 <p>Student enters command to create a new category with a [module code] parameter.</p>
 </li>
 <li>
-<p>Flashbook creates the category.</p>
+<p>MeetingBook creates the category.</p>
 </li>
 <li>
-<p>Flashbook feedbacks that the category had been successfully created.</p>
+<p>MeetingBook feedbacks that the category had been successfully created.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3194,7 +3032,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1.  Flashbook informs the student that the category already exists.</p>
+<p>1a1.  MeetingBook informs the student that the category already exists.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3204,23 +3042,23 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-import" class="discrete">Use case: Import</h3>
+<h3 id="use-case-find-group" class="discrete">Use case: Find group</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Student copies out the storage file from the exporting machine.</p>
+<p>Student start up MeetingBook.</p>
 </li>
 <li>
-<p>Student pastes the storage file on the importing machine.</p>
+<p>MeetingBook starts up.</p>
 </li>
 <li>
-<p>Student starts the Flashbook.</p>
+<p>Student enters command and keyword of group on command field.</p>
 </li>
 <li>
-<p>Flashbook scans and imports the data.</p>
+<p>MeetingBook returns the list of group that matches the keyword.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3233,11 +3071,128 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a. The storage file is invalid / corrupted.</p>
+<p>4a. Student enters keyword that does not exist in the database.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>4a1. Flashbook will show an error telling the student that the file is corrupted.</p>
+<p>4a1. MeetingBook informs the student that there are no group that match the keyword entered.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-cancel-meeting" class="discrete">Use case: Cancel meeting</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Student start up MeetingBook.</p>
+</li>
+<li>
+<p>MeetingBook starts up.</p>
+</li>
+<li>
+<p>Student enters command to cancel meeting from a group.</p>
+</li>
+<li>
+<p>MeetingBook remove meeting from the group.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-edit-group" class="discrete">Use case: Edit group</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Student start up MeetingBook.</p>
+</li>
+<li>
+<p>MeetingBook starts up.</p>
+</li>
+<li>
+<p>Student enters command and the group with relevant fields that he/she wishes to edit.</p>
+</li>
+<li>
+<p>MeetingBook returns a feedback to inform user that the group has been successfully edited.</p>
+</li>
+<li>
+<p>MeetingBook updates the group list with updated information.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a. Student enters invalid field.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+<li>
+<p>4b. Student enters group that does not exist in the database.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-import-data" class="discrete">Use case: Import data</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Student copies out the storage file from the exporting machine.</p>
+</li>
+<li>
+<p>Student pastes the storage file on the importing machine.</p>
+</li>
+<li>
+<p>Student starts the MeetingBook.</p>
+</li>
+<li>
+<p>MeetingBook starts up.</p>
+</li>
+<li>
+<p>Student type command to import.</p>
+</li>
+<li>
+<p>MeetingBook scans and imports the data.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>6. The storage file is invalid / corrupted.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>6a1. MeetingBook will show an error telling the student that the file is corrupted.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3254,27 +3209,16 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Student copies out the storage file from the exporting machine.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<h3 id="use-case-toggle-autocomplete" class="discrete">Use case: Toggle autocomplete</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Student types part of the command on command field.</p>
+<p>Student start uo MeetingBook.</p>
 </li>
 <li>
-<p>Student uses tab to scroll through available commands.</p>
+<p>MeetingBook starts up.</p>
 </li>
 <li>
-<p>Flashbook updates the command field with the highlighted command from the suggestion list.</p>
+<p>Student type command to export.</p>
+</li>
+<li>
+<p>MeetingBook copies out the storage file from the machine.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3287,7 +3231,53 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. No command autocomplete is available.</p>
+<p>4. MeetingBook unable to write to file.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a1. MeetingBook will show an error telling the student that the operation failed.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-toggle-autocomplete" class="discrete">Use case: Toggle autocomplete</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Student start up MeetingBook.</p>
+</li>
+<li>
+<p>MeetingBook starts up.</p>
+</li>
+<li>
+<p>Student types part of the command on command field.</p>
+</li>
+<li>
+<p>Student uses tab to scroll through available commands.</p>
+</li>
+<li>
+<p>MeetingBook updates the command field with the highlighted command from the suggestion list.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>5a. No command autocomplete is available.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3308,7 +3298,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>9</code> or higher installed.</p>
 </li>
 <li>
-<p>Should be able to hold up to 1000 tasks and 10 <a href="#nus-module">NUS modules</a> without a noticeable sluggishness in performance for typical usage.</p>
+<p>Should be able to hold up to 100 groups and 1000 person without a noticeable sluggishness in performance for typical usage.</p>
 </li>
 <li>
 <p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
@@ -3488,4 +3478,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-29 10:13:39 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 12:11:26 UTC</div></div></div></body></html>
