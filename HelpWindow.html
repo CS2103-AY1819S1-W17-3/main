@@ -637,7 +637,13 @@ If the list is unfiltered, the list will remain the same.
 <h3 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">4.14. Importing data : <code>import</code></a></h3>
 <div class="paragraph">
 <p>User is able to import other data.<br>
-Format: <code>import &lt;relative filepath&gt;</code></p>
+Default behaviour is to ignore any conflicting Person/Group entries unless <code>--force</code> option is supplied.<br>
+Format: <code>import &lt;relative filepath&gt;</code> or <code>import --force &lt;relative filepath&gt;</code></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+<code>import f/backup.xml</code> : Import backup.xml into MeetingBook<br>
+<code>import --force f/backup.xml</code> : Import backup.xml into MeetingBook, overwriting all conflicting entries.</p>
 </div>
 </div>
 <div class="sect2">
@@ -670,7 +676,7 @@ Format:<br>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>User can also check the current path of MeetingBook use <code>filepath show</code></p>
+<p>User can also check the current path of MeetingBook use <code>filepath --show</code></p>
 </div>
 </div>
 </div>
@@ -774,4 +780,4 @@ e.g. <code>list meeting</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 15:50:21 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 16:38:06 UTC</div></div></div></body></html>
