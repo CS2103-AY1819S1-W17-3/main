@@ -1,0 +1,518 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Derek-Hardy - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">MeetingBook</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-W17-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Derek-Hardy - Project Portfolio</h1></div><div id="content"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Welcome to Derek-Hardy&#8217;s Portfolio!</p>
+</div>
+<div class="paragraph">
+<p>Here you can find details on my contributions to various Software Engineering projects.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-meetingbook"><a class="link" href="#project-meetingbook">PROJECT: MeetingBook</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MeetingBook is a desktop scheduler application targeted at university students involved in
+multiple Co-Curricular Activities and Project-Based modules. The application is a modified contact book
+with features to group contacts and assign meetings to such groups. MeetingBook is written by a team of 5 students
+from National University of Singapore&#8217;s School of Computing. It is forked from
+<a href="https://github.com/nus-cs2103-AY1819S1/addressbook-level4">AddressBook-Level4</a>
+written by <a href="https://se-edu.github.io/">SE-EDU</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>
+: added the <code>Group</code> class</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allow categorisation of persons according to their project group, discussion group and CCA etc.</p>
+</li>
+<li>
+<p>Justification: This feature allows user to categorise his/her contacts based on their group associations.</p>
+</li>
+<li>
+<p>Highlights: This feature is in parallel with person. While it does not affect existing functions, interactions
+between the two in the future can be complex.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major enhancement</strong>
+: added the ability to add and delete a <code>Group</code> into and from the MeetingBook.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allow creation and deletion of customised <code>Group</code> in the MeetingBook.</p>
+</li>
+<li>
+<p>Justification: This feature allows user to modify the existing categories of people.</p>
+</li>
+<li>
+<p>Highlights: This feature makes use of <code>UniqueGroupList</code> in the AddressBook to manipulate the list of groups.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major enhancement</strong>
+: added the ability to join and remove an existing contact person into an existing group in the MeetingBook.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allow to establish membership relation between persons and groups in MeetingBook.</p>
+</li>
+<li>
+<p>Justification: This feature allows user to modify how existing persons are categorised.</p>
+</li>
+<li>
+<p>Highlights: This feature makes use of <code>UniqueGroupList</code> in person, and <code>UniquePersonList</code> in group to keep track of membership relation among them.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added <code>Group</code> feature support in <code>Person</code> and <code>AddressBook</code> class: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/79">#79</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated User Guide and Developer Guide: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/38">#38</a>,
+<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/85">#85</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/91">#91</a>,
+<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/135">#135</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/143">#143</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/134">#134</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Shown below are my contributions to the User Guide. They demonstrates my ability to write documentation and manuals targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="adding-a-new-group-code-addgroup-code"><a class="link" href="#adding-a-new-group-code-addgroup-code">Adding a new group: <code>addGroup</code></a></h4>
+<div class="paragraph">
+<p>Add a new group with user input title into MeetingBook.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>addGroup n/[Name]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addGroup n/CS2103T</code><br>
+Adds a new group with title 'CS2103T' into the MeetingBook.</p>
+</li>
+<li>
+<p><code>addGroup n/Discussion Group 1</code><br>
+Adds a new group with title 'Discussion Group 1' into the MeetingBook.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-group-code-deletegroup-code"><a class="link" href="#deleting-a-group-code-deletegroup-code">Deleting a group: <code>deleteGroup</code></a></h4>
+<div class="paragraph">
+<p>Remove the group that matches use input title.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>deleteGroup n/[Name]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deleteGroup n/CS2103T</code><br>
+Removes the group with title 'CS2103T', which is added previously, from MeetingBook.</p>
+</li>
+<li>
+<p><code>deleteGroup n/Discussion Group 1</code><br>
+Removes the group with title 'Discussion Group 1', which is added previously, from MeetingBook.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="joining-a-person-to-group-code-join-code"><a class="link" href="#joining-a-person-to-group-code-join-code">Joining a person to group: <code>join</code></a></h4>
+<div class="paragraph">
+<p>Add a person, specified by name, into a group, specified by the group title.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>join n/[Name] g/[Group]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>join n/Derek g/CS2103T</code><br>
+Makes the person 'Derek' to be a member of group 'CS2103T'.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Both the person and group should exist in the MeetingBook.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="removing-a-person-from-group-code-leave-code"><a class="link" href="#removing-a-person-from-group-code-leave-code">Removing a person from group: <code>leave</code></a></h4>
+<div class="paragraph">
+<p>Remove a person, specified by name, from a group, specified by the group title.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>leave n/[Name] g/[Group]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>leave n/Derek g/CS2101</code><br>
+Removes the person 'Derek' from the group 'CS2101'.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Both the person and group should exist in the MeetingBook.
+The person should also be an existing member of the group.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Shown below are my contributions to the Developer Guide. They demonstrates my ability to write technical documentation and highlights the depth and technical details of my contributions to the software engineering project MeetingBook.</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="group-feature"><a class="link" href="#group-feature">Group feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/GroupClassDiagram.png" alt="GroupClassDiagram" width="300">
+</div>
+<div class="title">Figure 1. The new Group class</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/group/Group.java"><code>Group.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Group</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>is identified by <code>Title</code> and <code>Description</code>.</p>
+</li>
+<li>
+<p>contains the <code>Meeting</code> details for this particular group. This is an optional field.</p>
+</li>
+<li>
+<p>keeps track of its members in a <code>UniquePersonList</code>. The method <code>hasMember(Person person)</code> can check the enrollment of a particular <code>Person</code>.</p>
+</li>
+<li>
+<p>supports add and remove member using methods <code>addMember(Person toAdd)</code> and <code>removeMember(Person toRemove)</code>.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>List&lt;Person&gt;</code> for observation of member enrollment status by <code>getMembersView()</code>.</p>
+</li>
+<li>
+<p>supports set and cancel of <code>Meeting</code> of this group by methods <code>setMeeting(Meeting meeting)</code> and <code>cancelMeeting()</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="usage-of-group-class"><a class="link" href="#usage-of-group-class">Usage of Group class</a></h4>
+<div class="paragraph">
+<p>A <code>Group</code> can be added and removed from <code>MeetingBook</code> using <code>addGroup</code> and <code>deleteGroup</code> command respectively.</p>
+</div>
+<div class="paragraph">
+<p>Once the <code>Group</code> exists in the <code>AddressBook</code>, the existing <code>Person</code> can be assigned to that group using <code>join</code> command.
+The person can also be removed from the group by <code>leave</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Each <code>Group</code> can keep track of a list of its members. This is supported by <code>UniquePersonList</code> class.</p>
+</div>
+<div class="paragraph">
+<p>Each <code>Person</code> can also keep a list of groups he/she enrols in. An <code>UniqueGroupList</code> is added to support this functionality.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">Design Consideration</a></h4>
+<div class="sect4">
+<h5 id="aspect-management-of-group-relationship"><a class="link" href="#aspect-management-of-group-relationship">Aspect: Management of group relationship</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> The <code>add</code> and <code>remove</code> operations support bidirectional update of relationships.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less complexity in current project structure.</p>
+</li>
+<li>
+<p>Cons: The future optimisation of these operations is less flexible.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use a central <code>groupManager</code> to manage the group-person relationships on the <code>AddressBook level</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Greater room for possible future improvement, and ability to contain more complex relationships required by potential users.</p>
+</li>
+<li>
+<p>Cons: The idea is less compatible with the current project structure. Extensive change in structure and logic must be performed, and is error-prone.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="uniquegrouplist-feature"><a class="link" href="#uniquegrouplist-feature">UniqueGroupList feature</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/uniqueGroupListClassDiagram.png" alt="uniqueGroupListClassDiagram" width="500">
+</div>
+<div class="title">Figure 2. The UniqueGroupList class</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/group/UniqueGroupList.java"><code>UniqueGroupList.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>UniqueGroupList</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ensures a list of <code>Group</code> objects without duplicates.</p>
+</li>
+<li>
+<p>supports <code>add</code>, <code>remove</code> and <code>replace</code> operations on groups in the list.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;Group&gt;</code> for observation of the list.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Both <code>UniqueGroupList</code> and <code>UniquePersonList</code> implements <code>Iterable</code> interface.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="addgroup-and-deletegroup-feature"><a class="link" href="#addgroup-and-deletegroup-feature">AddGroup and DeleteGroup feature</a></h3>
+<div class="paragraph">
+<p>The AddGroup and DeleteGroup commands modify the <code>UniqueGroupList</code> in the <code>versionedAddressBook</code>.
+This section shows how the addGroup and deleteGroup commands are implemented.</p>
+</div>
+<div class="sect3">
+<h4 id="code-addgroup-code-command-usage"><a class="link" href="#code-addgroup-code-command-usage"><code>addGroup</code> command usage</a></h4>
+<div class="paragraph">
+<p>The <code>addGroup</code> command allows user to add a new group with user input title to the MeetingBook.
+This command is executed with the following syntax:<br></p>
+</div>
+<div class="paragraph">
+<p>Syntax: <code>addGroup n/[Name]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>addGroup n/CS2103T</code>: adds a new group with title 'CS2103T' into the MeetingBook.</p>
+</div>
+<div class="paragraph">
+<p><strong>The follow sequence diagram shows how addGroup command functions.</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddGroupCommand.png" alt="AddGroupCommand" width="350">
+</div>
+<div class="title">Figure 3. Sequence diagram for addGroup command</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-deletegroup-code-command-usage"><a class="link" href="#code-deletegroup-code-command-usage"><code>deleteGroup</code> command usage</a></h4>
+<div class="paragraph">
+<p>The <code>deleteGroup</code> command allows user to remove an existing group from the MeetingBook.
+This command is executed with the following syntax:<br></p>
+</div>
+<div class="paragraph">
+<p>Syntax: <code>deleteGroup n/[Name]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>deleteGroup n/CS2101</code>: removes the existing group with title 'CS2101' from the MeetingBook.</p>
+</div>
+<div class="paragraph">
+<p><strong>The follow sequence diagram shows how deleteGroup command functions.</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteGroupCommand.png" alt="DeleteGroupCommand" width="350">
+</div>
+<div class="title">Figure 4. Sequence diagram for deleteGroup command</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-of-code-addgroup-code-and-code-deletegroup-code-commands"><a class="link" href="#implementation-of-code-addgroup-code-and-code-deletegroup-code-commands">Implementation of <code>addGroup</code> and <code>deleteGroup</code> commands</a></h4>
+<div class="paragraph">
+<p>The <code>versionedAddressBook</code> maintains a <code>UniqueGroupList</code> to keep track of all groups
+that exist in this MeetingBook. The commands thus modify and update this list of groups through <code>ModelManager</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="join-and-leave-feature"><a class="link" href="#join-and-leave-feature">Join and Leave feature</a></h3>
+<div class="paragraph">
+<p>The Join and Leave commands modify the relationship between groups existed in the <code>UniqueGroupList</code> and
+people in the <code>UniquePersonList</code> maintained by `versionedAddressBook. This section provides description of the usage
+and implementation of these commands.</p>
+</div>
+<div class="sect3">
+<h4 id="code-join-code-command-usage"><a class="link" href="#code-join-code-command-usage"><code>join</code> command usage</a></h4>
+<div class="paragraph">
+<p>The <code>join</code> command updates relationship between a person and a group existed in the MeetingBook.
+The person specified by name now becomes a member of the group specified by title.
+This command is executed with the following syntax:<br></p>
+</div>
+<div class="paragraph">
+<p>Syntax: <code>join n/[Name] g/[Group]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>join n/Derek g/CS2101</code>: makes the person 'Derek' become a member of group 'CS2101'</p>
+</div>
+<div class="paragraph">
+<p><strong>The follow sequence diagram shows how join command functions.</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/JoinCommand.png" alt="JoinCommand" width="500">
+</div>
+<div class="title">Figure 5. Sequence diagram for join command</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-leave-code-command-usage"><a class="link" href="#code-leave-code-command-usage"><code>leave</code> command usage</a></h4>
+<div class="paragraph">
+<p>The <code>leave</code> command updates relationship between person and group in the same way as the <code>join</code> command.
+The person specified by name now stops to be a member of the group specified by title.
+And the person is removed from this group. This command is executed with the following syntax:<br></p>
+</div>
+<div class="paragraph">
+<p>Syntax: <code>leave n/[Name] g/[Group]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>leave n/Ben g/CS2103T</code>: removes the person <code>Ben</code> from the group <code>CS2103T</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>The follow sequence diagram shows how leave command functions.</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/LeaveCommand.png" alt="LeaveCommand" width="500">
+</div>
+<div class="title">Figure 6. Sequence diagram for leave command</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-of-code-join-code-and-code-leave-code-commands"><a class="link" href="#implementation-of-code-join-code-and-code-leave-code-commands">Implementation of <code>join</code> and <code>leave</code> commands</a></h4>
+<div class="paragraph">
+<p>The <code>versionedAddressBook</code> maintains a <code>UniqueGroupList</code> to keep track of all groups that exist in this MeetingBook.
+It also maintains a <code>UniquePersonList</code> to keep track of all people that exist in this MeetingBook.
+The commands thus modify and update a pair of person and group, as specified by user input, in their respective list
+through <code>ModelManager</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 15:09:25 UTC</div></div></div></body></html>
