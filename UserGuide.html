@@ -636,47 +636,102 @@ If the list is unfiltered, the list will remain the same.
 <div class="sect2">
 <h3 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">4.14. Importing data : <code>import</code></a></h3>
 <div class="paragraph">
-<p>User is able to import other data.<br>
-Default behaviour is to ignore any conflicting Person/Group entries unless <code>--force</code> option is supplied.<br>
-Format: <code>import &lt;relative filepath&gt;</code> or <code>import --force &lt;relative filepath&gt;</code></p>
+<p>User is able to import other data.<br></p>
 </div>
 <div class="paragraph">
-<p>Example:<br>
-<code>import f/backup.xml</code> : Import backup.xml into MeetingBook<br>
-<code>import --force f/backup.xml</code> : Import backup.xml into MeetingBook, overwriting all conflicting entries.</p>
+<p>Default behaviour is to ignore any conflicting Person/Group entries unless <code>--force</code> option is supplied.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>import &lt;relative filepath&gt;</code> or <code>import --force &lt;relative filepath&gt;</code></p>
+</div>
+<div class="paragraph">
+<p>Example:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>import f/backup.xml</code> : Import backup.xml into MeetingBook<br></p>
+</li>
+<li>
+<p><code>import --force f/backup.xml</code> : Import backup.xml into MeetingBook, overwriting all conflicting entries.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The image below shows the result after successfully executing the command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/importSuccessfulOutput.png" alt="importSuccessfulOutput" width="450">
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">4.15. Exporting data : <code>export</code></a></h3>
 <div class="paragraph">
-<p>User is able to export data to store as backup elsewhere or send data to other users of MeetingBook.<br>
-Format:<br>
-<code>Export all groups, meetings and persons : export * &lt;relative filepath&gt;</code><br>
-<code>Export all meetings and persons of a specific group: export #[Group] &lt;relative filepath&gt;</code></p>
+<p>User is able to export data to store as backup elsewhere or send data to other users of MeetingBook.<br></p>
 </div>
 <div class="paragraph">
-<p><code>export f/&lt;filepath&gt;</code></p>
+<p>Format: <code>export  f/&lt;relative filepath&gt;</code><br></p>
 </div>
 <div class="paragraph">
-<p>Example:
-<code>export f/backup.xml</code> : Export MeetingBook as <code>backup.xml</code>.</p>
+<p>Example:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>export f/backup.xml</code> : Export MeetingBook as <code>backup.xml</code>.<br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The image below shows the result after successfully executing the command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/exportSuccessfulOutput.png" alt="exportSuccessfulOutput" width="450">
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="changing-storage-location-code-filepath-code"><a class="link" href="#changing-storage-location-code-filepath-code">4.16. Changing Storage Location: <code>filepath</code></a></h3>
 <div class="paragraph">
-<p>Change the storage location of MeetingBook.<br>
-Format:<br>
-<code>filepath f/&lt;filepath&gt;</code></p>
+<p>Change the storage location of MeetingBook.<br></p>
 </div>
 <div class="paragraph">
-<p>Example:
-<code>filepath f/new_path.xml</code> : Storage location of MeetingBook is now stored at <code>new_path.xml</code>.</p>
+<p>Format: <code>filepath f/&lt;filepath&gt;</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>filepath f/new_path.xml</code> : Storage location of MeetingBook is now stored at <code>new_path.xml</code>.</p>
+</li>
+</ul>
 </div>
 <div class="sidebarblock">
 <div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+User can also check the current path where MeetingBook store its data using <code>filepath --show</code> command.<br>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>User can also check the current path of MeetingBook use <code>filepath --show</code></p>
+<p>The image below shows the result after successfully executing the command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/filepath--showOutput.png" alt="filepath  showOutput" width="450">
+</div>
 </div>
 </div>
 </div>
@@ -780,4 +835,4 @@ e.g. <code>list meeting</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 15:31:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 00:34:57 UTC</div></div></div></body></html>
