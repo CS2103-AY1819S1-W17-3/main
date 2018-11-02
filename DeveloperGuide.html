@@ -35,7 +35,7 @@
 <li><a href="#addgroup-and-deletegroup-feature">3.4. AddGroup and DeleteGroup feature</a></li>
 <li><a href="#join-and-leave-feature">3.5. Join and Leave feature</a></li>
 <li><a href="#meeting-feature">3.6. Meeting feature</a></li>
-<li><a href="#addressbook-feature">3.7. AddressBook feature</a></li>
+<li><a href="#meetingbook-feature">3.7. MeetingBook feature</a></li>
 <li><a href="#sort-and-find-feature">3.8. Sort and Find feature</a></li>
 <li><a href="#undo-redo-feature">3.9. Undo/Redo feature</a></li>
 <li><a href="#select-feature">3.10. Select feature</a></li>
@@ -184,7 +184,7 @@ This will generate all resources required by the application and tests.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Run the <code>seedu.address.MainApp</code> and try a few commands</p>
+<p>Run the <code>seedu.meeting.MainApp</code> and try a few commands</p>
 </li>
 <li>
 <p><a href="#Testing">Run the tests</a> to ensure they all pass.</p>
@@ -327,7 +327,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has only one class called <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> has only one class called <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
 </div>
 <div class="ulist">
 <ul>
@@ -410,7 +410,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Note how the <code>Model</code> simply raises a <code>AddressBookChangedEvent</code> when MeetingBook data are changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
+Note how the <code>Model</code> simply raises a <code>MeetingBookChangedEvent</code> when MeetingBook data are changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
 </td>
 </tr>
 </table>
@@ -449,13 +449,13 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="title">Figure 5. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>GroupListPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -484,12 +484,12 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
-<a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/logic/Logic.java"><code>Logic.java</code></a></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
+<p><code>Logic</code> uses the <code>MeetingBookParser</code> class to parse the user command.</p>
 </li>
 <li>
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
@@ -521,7 +521,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="title">Figure 8. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Model</code>,</p>
@@ -567,7 +567,7 @@ unique <code>Group</code>, instead of each <code>Person</code> needing their own
 <div class="title">Figure 9. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Storage</code> component,</p>
@@ -586,7 +586,7 @@ unique <code>Group</code>, instead of each <code>Person</code> needing their own
 <div class="sect2">
 <h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
 <div class="paragraph">
-<p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
+<p>Classes used by multiple components are in the <code>seedu.meetingbook.commons</code> package.</p>
 </div>
 </div>
 </div>
@@ -608,7 +608,7 @@ unique <code>Group</code>, instead of each <code>Person</code> needing their own
 <div class="title">Figure 10. The enhanced Person class</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/person/Person.java"><code>Person.java</code></a></p>
 </div>
 <div class="ulist">
 <ul>
@@ -636,7 +636,7 @@ unique <code>Group</code>, instead of each <code>Person</code> needing their own
 <div class="title">Figure 11. The new Group class</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/group/Group.java"><code>Group.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/group/Group.java"><code>Group.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Group</code>,</p>
@@ -670,7 +670,7 @@ unique <code>Group</code>, instead of each <code>Person</code> needing their own
 <p>A <code>Group</code> can be added and removed from <code>MeetingBook</code> using <code>addGroup</code> and <code>deleteGroup</code> command respectively.</p>
 </div>
 <div class="paragraph">
-<p>Once the <code>Group</code> exists in the <code>AddressBook</code>, the existing <code>Person</code> can be assigned to that group using <code>join</code> command.
+<p>Once the <code>Group</code> exists in the <code>MeetingBook</code>, the existing <code>Person</code> can be assigned to that group using <code>join</code> command.
 The person can also be removed from the group by <code>leave</code> command.</p>
 </div>
 <div class="paragraph">
@@ -700,7 +700,7 @@ The person can also be removed from the group by <code>leave</code> command.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Use a central <code>groupManager</code> to manage the group-person relationships on the <code>AddressBook level</code>.</p>
+<p><strong>Alternative 2:</strong> Use a central <code>groupManager</code> to manage the group-person relationships on the <code>MeetingBook level</code>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -726,7 +726,7 @@ The person can also be removed from the group by <code>leave</code> command.</p>
 <div class="title">Figure 12. The UniqueGroupList class</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/group/UniqueGroupList.java"><code>UniqueGroupList.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/group/UniqueGroupList.java"><code>UniqueGroupList.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UniqueGroupList</code>,</p>
@@ -760,7 +760,7 @@ Both <code>UniqueGroupList</code> and <code>UniquePersonList</code> implements <
 <div class="sect2">
 <h3 id="addgroup-and-deletegroup-feature"><a class="link" href="#addgroup-and-deletegroup-feature">3.4. AddGroup and DeleteGroup feature</a></h3>
 <div class="paragraph">
-<p>The AddGroup and DeleteGroup commands modify the <code>UniqueGroupList</code> in the <code>versionedAddressBook</code>.
+<p>The AddGroup and DeleteGroup commands modify the <code>UniqueGroupList</code> in the <code>versionedMeetingBook</code>.
 This section shows how the addGroup and deleteGroup commands are implemented.</p>
 </div>
 <div class="sect3">
@@ -810,7 +810,7 @@ This command is executed with the following syntax:<br></p>
 <div class="sect3">
 <h4 id="implementation-of-code-addgroup-code-and-code-deletegroup-code-commands"><a class="link" href="#implementation-of-code-addgroup-code-and-code-deletegroup-code-commands">3.4.3. Implementation of <code>addGroup</code> and <code>deleteGroup</code> commands</a></h4>
 <div class="paragraph">
-<p>The <code>versionedAddressBook</code> maintains a <code>UniqueGroupList</code> to keep track of all groups
+<p>The <code>versionedMeetingBook</code> maintains a <code>UniqueGroupList</code> to keep track of all groups
 that exist in this MeetingBook. The commands thus modify and update this list of groups through <code>ModelManager</code>.</p>
 </div>
 </div>
@@ -819,7 +819,7 @@ that exist in this MeetingBook. The commands thus modify and update this list of
 <h3 id="join-and-leave-feature"><a class="link" href="#join-and-leave-feature">3.5. Join and Leave feature</a></h3>
 <div class="paragraph">
 <p>The Join and Leave commands modify the relationship between groups existed in the <code>UniqueGroupList</code> and
-people in the <code>UniquePersonList</code> maintained by `versionedAddressBook. This section provides description of the usage
+people in the <code>UniquePersonList</code> maintained by `versionedMeetingBook. This section provides description of the usage
 and implementation of these commands.</p>
 </div>
 <div class="sect3">
@@ -871,7 +871,7 @@ And the person is removed from this group. This command is executed with the fol
 <div class="sect3">
 <h4 id="implementation-of-code-join-code-and-code-leave-code-commands"><a class="link" href="#implementation-of-code-join-code-and-code-leave-code-commands">3.5.3. Implementation of <code>join</code> and <code>leave</code> commands</a></h4>
 <div class="paragraph">
-<p>The <code>versionedAddressBook</code> maintains a <code>UniqueGroupList</code> to keep track of all groups that exist in this MeetingBook.
+<p>The <code>versionedMeetingBook</code> maintains a <code>UniqueGroupList</code> to keep track of all groups that exist in this MeetingBook.
 It also maintains a <code>UniquePersonList</code> to keep track of all people that exist in this MeetingBook.
 The commands thus modify and update a pair of person and group, as specified by user input, in their respective list
 through <code>ModelManager</code>.</p>
@@ -904,7 +904,7 @@ A <code>Group</code> can only have a maximum of one <code>Meeting</code> at any 
 <div class="title">Figure 17. The Meeting class</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/group/Meeting.java"><code>Meeting.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/group/Meeting.java"><code>Meeting.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Meeting</code>,</p>
@@ -1131,14 +1131,14 @@ This operation creates a new <code>Meeting</code> object which replaces the old 
 </div>
 </div>
 <div class="sect2">
-<h3 id="addressbook-feature"><a class="link" href="#addressbook-feature">3.7. AddressBook feature</a></h3>
+<h3 id="meetingbook-feature"><a class="link" href="#meetingbook-feature">3.7. MeetingBook feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.7.1. Current Implementation</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/addressbookObject.png" alt="addressbookObject" width="350">
 </div>
-<div class="title">Figure 20. The object diagram of AddressBook</div>
+<div class="title">Figure 20. The object diagram of MeetingBook</div>
 </div>
 <div class="paragraph">
 <p><strong>Enhancements:</strong></p>
@@ -1146,7 +1146,7 @@ This operation creates a new <code>Meeting</code> object which replaces the old 
 <div class="ulist">
 <ul>
 <li>
-<p><code>versionedAddressBook</code> now also contains group list and meeting list, which supports categorisation of persons in MeetingBook.</p>
+<p><code>versionedMeetingBook</code> now also contains group list and meeting list, which supports categorisation of persons in MeetingBook.</p>
 </li>
 <li>
 <p><code>Group</code> can be created or removed from the MeetingBook.</p>
@@ -1251,8 +1251,8 @@ results will contain "alice" and "bob", either "shirlene" or "david", and none o
 </div>
 <div class="paragraph">
 <p>Illustrated in the figure below, <code>sortedPersons</code> list wraps the <code>filteredPersons</code> list and
-<code>filteredPersons</code> list wraps the <code>persons</code> list of type <code>ObservableList&lt;Person&gt;</code> maintained by <code>versionedAddressBook</code>.
-<code>persons</code> list in <code>versionedAddressBook</code> contains all the persons stored in the MeetingBook.</p>
+<code>filteredPersons</code> list wraps the <code>persons</code> list of type <code>ObservableList&lt;Person&gt;</code> maintained by <code>versionedMeetingBook</code>.
+<code>persons</code> list in <code>versionedMeetingBook</code> contains all the persons stored in the MeetingBook.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1290,31 +1290,31 @@ list.</p>
 <div class="sect3">
 <h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.9.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
-It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
+<p>The undo/redo mechanism is facilitated by <code>VersionedMeetingBook</code>.
+It extends <code>MeetingBook</code> with an undo/redo history, stored internally as an <code>meetingBookStateList</code> and <code>currentStatePointer</code>.
 Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>VersionedAddressBook#commit()</code>&#8201;&#8212;&#8201;Saves the current MeetingBook state in its history.</p>
+<p><code>VersionedMeetingBook#commit()</code>&#8201;&#8212;&#8201;Saves the current MeetingBook state in its history.</p>
 </li>
 <li>
-<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous MeetingBook state from its history.</p>
+<p><code>VersionedMeetingBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous MeetingBook state from its history.</p>
 </li>
 <li>
-<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone MeetingBook state from its history.</p>
+<p><code>VersionedMeetingBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone MeetingBook state from its history.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> and <code>Model#redoAddressBook()</code> respectively.</p>
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitMeetingBook()</code>, <code>Model#undoMeetingBook()</code> and <code>Model#redoMeetingBook()</code> respectively.</p>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial MeetingBook state, and the <code>currentStatePointer</code> pointing to that single MeetingBook state.</p>
+<p>Step 1. The user launches the application for the first time. The <code>VersionedMeetingBook</code> will be initialized with the initial MeetingBook state, and the <code>currentStatePointer</code> pointing to that single MeetingBook state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1322,7 +1322,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the MeetingBook. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the MeetingBook after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted MeetingBook state.</p>
+<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the MeetingBook. The <code>delete</code> command calls <code>Model#commitMeetingBook()</code>, causing the modified state of the MeetingBook after the <code>delete 5</code> command executes to be saved in the <code>meetingBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted MeetingBook state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1330,7 +1330,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified MeetingBook state to be saved into the <code>addressBookStateList</code>.</p>
+<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitMeetingBook()</code>, causing another modified MeetingBook state to be saved into the <code>meetingBookStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1344,13 +1344,13 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the MeetingBook state will not be saved into the <code>addressBookStateList</code>.
+If a command fails its execution, it will not call <code>Model#commitMeetingBook()</code>, so the MeetingBook state will not be saved into the <code>meetingBookStateList</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous MeetingBook state, and restores the MeetingBook to that state.</p>
+<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoMeetingBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous MeetingBook state, and restores the MeetingBook to that state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1364,7 +1364,7 @@ If a command fails its execution, it will not call <code>Model#commitAddressBook
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial MeetingBook state, then there are no previous MeetingBook states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the <code>currentStatePointer</code> is at index 0, pointing to the initial MeetingBook state, then there are no previous MeetingBook states to restore. The <code>undo</code> command uses <code>Model#canUndoMeetingBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 </td>
 </tr>
 </table>
@@ -1378,7 +1378,7 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial M
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoAddressBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the MeetingBook to that state.</p>
+<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoMeetingBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the MeetingBook to that state.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1387,13 +1387,13 @@ If the <code>currentStatePointer</code> is at index 0, pointing to the initial M
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest MeetingBook state, then there are no undone MeetingBook states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+If the <code>currentStatePointer</code> is at index <code>meetingBookStateList.size() - 1</code>, pointing to the latest MeetingBook state, then there are no undone MeetingBook states to restore. The <code>redo</code> command uses <code>Model#canRedoMeetingBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the MeetingBook, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
+<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the MeetingBook, such as <code>list</code>, will usually not call <code>Model#commitMeetingBook()</code>, <code>Model#undoMeetingBook()</code> or <code>Model#redoMeetingBook()</code>. Thus, the <code>meetingBookStateList</code> remains unchanged.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1401,7 +1401,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all MeetingBook states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
+<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitMeetingBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>meetingBookStateList</code>, all MeetingBook states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1464,7 +1464,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
 </li>
 <li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedAddressBook</code>.</p>
+<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedMeetingBook</code>.</p>
 </li>
 </ul>
 </div>
@@ -1613,8 +1613,8 @@ If there is no filepath provided, <code>export</code> command will return an inv
 <div class="title">Figure 21. Sequence diagram of ExportCommand</div>
 </div>
 <div class="paragraph">
-<p>The program will raise a <code>AddressBookExportEvent</code> to <code>EventCenter</code>. <code>StorageManager</code> which subscribed to the <code>EventCenter</code> will trigger <code>StorageManager#handleAddressBookExportEvent</code> when received <code>AddressBookExportEvent</code>.
-This method will then attempt to export the data as a XML file using <code>Model#exportAddressBook</code>.</p>
+<p>The program will raise a <code>MeetingBookExportEvent</code> to <code>EventCenter</code>. <code>StorageManager</code> which subscribed to the <code>EventCenter</code> will trigger <code>StorageManager#handleMeetingBookExportEvent</code> when received <code>MeetingBookExportEvent</code>.
+This method will then attempt to export the data as a XML file using <code>Model#exportMeetingBook</code>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -2090,7 +2090,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <p><em>System Tests</em> that test the entire App by simulating user actions on the GUI. These are in the <code>systemtests</code> package.</p>
 </li>
 <li>
-<p><em>Unit tests</em> that test the individual components. These are in <code>seedu.address.ui</code> package.</p>
+<p><em>Unit tests</em> that test the individual components. These are in <code>seedu.meeting.ui</code> package.</p>
 </li>
 </ol>
 </div>
@@ -2101,15 +2101,15 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <ol class="loweralpha" type="a">
 <li>
 <p><em>Unit tests</em> targeting the lowest level methods/classes.<br>
-e.g. <code>seedu.address.commons.StringUtilTest</code></p>
+e.g. <code>seedu.meeting.commons.StringUtilTest</code></p>
 </li>
 <li>
 <p><em>Integration tests</em> that are checking the integration of multiple code units (those code units are assumed to be working).<br>
-e.g. <code>seedu.address.storage.StorageManagerTest</code></p>
+e.g. <code>seedu.meeting.storage.StorageManagerTest</code></p>
 </li>
 <li>
 <p>Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
-e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
+e.g. <code>seedu.meeting.logic.LogicManagerTest</code></p>
 </li>
 </ol>
 </div>
@@ -2170,7 +2170,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Update the version number in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/MainApp.java"><code>MainApp.java</code></a>.</p>
+<p>Update the version number in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/MainApp.java"><code>MainApp.java</code></a>.</p>
 </li>
 <li>
 <p>Generate a JAR file <a href="UsingGradle.html#creating-the-jar-file">using Gradle</a>.</p>
@@ -2244,10 +2244,10 @@ Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8
 <div class="ulist">
 <ul>
 <li>
-<p>Just like we store each individual command word constant <code>COMMAND_WORD</code> inside <code>*Command.java</code> (e.g.  <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/logic/commands/FindCommand.java"><code>FindCommand#COMMAND_WORD</code></a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/logic/commands/DeleteCommand.java"><code>DeleteCommand#COMMAND_WORD</code></a>), you need a new constant for aliases as well (e.g. <code>FindCommand#COMMAND_ALIAS</code>).</p>
+<p>Just like we store each individual command word constant <code>COMMAND_WORD</code> inside <code>*Command.java</code> (e.g.  <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/logic/commands/FindCommand.java"><code>FindCommand#COMMAND_WORD</code></a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/logic/commands/DeleteCommand.java"><code>DeleteCommand#COMMAND_WORD</code></a>), you need a new constant for aliases as well (e.g. <code>FindCommand#COMMAND_ALIAS</code>).</p>
 </li>
 <li>
-<p><a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> is responsible for analyzing command words.</p>
+<p><a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/logic/parser/MeetingBookParser.java"><code>MeetingBookParser</code></a> is responsible for analyzing command words.</p>
 </li>
 </ul>
 </div>
@@ -2257,7 +2257,7 @@ Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8
 <div class="ulist">
 <ul>
 <li>
-<p>Modify the switch statement in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser#parseCommand(String)</code></a> such that both the proper command word and alias can be used to execute the same intended command.</p>
+<p>Modify the switch statement in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/logic/parser/MeetingBookParser.java"><code>MeetingBookParser#parseCommand(String)</code></a> such that both the proper command word and alias can be used to execute the same intended command.</p>
 </li>
 <li>
 <p>Add new tests for each of the aliases that you have added.</p>
@@ -2307,13 +2307,13 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/Model.java"><code>Model</code></a> and the <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> API need to be updated.</p>
+<p>The <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/Model.java"><code>Model</code></a> and the <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/MeetingBook.java"><code>MeetingBook</code></a> API need to be updated.</p>
 </li>
 <li>
 <p>Think about how you can use SLAP to design the method. Where should we place the main logic of deleting tags?</p>
 </li>
 <li>
-<p>Find out which of the existing API methods in  <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> and <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> allows you to update a person, and <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> allows you to update the tags.</p>
+<p>Find out which of the existing API methods in  <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/MeetingBook.java"><code>MeetingBook</code></a> and <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/person/Person.java"><code>Person</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/MeetingBook.java"><code>MeetingBook</code></a> allows you to update a person, and <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/person/Person.java"><code>Person</code></a> allows you to update the tags.</p>
 </li>
 </ul>
 </div>
@@ -2323,16 +2323,16 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <div class="ulist">
 <ul>
 <li>
-<p>Implement a <code>removeTag(Tag)</code> method in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
+<p>Implement a <code>removeTag(Tag)</code> method in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/MeetingBook.java"><code>MeetingBook</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
 </li>
 <li>
-<p>Add a new API method <code>deleteTag(Tag)</code> in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a>. Your <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a> should call <code>AddressBook#removeTag(Tag)</code>.</p>
+<p>Add a new API method <code>deleteTag(Tag)</code> in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/ModelManager.java"><code>ModelManager</code></a>. Your <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/ModelManager.java"><code>ModelManager</code></a> should call <code>MeetingBook#removeTag(Tag)</code>.</p>
 </li>
 <li>
 <p>Add new tests for each of the new public methods that you have added.</p>
 </li>
 <li>
-<p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/790">PR</a> for the full solution.</p>
+<p>See this <a href="https://github.com/se-edu/book-level4/pull/790">PR</a> for the full solution.</p>
 </li>
 </ul>
 </div>
@@ -2389,7 +2389,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <div class="ulist">
 <ul>
 <li>
-<p>The tag labels are created inside <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/PersonCard.java">the <code>PersonCard</code> constructor</a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
+<p>The tag labels are created inside <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/PersonCard.java">the <code>PersonCard</code> constructor</a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
 </li>
 <li>
 <p>Use the .css attribute <code>-fx-background-color</code> to add a color.</p>
@@ -2426,7 +2426,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 </div>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors).</p>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors).</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -2452,10 +2452,10 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> is raised by <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> which also knows whether the result is a success or failure, and is caught by <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> which is where we want to change the style to.</p>
+<p><a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> is raised by <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/CommandBox.java"><code>CommandBox</code></a> which also knows whether the result is a success or failure, and is caught by <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/ResultDisplay.java"><code>ResultDisplay</code></a> which is where we want to change the style to.</p>
 </li>
 <li>
-<p>Refer to <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/CommandBox.java"><code>CommandBox</code></a> for an example on how to display an error.</p>
+<p>Refer to <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/CommandBox.java"><code>CommandBox</code></a> for an example on how to display an error.</p>
 </li>
 </ul>
 </div>
@@ -2465,10 +2465,10 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <div class="ulist">
 <ul>
 <li>
-<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> 's constructor so that users of the event can indicate whether an error has occurred.</p>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> 's constructor so that users of the event can indicate whether an error has occurred.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay#handleNewResultAvailableEvent(NewResultAvailableEvent)</code></a> to react to this event appropriately.</p>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/ResultDisplay.java"><code>ResultDisplay#handleNewResultAvailableEvent(NewResultAvailableEvent)</code></a> to react to this event appropriately.</p>
 </li>
 <li>
 <p>You can write two different kinds of tests to ensure that the functionality works:</p>
@@ -2478,7 +2478,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <p>The unit tests for <code>ResultDisplay</code> can be modified to include verification of the color.</p>
 </li>
 <li>
-<p>The system tests <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/systemtests/AddressBookSystemTest.java"><code>AddressBookSystemTest#assertCommandBoxShowsDefaultStyle() and AddressBookSystemTest#assertCommandBoxShowsErrorStyle()</code></a> to include verification for <code>ResultDisplay</code> as well.</p>
+<p>The system tests <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/systemtests/MeetingBookSystemTest.java"><code>MeetingBookSystemTest#assertCommandBoxShowsDefaultStyle() and MeetingBookSystemTest#assertCommandBoxShowsErrorStyle()</code></a> to include verification for <code>ResultDisplay</code> as well.</p>
 </li>
 </ul>
 </div>
@@ -2502,7 +2502,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 </div>
 </li>
 <li>
-<p>Modify the <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the MeetingBook.</p>
+<p>Modify the <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the MeetingBook.</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -2531,7 +2531,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <p><a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/resources/view/StatusBarFooter.fxml"><code>StatusBarFooter.fxml</code></a> will need a new <code>StatusBar</code>. Be sure to set the <code>GridPane.columnIndex</code> properly for each <code>StatusBar</code> to avoid misalignment!</p>
 </li>
 <li>
-<p><a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the MeetingBook is updated.</p>
+<p><a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the MeetingBook is updated.</p>
 </li>
 </ul>
 </div>
@@ -2541,16 +2541,16 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <div class="ulist">
 <ul>
 <li>
-<p>Modify the constructor of <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of persons when the application just started.</p>
+<p>Modify the constructor of <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of persons when the application just started.</p>
 </li>
 <li>
-<p>Use <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)</code></a> to update the number of persons whenever there are new changes to the addressbook.</p>
+<p>Use <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/StatusBarFooter.java"><code>StatusBarFooter#handleMeetingBookChangedEvent(MeetingBookChangedEvent)</code></a> to update the number of persons whenever there are new changes to the MeetingBook.</p>
 </li>
 <li>
 <p>For tests, modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/guitests/guihandles/StatusBarFooterHandle.java"><code>StatusBarFooterHandle</code></a> by adding a state-saving functionality for the total number of people status, just like what we did for save location and sync status.</p>
 </li>
 <li>
-<p>For system tests, modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/systemtests/AddressBookSystemTest.java"><code>AddressBookSystemTest</code></a> to also verify the new total number of persons status bar.</p>
+<p>For system tests, modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/systemtests/MeetingBookSystemTest.java"><code>MeetingBookSystemTest</code></a> to also verify the new total number of persons status bar.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/803">PR</a> for the full solution.</p>
@@ -2584,7 +2584,7 @@ Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage componen
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a new method <code>backupAddressBook(ReadOnlyAddressBook)</code>, so that the MeetingBook can be saved in a fixed temporary location.</p>
+<p>Add a new method <code>backupMeetingBook(ReadOnlyMeetingBook)</code>, so that the MeetingBook can be saved in a fixed temporary location.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -2594,10 +2594,10 @@ Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage componen
 <div class="ulist">
 <ul>
 <li>
-<p>Add the API method in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/storage/AddressBookStorage.java"><code>AddressBookStorage</code></a> interface.</p>
+<p>Add the API method in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/storage/MeetingBookStorage.java"><code>MeetingBookStorage</code></a> interface.</p>
 </li>
 <li>
-<p>Implement the logic in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/storage/StorageManager.java"><code>StorageManager</code></a> and <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/storage/XmlAddressBookStorage.java"><code>XmlAddressBookStorage</code></a> class.</p>
+<p>Implement the logic in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/storage/StorageManager.java"><code>StorageManager</code></a> and <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/storage/XmlMeetingBookStorage.java"><code>XmlMeetingBookStorage</code></a> class.</p>
 </li>
 </ul>
 </div>
@@ -2626,7 +2626,7 @@ Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage componen
 <p>By creating this command, you will get a chance to learn how to implement a feature end-to-end, touching all major components of the app.</p>
 </div>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are a software maintainer for <code>addressbook</code>, as the former developer team has moved on to new projects. The current users of your application have a list of new feature requests that they hope the software will eventually have. The most popular request is to allow adding additional comments/notes about a particular contact, by providing a flexible <code>remark</code> field for each contact, rather than relying on tags alone. After designing the specification for the <code>remark</code> command, you are convinced that this feature is worth implementing. Your job is to implement the <code>remark</code> command.</p>
+<p><strong>Scenario:</strong> You are a software maintainer for <code>MeetingBook</code>, as the former developer team has moved on to new projects. The current users of your application have a list of new feature requests that they hope the software will eventually have. The most popular request is to allow adding additional comments/notes about a particular contact, by providing a flexible <code>remark</code> field for each contact, rather than relying on tags alone. After designing the specification for the <code>remark</code> command, you are convinced that this feature is worth implementing. Your job is to implement the <code>remark</code> command.</p>
 </div>
 <div class="sect3">
 <h4 id="description"><a class="link" href="#description">A.2.1. Description</a></h4>
@@ -2663,10 +2663,10 @@ Removes the remark for the first person.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a <code>RemarkCommand</code> that extends <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/logic/commands/Command.java"><code>Command</code></a>. Upon execution, it should just throw an <code>Exception</code>.</p>
+<p>Add a <code>RemarkCommand</code> that extends <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/logic/commands/Command.java"><code>Command</code></a>. Upon execution, it should just throw an <code>Exception</code>.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to accept a <code>RemarkCommand</code>.</p>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/logic/parser/MeetingBookParser.java"><code>MeetingBookParser</code></a> to accept a <code>RemarkCommand</code>.</p>
 </li>
 </ol>
 </div>
@@ -2679,7 +2679,7 @@ Removes the remark for the first person.</p>
 <p>Add <code>RemarkCommandTest</code> that tests that <code>execute()</code> throws an Exception.</p>
 </li>
 <li>
-<p>Add new test method to <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a>, which tests that typing "remark" returns an instance of <code>RemarkCommand</code>.</p>
+<p>Add new test method to <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/seedu/meeting/logic/parser/MeetingBookParserTest.java"><code>MeetingBookParserTest</code></a>, which tests that typing "remark" returns an instance of <code>RemarkCommand</code>.</p>
 </li>
 </ol>
 </div>
@@ -2701,7 +2701,7 @@ Removes the remark for the first person.</p>
 <p>Add <code>RemarkCommandParser</code> that knows how to parse two arguments, one index and one with prefix 'r/'.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/logic/parser/AddressBookParser.java"><code>AddressBookParser</code></a> to use the newly implemented <code>RemarkCommandParser</code>.</p>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/logic/parser/MeetingBookParser.java"><code>MeetingBookParser</code></a> to use the newly implemented <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
@@ -2718,7 +2718,7 @@ Removes the remark for the first person.</p>
 for <code>RemarkCommandParser</code>.</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/seedu/address/logic/parser/AddressBookParserTest.java"><code>AddressBookParserTest</code></a> to test that the correct command is generated according to the user input.</p>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/seedu/meeting/logic/parser/MeetingBookParserTest.java"><code>MeetingBookParserTest</code></a> to test that the correct command is generated according to the user input.</p>
 </li>
 </ol>
 </div>
@@ -2726,7 +2726,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code"><a class="link" href="#step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code">[Step 3] Ui: Add a placeholder for remark in <code>PersonCard</code></a></h5>
 <div class="paragraph">
-<p>Let&#8217;s add a placeholder on all our <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
+<p>Let&#8217;s add a placeholder on all our <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2737,7 +2737,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Add a <code>Label</code> with any random text inside <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/resources/view/PersonListCard.fxml"><code>PersonListCard.fxml</code></a>.</p>
 </li>
 <li>
-<p>Add FXML annotation in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> to tie the variable to the actual label.</p>
+<p>Add FXML annotation in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/PersonCard.java"><code>PersonCard</code></a> to tie the variable to the actual label.</p>
 </li>
 </ol>
 </div>
@@ -2755,7 +2755,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-4-model-add-code-remark-code-class"><a class="link" href="#step-4-model-add-code-remark-code-class">[Step 4] Model: Add <code>Remark</code> class</a></h5>
 <div class="paragraph">
-<p>We have to properly encapsulate the remark in our <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
+<p>We have to properly encapsulate the remark in our <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/person/Person.java"><code>Person</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2763,7 +2763,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/person/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
+<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/person/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
 </li>
 <li>
 <p>Modify <code>RemarkCommand</code> to now take in a <code>Remark</code> instead of a <code>String</code>.</p>
@@ -2784,7 +2784,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-5-model-modify-code-person-code-to-support-a-code-remark-code-field"><a class="link" href="#step-5-model-modify-code-person-code-to-support-a-code-remark-code-field">[Step 5] Model: Modify <code>Person</code> to support a <code>Remark</code> field</a></h5>
 <div class="paragraph">
-<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a>.</p>
+<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/person/Person.java"><code>Person</code></a>.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2792,13 +2792,13 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add <code>getRemark()</code> in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a>.</p>
+<p>Add <code>getRemark()</code> in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/person/Person.java"><code>Person</code></a>.</p>
 </li>
 <li>
 <p>You may assume that the user will not be able to use the <code>add</code> and <code>edit</code> commands to modify the remarks field (i.e. the person will be created without a remark).</p>
 </li>
 <li>
-<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/util/SampleDataUtil.java/"><code>SampleDataUtil</code></a> to add remarks for the sample data (delete your <code>addressBook.xml</code> so that the application will load the sample data when you launch it.)</p>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/util/SampleDataUtil.java/"><code>SampleDataUtil</code></a> to add remarks for the sample data (delete your <code>meetingBook.xml</code> so that the application will load the sample data when you launch it.)</p>
 </li>
 </ol>
 </div>
@@ -2806,7 +2806,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class"><a class="link" href="#step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class">[Step 6] Storage: Add <code>Remark</code> field to <code>XmlAdaptedPerson</code> class</a></h5>
 <div class="paragraph">
-<p>We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
+<p>We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2824,7 +2824,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Fix <code>invalidAndValidPersonAddressBook.xml</code>, <code>typicalPersonsAddressBook.xml</code>, <code>validAddressBook.xml</code> etc., such that the XML tests will not fail due to a missing <code>&lt;remark&gt;</code> element.</p>
+<p>Fix <code>invalidAndValidPersonMeetingBook.xml</code>, <code>typicalPersonsMeetingBook.xml</code>, <code>validMeetingBook.xml</code> etc., such that the XML tests will not fail due to a missing <code>&lt;remark&gt;</code> element.</p>
 </li>
 </ol>
 </div>
@@ -2832,7 +2832,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-6b-test-add-withremark-for-code-personbuilder-code"><a class="link" href="#step-6b-test-add-withremark-for-code-personbuilder-code">[Step 6b] Test: Add withRemark() for <code>PersonBuilder</code></a></h5>
 <div class="paragraph">
-<p>Since <code>Person</code> can now have a <code>Remark</code>, we should add a helper method to <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/seedu/address/testutil/PersonBuilder.java"><code>PersonBuilder</code></a>, so that users are able to create remarks when building a <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a>.</p>
+<p>Since <code>Person</code> can now have a <code>Remark</code>, we should add a helper method to <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/seedu/meeting/testutil/PersonBuilder.java"><code>PersonBuilder</code></a>, so that users are able to create remarks when building a <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/person/Person.java"><code>Person</code></a>.</p>
 </div>
 <div class="paragraph">
 <p><strong>Tests:</strong></p>
@@ -2840,10 +2840,10 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a new method <code>withRemark()</code> for <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/seedu/address/testutil/PersonBuilder.java"><code>PersonBuilder</code></a>. This method will create a new <code>Remark</code> for the person that it is currently building.</p>
+<p>Add a new method <code>withRemark()</code> for <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/seedu/meeting/testutil/PersonBuilder.java"><code>PersonBuilder</code></a>. This method will create a new <code>Remark</code> for the person that it is currently building.</p>
 </li>
 <li>
-<p>Try and use the method on any sample <code>Person</code> in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/seedu/address/testutil/TypicalPersons.java"><code>TypicalPersons</code></a>.</p>
+<p>Try and use the method on any sample <code>Person</code> in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/seedu/meeting/testutil/TypicalPersons.java"><code>TypicalPersons</code></a>.</p>
 </li>
 </ol>
 </div>
@@ -2851,7 +2851,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-7-ui-connect-code-remark-code-field-to-code-personcard-code"><a class="link" href="#step-7-ui-connect-code-remark-code-field-to-code-personcard-code">[Step 7] Ui: Connect <code>Remark</code> field to <code>PersonCard</code></a></h5>
 <div class="paragraph">
-<p>Our remark label in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
+<p>Our remark label in <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -2859,7 +2859,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a>'s constructor to bind the <code>Remark</code> field to the <code>Person</code> 's remark.</p>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/ui/PersonCard.java"><code>PersonCard</code></a>'s constructor to bind the <code>Remark</code> field to the <code>Person</code> 's remark.</p>
 </li>
 </ol>
 </div>
@@ -2869,7 +2869,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysPerson(&#8230;&#8203;)</code></a> so that it will compare the now-functioning remark label.</p>
+<p>Modify <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/test/java/seedu/meeting/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysPerson(&#8230;&#8203;)</code></a> so that it will compare the now-functioning remark label.</p>
 </li>
 </ol>
 </div>
@@ -3638,4 +3638,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 00:40:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 03:53:06 UTC</div></div></div></body></html>
