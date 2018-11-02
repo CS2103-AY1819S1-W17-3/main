@@ -37,13 +37,15 @@
 <li><a href="#meeting-feature">3.6. Meeting feature</a></li>
 <li><a href="#meetingbook-feature">3.7. MeetingBook feature</a></li>
 <li><a href="#sort-and-find-feature">3.8. Sort and Find feature</a></li>
-<li><a href="#undo-redo-feature">3.9. Undo/Redo feature</a></li>
-<li><a href="#select-feature">3.10. Select feature</a></li>
-<li><a href="#export-feature">3.11. Export feature</a></li>
-<li><a href="#import-feature">3.12. Import feature</a></li>
-<li><a href="#proposed-data-encryption">3.13. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.14. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.15. Configuration</a></li>
+<li><a href="#sorting-the-list-of-displayed-persons-code-sort-code">3.9. Sorting the list of displayed persons: <code>sort</code></a></li>
+<li><a href="#finding-a-group-person-meeting-code-find-code">3.10. Finding a group / person / meeting: <code>find</code></a></li>
+<li><a href="#undo-redo-feature">3.11. Undo/Redo feature</a></li>
+<li><a href="#select-feature">3.12. Select feature</a></li>
+<li><a href="#export-feature">3.13. Export feature</a></li>
+<li><a href="#import-feature">3.14. Import feature</a></li>
+<li><a href="#proposed-data-encryption">3.15. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.16. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.17. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1184,67 +1186,142 @@ detail how the sort and find commands are implemented.</p>
 </div>
 <div class="sect3">
 <h4 id="code-sort-code-command-usage"><a class="link" href="#code-sort-code-command-usage">3.8.1. <code>sort</code> command usage</a></h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="sorting-the-list-of-displayed-persons-code-sort-code"><a class="link" href="#sorting-the-list-of-displayed-persons-code-sort-code">3.9. Sorting the list of displayed persons: <code>sort</code></a></h3>
 <div class="paragraph">
-<p>The <code>sort</code> command allows the user to sort the displayed persons list according to each person&#8217;s name, email,
-phone number, or address by alphanumerical order. This command is executed with the following syntax:<br></p>
+<p>The <code>sort</code> command sorts the list in the display of persons.
+The user can specify whether to sort by name, phone number, email address, or home address,
+in lexicographical order or numerical order.<br></p>
 </div>
 <div class="paragraph">
-<p>Syntax: <code>sort [name|phone|email|address]</code><br></p>
+<p>Format:<br>
+<code>sort [name|phone|email|address]</code><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>[name|phone|email|address]</code>: this parameter specifies whether to sort by name, phone, email
+address, or home address in lexicographical order or numerical order.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<p>Example: <code>sort name</code>: This command will sort the current displayed list by name by alphanumerical order.</p>
-</div>
+<p>Examples:<br>
+* <code>sort name</code>: Sorts the list of persons by name in lexicographical order.
+* <code>sort phone</code>: Sorts the list of persons by phone number in numerical order.
+* <code>sort email</code>: Sorts the list of persons by email address in lexicographical order.
+* <code>sort address</code>: Sorts the list of persons by home address in lexicographical order.</p>
 </div>
 <div class="sect3">
-<h4 id="code-find-code-command-usage"><a class="link" href="#code-find-code-command-usage">3.8.2. <code>find</code> command usage</a></h4>
+<h4 id="code-find-code-command-usage"><a class="link" href="#code-find-code-command-usage">3.9.1. <code>find</code> command usage</a></h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-a-group-person-meeting-code-find-code"><a class="link" href="#finding-a-group-person-meeting-code-find-code">3.10. Finding a group / person / meeting: <code>find</code></a></h3>
 <div class="paragraph">
-<p>The <code>find</code> command allows the user to filter the displayed persons list by each person&#8217;s name based on
-keywords given by the user. This command is executed with the following syntax:<br></p>
+<p>The <code>find</code> command searches the MeetingBook for specified person, group, or meeting, and displays the results on
+the panel.<br></p>
 </div>
 <div class="paragraph">
-<p>Syntax: <code>find [a/&lt;keywords&gt;] [s/&lt;keywords&gt;] [n/&lt;keywords&gt;]</code><br></p>
+<p>Format:<br>
+ <code>find [person|p|group|g|meeting|m] [a/keywords] [s/keywords] [n/keywords]</code><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>[person|group|meeting]</code>, <code>[p|g|m]</code>: this parameter specifies whether to search for persons, groups, or meetings.
+This parameter is required to execute this command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>person</code>, <code>p</code>: specifies to search for persons.</p>
+</li>
+<li>
+<p><code>group</code>, <code>g</code>: specifies to search for groups.</p>
+</li>
+<li>
+<p><code>meeting</code>, <code>m</code>: specifies to search for meetings.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>keywords</code>: this tag contains any number of keywords separated by a <kbd>space</kbd>.</p>
+</li>
+<li>
+<p><code>[all]</code>, <code>[a]</code>: this parameter specifies that the results must contain every keyword specified in <code>&lt;keywords&gt;</code>.
+This parameter may be omitted.</p>
+</li>
+<li>
+<p><code>[some]</code>, <code>[s]</code>: this parameter specifies that the results must contain at least one keyword specified in <code>&lt;keywords&gt;</code>.
+This parameter may be omitted.</p>
+</li>
+<li>
+<p><code>[none]</code>, <code>[n]</code>: this parameter specifies that the results must not contain any keyword specified in <code>&lt;keywords&gt;</code>.
+This parameter may be omitted.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<p>The user can include as many keywords as desired in <code>&lt;keywords&gt;</code> separated by a <kbd>space</kbd>.
-The keywords are case-insensitive.<br></p>
+<p>Shorthand: <code>find [person|p|group|g|meeting|m] [keywords]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>When the shorthand format is used, the keywords will be placed in the <code>a/</code> parameter.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<p>The <code>a/</code>, <code>s/</code>, and <code>n/</code> prefixes allows the user to include further specifications. They function as such:<br></p>
+<p>Examples:<br></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>a/</code>: The results displayed must match all of the keywords following this prefix.</p>
+<p><code>find person Abby</code>: finds all persons whose name contains <code>Abby</code>.<br></p>
 </li>
 <li>
-<p><code>s/</code>: The results displayed must match some (at least one) of the keywords following this prefix.</p>
+<p><code>find p Betty Charles</code>: finds all persons whose name contains <code>Betty</code> and <code>Charles</code>.<br></p>
 </li>
 <li>
-<p><code>n/</code>: The results displayed must match none of the keywords following this prefix.</p>
+<p><code>find p s/David Eric n/James</code>: finds all persons whose name contains one of <code>David</code> or <code>Eric</code>,
+and whose name does not contain <code>James</code>.<br></p>
+</li>
+<li>
+<p><code>find group project</code>: finds all groups whose title contains <code>project</code>.<br></p>
+</li>
+<li>
+<p><code>find g a/team n/school</code>: finds all groups whose title contains <code>team</code> and whose title
+does not contain <code>school</code>.<br></p>
+</li>
+<li>
+<p><code>find meeting s/official important</code>: finds all meetings whose title contains one of
+<code>official</code> or <code>important</code>.</p>
+</li>
+<li>
+<p><code>find m a/urgent n/basketball</code>: finds all meetings whose titles contains <code>urgent</code> and
+whose title does not contain <code>basketball</code>.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Example: <code>find a/alice bob s/shirlene david n/charlie</code>: This command will filter the displayed list such that all
-results will contain "alice" and "bob", either "shirlene" or "david", and none of the results will contain
-"charlie".<br></p>
-</div>
-<div class="paragraph">
-<p>If the user doesn&#8217;t use prefixes. With the following syntax:<br></p>
-</div>
-<div class="paragraph">
-<p>Syntax: <code>find &lt;keywords&gt;</code><br></p>
-</div>
-<div class="paragraph">
-<p>The command is equivalent to <code>find a/&lt;keywords&gt;</code> by default.<br></p>
-</div>
-<div class="paragraph">
-<p>Example: <code>find mary john</code>: This command will filter the displayed list such that all results will contain "mary" and
-"john". This command is equivalent to <code>find a/mary john</code>.</p>
-</div>
-</div>
 <div class="sect3">
-<h4 id="implementation-of-code-sort-code-and-code-find-code-commands"><a class="link" href="#implementation-of-code-sort-code-and-code-find-code-commands">3.8.3. Implementation of <code>sort</code> and <code>find</code> commands</a></h4>
+<h4 id="implementation-of-code-sort-code-and-code-find-code-commands"><a class="link" href="#implementation-of-code-sort-code-and-code-find-code-commands">3.10.1. Implementation of <code>sort</code> and <code>find</code> commands</a></h4>
 <div class="paragraph">
 <p><code>ModelManager</code> maintains a <code>sortedPersons</code> list of type <code>SortedList&lt;Person&gt;</code> and a <code>filteredPersons</code> list of type
 <code>FilteredList&lt;Person&gt;</code>.<br></p>
@@ -1278,7 +1355,7 @@ and the <code>Predicate&lt;Person&gt;</code> will be applied to the <code>person
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.8.4. Design considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.10.2. Design considerations</a></h4>
 <div class="paragraph">
 <p>Due to this two-layered structure. The user can chain <code>find</code> and <code>sort</code> commands back-to-back to display the desired
 list.</p>
@@ -1286,9 +1363,9 @@ list.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.9. Undo/Redo feature</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.11. Undo/Redo feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.9.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.11.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedMeetingBook</code>.
 It extends <code>MeetingBook</code> with an undo/redo history, stored internally as an <code>meetingBookStateList</code> and <code>currentStatePointer</code>.
@@ -1418,7 +1495,7 @@ If the <code>currentStatePointer</code> is at index <code>meetingBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.9.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.11.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -1488,9 +1565,9 @@ If the <code>currentStatePointer</code> is at index <code>meetingBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="select-feature"><a class="link" href="#select-feature">3.10. Select feature</a></h3>
+<h3 id="select-feature"><a class="link" href="#select-feature">3.12. Select feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.10.1. Current Implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.12.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The select mechanism is facilitated by <code>ModelManager</code>.
 It extends <code>Model</code> with two lists, <code>UniquePersonList</code> and <code>UniqueGroupList</code> and implements the following operations:</p>
@@ -1546,7 +1623,7 @@ If a group is selected, calling <code>select</code> command with <code>SELECT_TY
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.10.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.12.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-select-executes"><a class="link" href="#aspect-how-select-executes">Aspect: How select executes</a></h5>
 <div class="ulist">
@@ -1583,9 +1660,9 @@ If a group is selected, calling <code>select</code> command with <code>SELECT_TY
 </div>
 </div>
 <div class="sect2">
-<h3 id="export-feature"><a class="link" href="#export-feature">3.11. Export feature</a></h3>
+<h3 id="export-feature"><a class="link" href="#export-feature">3.13. Export feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.11.1. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.13.1. Current Implementation</a></h4>
 <div class="sect4">
 <h5 id="overview"><a class="link" href="#overview">Overview</a></h5>
 <div class="paragraph">
@@ -1633,7 +1710,7 @@ As MeetingBook stores <code>Person</code>, <code>Group</code>, <code>Meeting</co
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.11.2. Design Consideration</a></h4>
+<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.13.2. Design Consideration</a></h4>
 <div class="sect4">
 <h5 id="aspect-make-export-undoable"><a class="link" href="#aspect-make-export-undoable">Aspect: Make export undoable</a></h5>
 <div class="ulist">
@@ -1683,9 +1760,9 @@ As MeetingBook stores <code>Person</code>, <code>Group</code>, <code>Meeting</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="import-feature"><a class="link" href="#import-feature">3.12. Import feature</a></h3>
+<h3 id="import-feature"><a class="link" href="#import-feature">3.14. Import feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.12.1. Current Implementation</a></h4>
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.14.1. Current Implementation</a></h4>
 <div class="sect4">
 <h5 id="overview-2"><a class="link" href="#overview-2">Overview</a></h5>
 <div class="paragraph">
@@ -1711,7 +1788,7 @@ The imported <code>MeetingBook</code> will then merge with the current <code>Mee
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">3.12.2. Design Consideration</a></h4>
+<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">3.14.2. Design Consideration</a></h4>
 <div class="sect4">
 <h5 id="aspect-handling-of-conflict-files"><a class="link" href="#aspect-handling-of-conflict-files">Aspect: Handling of conflict files</a></h5>
 <div class="ulist">
@@ -1752,20 +1829,20 @@ This will also cause <code>find</code> command to not work as expected. <code>fi
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.13. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.15. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.14. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.16. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.15, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.17, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1796,7 +1873,7 @@ This will also cause <code>find</code> command to not work as expected. <code>fi
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.15. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.17. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3638,4 +3715,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 03:53:06 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 04:01:17 UTC</div></div></div></body></html>
