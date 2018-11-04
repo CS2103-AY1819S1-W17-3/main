@@ -153,10 +153,19 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>Words in square brackets are the parameters to be supplied by the user e.g. in <code>edit 1 e/[Email] p/[Phone]</code>, <code>Email</code> and <code>Phone</code> are parameters which can be used as <code>edit 1 e/email@email.com</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>edit 1 e/EMAIL p/PHONE</code>, <code>EMAIL</code> and <code>PHONE</code> are parameters which can be used as <code>edit 1 e/email@email.com p/12345678</code>.</p>
 </li>
 <li>
-<p>Words in square brackets are optional. e.g. <code>edit 1 e/[Email] p/[Phone]</code> can be used as <code>edit 1 e/hello@hello.com</code> or <code>edit 1 p/12345678</code>.</p>
+<p>Words in square brackets are optional. e.g. <code>n/NAME [t/TAG]</code> can be used as <code>n/Derek t/Groupmate</code> or <code>n/Derek</code>.</p>
+</li>
+<li>
+<p>Words in arrow brackets separated by <code>|</code> are the parameter options that require user to supply exactly one e.g. <code>list &lt;person|group|meeting&gt;</code>, <code>person</code>, <code>group</code> and <code>meeting</code> are parameter options that can be used as <code>list group</code>, <code>list person</code> or <code>list meeting</code>, and each of them execute different operations.</p>
+</li>
+<li>
+<p>Items with <code>&#8230;&#8203;</code> after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as ` ` (i.e. 0 times), <code>t/classmate</code>, <code>t/classmate t/project</code> etc.</p>
+</li>
+<li>
+<p>Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE, p/PHONE n/NAME is also acceptable.</p>
 </li>
 </ul>
 </div>
@@ -171,8 +180,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="adding-a-new-member-code-addmember-code"><a class="link" href="#adding-a-new-member-code-addmember-code">4.2. Adding a new member: <code>addMember</code></a></h3>
 <div class="paragraph">
-<p>Add a new person named [Name] with parameters described in [Person Parameters] to the MeetingBook.<br>
-Format: <code>addMember n/[Name] p/[Phone] e/[Email] a/[Address] t/[Tag] g/[Group Tag]</code></p>
+<p>Add a new person named <code>NAME</code> with parameters described in [Person Parameters] to the MeetingBook.<br>
+Format: <code>addMember n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -180,10 +189,13 @@ Format: <code>addMember n/[Name] p/[Phone] e/[Email] a/[Address] t/[Tag] g/[Grou
 <div class="ulist">
 <ul>
 <li>
-<p><code>addMember Zheng Wei p/87654321 e/cs2103t@comp.nus.edu.sg a/NUS School of Computing</code></p>
+<p><code>addMember n/Zheng Wei p/87654321 e/cs2103t@comp.nus.edu.sg a/NUS School of Computing</code></p>
 </li>
 <li>
-<p><code>addMember Ben p/12345678 e/hello@nus.edu.sg a/NUS School of Computing t/project g/CS2103T</code></p>
+<p><code>addMember n/Ben p/12345678 e/hello@nus.edu.sg a/NUS School of Computing t/project</code></p>
+</li>
+<li>
+<p><code>addMember n/Pakorn p/24681357 e/cs2101@celc.nus.edu.sg a/NUS School of Computing t/TA t/project</code></p>
 </li>
 </ul>
 </div>
@@ -194,7 +206,7 @@ Format: <code>addMember n/[Name] p/[Phone] e/[Email] a/[Address] t/[Tag] g/[Grou
 <p>Replace the person’s parameters with those described in this command (undescribed parameters will not be changed)<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>edit [Index] n/[Name]|p/[Phone]|e/[Email]|a/[Address]|t/[Tag]|g/[GroupTag]</code></p>
+<p>Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -216,7 +228,7 @@ Edits the phone number of the first person in the person list to 12345678.</p>
 <h3 id="deleting-a-person-code-delete-del-code"><a class="link" href="#deleting-a-person-code-delete-del-code">4.4. Deleting a person: <code>delete/del</code></a></h3>
 <div class="paragraph">
 <p>Remove the selected person.<br>
-Format: <code>delete</code>, or the shorthand <code>del</code></p>
+Format: <code>delete INDEX</code>, or the shorthand <code>del INDEX</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -240,7 +252,7 @@ Deletes the fourth person in the person list.</p>
 <p>Add a new group with user input title into MeetingBook.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addGroup n/[Name]</code><br></p>
+<p>Format: <code>addGroup n/NAME</code><br></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -264,7 +276,7 @@ Adds a new group with title 'Discussion Group 1' into the MeetingBook.</p>
 <p>Remove the group that matches use input title.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>deleteGroup n/[Name]</code><br></p>
+<p>Format: <code>deleteGroup n/NAME</code><br></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -291,14 +303,14 @@ in lexicographical order or numerical order.<br></p>
 </div>
 <div class="paragraph">
 <p>Format:<br>
-<code>sort [name|phone|email|address]</code><br></p>
+<code>sort &lt;name|phone|email|address&gt;</code><br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p><code>[name|phone|email|address]</code>: this parameter specifies whether to sort by name, phone, email
+<p><code>&lt;name|phone|email|address&gt;</code>: this parameter specifies whether to sort by name, phone, email
 address, or home address in lexicographical order or numerical order.</p>
 </li>
 </ul>
@@ -321,14 +333,15 @@ the panel.<br></p>
 </div>
 <div class="paragraph">
 <p>Format:<br>
- <code>find [person|p|group|g|meeting|m] [a/keywords] [s/keywords] [n/keywords]</code><br></p>
+Longhand: <code>find &lt;person|group|meeting&gt; [a/KEYWORDS] [s/KEYWORDS] [n/KEYWORDS]</code><br>
+Shorthand: <code>find &lt;p|g|m&gt; [KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p><code>[person|group|meeting]</code>, <code>[p|g|m]</code>: this parameter specifies whether to search for persons, groups, or meetings.
+<p><code>&lt;person|group|meeting&gt;</code>, <code>&lt;p|g|m&gt;</code>: this parameter specifies whether to search for persons, groups, or meetings.
 This parameter is required to execute this command.</p>
 <div class="ulist">
 <ul>
@@ -345,7 +358,7 @@ This parameter is required to execute this command.</p>
 </div>
 </li>
 <li>
-<p><code>keywords</code>: this tag contains any number of keywords separated by a <kbd>space</kbd>.</p>
+<p><code>KEYWORDS</code>: this tag contains any number of keywords separated by a <kbd>space</kbd>.</p>
 </li>
 <li>
 <p><code>[all]</code>, <code>[a]</code>: this parameter specifies that the results must contain every keyword specified in <code>&lt;keywords&gt;</code>.
@@ -362,9 +375,6 @@ This parameter may be omitted.</p>
 </ul>
 </div>
 </div>
-</div>
-<div class="paragraph">
-<p>Shorthand: <code>find [person|p|group|g|meeting|m] [keywords]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -413,21 +423,21 @@ whose title does not contain <code>basketball</code>.</p>
 <div class="sect2">
 <h3 id="selecting-a-group-person-meeting-code-select-code"><a class="link" href="#selecting-a-group-person-meeting-code-select-code">4.9. Selecting a group / person / meeting: <code>select</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>select [person|group|meeting] [index]</code> where <code>[index]</code> is a positive integer (starts from 1)</p>
+<p>Format: <code>select &lt;p|g|m&gt;/INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>If <code>select [group]</code> is entered, the person list will be filtered to show only person who belong to the group, and the
+<p>If <code>select g</code> is entered, the person list will be filtered to show only person who belong to the group, and the
 meeting list will be filtered to show only meeting scheduled for the group.</p>
 </li>
 <li>
-<p>If <code>select [person]</code> is entered, only the person that is in the filtered person list will be selected.</p>
+<p>If <code>select p</code> is entered, only the person that is in the filtered person list will be selected.</p>
 </li>
 <li>
-<p>If <code>select [meeting]</code> is entered, only the meeting that is in the filtered meeting list will be selected.</p>
+<p>If <code>select m</code> is entered, only the meeting that is in the filtered meeting list will be selected.</p>
 </li>
 </ul>
 </div>
@@ -439,7 +449,7 @@ meeting list will be filtered to show only meeting scheduled for the group.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>select g/1</code>: selects the first group in the filtered group list.</p>
+<p><code>select g/1</code>: selects the first group in the filtered group list. Meetings and persons not related to the group selected will be hidden.</p>
 </li>
 <li>
 <p><code>select m/3</code>: selects the third meeting in the filtered meeting list.</p>
@@ -607,7 +617,7 @@ calling <code>meet GROUP_NAME</code> without argument is equivalent to calling <
 <p>Add a person, specified by name, into a group, specified by the group title.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>join n/[Name] g/[Group]</code><br></p>
+<p>Format: <code>join n/NAME g/GROUP</code><br></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -639,7 +649,7 @@ Both the person and group should exist in the MeetingBook.
 <p>Remove a person, specified by name, from a group, specified by the group title.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>leave n/[Name] g/[Group]</code><br></p>
+<p>Format: <code>leave n/NAME g/GROUP</code><br></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -672,7 +682,8 @@ The person should also be an existing member of the group.
 <p>Display all existing groups on the group list / meetings on the meeting list / persons on the person list display.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>list [group|meeting|person]</code></p>
+<p>Format: <code>list &lt;group|meeting|person&gt;</code><br>
+Shorthand: <code>list &lt;g|m|p&gt;</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -695,7 +706,7 @@ If the list is unfiltered, the list will remain the same.
 <p><code>list group</code>: list all groups.</p>
 </li>
 <li>
-<p><code>list meeting</code>: list all meetings.</p>
+<p><code>list m</code>: list all meetings.</p>
 </li>
 <li>
 <p><code>list person</code>: list all persons.</p>
@@ -712,7 +723,7 @@ If the list is unfiltered, the list will remain the same.
 <p>Default behaviour is to ignore any conflicting Person/Group entries unless <code>--force</code> option is supplied.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>import &lt;relative filepath&gt;</code> or <code>import --force &lt;relative filepath&gt;</code></p>
+<p>Format: <code>import [--force] f/FILEPATH</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br></p>
@@ -742,7 +753,7 @@ If the list is unfiltered, the list will remain the same.
 <p>User is able to export data to store as backup elsewhere or send data to other users of MeetingBook.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>export  f/&lt;relative filepath&gt;</code><br></p>
+<p>Format: <code>export  f/FILEPATH</code><br></p>
 </div>
 <div class="paragraph">
 <p>Example:<br></p>
@@ -769,7 +780,7 @@ If the list is unfiltered, the list will remain the same.
 <p>Change the storage location of MeetingBook.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>filepath f/&lt;filepath&gt;</code></p>
+<p>Format: <code>filepath f/FILEPATH</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -853,11 +864,11 @@ User can also check the current path where MeetingBook store its data using <cod
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Adding a new person:</strong> <code>addMember n/[Name] p/[Phone] e/[Email] a/[Address]</code><br>
+<p><strong>Adding a new person:</strong> <code>addMember n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
 e.g. <code>addMember Derek p/87654321 e/cs2103t@comp.nus.edu.sg a/NUS School of Computing</code></p>
 </li>
 <li>
-<p><strong>Editing a person</strong> : <code>edit [Index] n/[Name]|p/[Phone]|e/[Email]|a/[Address]|t/[Tag]|g/[GroupTag]</code><br>
+<p><strong>Editing a person</strong> : <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
 e.g. <code>edit 2 n/Jeffrey</code></p>
 </li>
 <li>
@@ -867,42 +878,45 @@ e.g. <code>edit 2 n/Jeffrey</code></p>
 <p><strong>Cancel a meeting</strong> : <code>cancel GROUP_NAME</code></p>
 </li>
 <li>
-<p><strong>Deleting a person</strong> : <code>delete</code><br></p>
+<p><strong>Deleting a person</strong> : <code>delete INDEX</code><br></p>
 </li>
 <li>
-<p><strong>Adding a new group</strong> : <code>addGroup n/[Name]</code><br>
+<p><strong>Adding a new group</strong> : <code>addGroup n/NAME</code><br>
 e.g. <code>addGroup n/CS2103T</code></p>
 </li>
 <li>
-<p><strong>Deleting a new group</strong> : <code>deleteGroup n/[Name]</code><br>
+<p><strong>Deleting a new group</strong> : <code>deleteGroup n/NAME</code><br>
 e.g. <code>deleteGroup n/CS2101</code></p>
 </li>
 <li>
-<p><strong>Joining a person to group</strong> : <code>join n/[Name] g/[Group]</code><br>
+<p><strong>Joining a person to group</strong> : <code>join n/NAME g/GROUP</code><br>
 e.g. <code>join n/Derek g/CS2103T</code></p>
 </li>
 <li>
-<p><strong>Removing a person from group</strong> : <code>leave n/[Name] g/[Group]</code><br>
+<p><strong>Removing a person from group</strong> : <code>leave n/NAME g/GROUP</code><br>
 e.g. <code>leave n/Derek g/CS2101</code></p>
 </li>
 <li>
-<p><strong>Find a person / group / meeting</strong> : <code>find [person|group|meeting]  *[all]/&lt;keywords&gt; *[some]/&lt;keywords&gt; *[none]/&lt;keywords&gt;</code></p>
+<p><strong>Find a person / group / meeting</strong> : <code>find &lt;person|group|meeting&gt; [all/KEYWORDS] [some/KEYWORDS] [none/KEYWORDS]</code></p>
 </li>
 <li>
-<p><strong>Selecting a group / meeting / person</strong> : <code>select [group|meeting|person]</code><br>
+<p><strong>Selecting a group / meeting / person</strong> : <code>select &lt;g|m|p&gt;/INDEX</code><br>
 e.g. <code>select g/1</code></p>
 </li>
 <li>
-<p><strong>List all groups / meetings / person</strong> : <code>list [group|meeting|person]</code><br>
+<p><strong>List all groups / meetings / person</strong> : <code>list &lt;group|meeting|person&gt;</code><br>
 e.g. <code>list meeting</code></p>
 </li>
 <li>
-<p><strong>Import data</strong> : <code>import</code></p>
+<p><strong>Import data</strong> : <code>import [--force] f/FILEPATH</code></p>
 </li>
 <li>
-<p><strong>Export data</strong> : <code>export</code></p>
+<p><strong>Export data</strong> : <code>export f/FILEPATH</code></p>
+</li>
+<li>
+<p><strong>Change storage location</strong> : <code>filepath f/FILEPATH</code></p>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 04:01:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-04 18:04:08 UTC</div></div></div></body></html>
