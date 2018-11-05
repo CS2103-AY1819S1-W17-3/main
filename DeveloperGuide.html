@@ -753,7 +753,7 @@ The person can also be removed from the group by <code>leave</code> command.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Both <code>UniqueGroupList</code> and <code>UniquePersonList</code> implements <code>Iterable</code> interface.
+Both <code>UniqueGroupList</code>, <code>UniquePersonList</code> and <code>UniqueMeetingList</code> implements <code>Iterable</code> interface.
 </td>
 </tr>
 </table>
@@ -1564,16 +1564,27 @@ If the <code>currentStatePointer</code> is at index <code>meetingBookStateList.s
 </div>
 <div class="sect2">
 <h3 id="select-feature"><a class="link" href="#select-feature">3.12. Select feature</a></h3>
+<div class="paragraph">
+<p>The select command selects the <code>GroupCard</code>, <code>MeetingCard</code> or <code>PersonCard</code> in the <code>ObservableList&lt;Group&gt;</code>, <code>ObservableList&lt;Meeting&gt;</code>,
+or <code>ObservableList&lt;Person&gt;</code> respectively in <code>Model</code> that is bounded to the UI. This section will explain current implementation
+of select command, execution sequence, and design considerations of multiple implementations.</p>
+</div>
 <div class="sect3">
 <h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.12.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The select mechanism is facilitated by <code>ModelManager</code>.
-It extends <code>Model</code> with two lists, <code>UniquePersonList</code> and <code>UniqueGroupList</code> and implements the following operations:</p>
+It extends <code>Model</code> with three lists, <code>UniquePersonList</code>, <code>UniqueMeetingList</code> and <code>UniqueGroupList</code> and implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>Model#updateFilteredPersonList</code>&#8201;&#8212;&#8201;Updates person list with a specific <code>Predicate</code>.</p>
+</li>
+<li>
+<p><code>Model#updateFilteredGroupList</code>&#8201;&#8212;&#8201;Updates group list with specific <code>Predicate</code>.</p>
+</li>
+<li>
+<p><code>Model#updateFilteredMeetingList</code>&#8201;&#8212;&#8201;Updates meeting list with specific <code>Predicate</code>.</p>
 </li>
 </ul>
 </div>
@@ -1582,20 +1593,24 @@ It extends <code>Model</code> with two lists, <code>UniquePersonList</code> and 
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application for the first time.
-The <code>ModelManager</code> will be initialized with the initial MeetingBook state, and both <code>UniquePersonList</code> and <code>UniqueGroupList</code> contains all person and group without filter.</p>
+The <code>ModelManager</code> will be initialized with the initial MeetingBook state, and <code>UniquePersonList</code>, <code>UniqueMeetingList</code> and <code>UniqueGroupList</code> contains all person, meetings and groups respectively without filter.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>select g/1</code> command to select the 1st group in the MeetingBook.
+<p>Step 2. The user executes <code>select</code> command to select the item type with the specified index in the MeetingBook.
 The <code>SelectCommandParser</code> parses the command to determine the select type, and the command calls executes the following steps:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>Step 2.1. If the select type is <code>SELECT_TYPE_GROUP</code>, a <code>JumpToGroupListRequestEvent</code> is sent to update the UI to select the group card,
-and <code>Model#updateFilteredPersonList</code> is called to filter <code>UniquePersonList</code> to contain only person that are associated with the group.</p>
+<code>Model#updateFilteredPersonList</code> is called to filter <code>UniquePersonList</code> to contain only person that are associated with the group,
+and <code>Model#updateFilteredMeetingList</code> is called to filter <code>UniqueMeetingList</code> to show only meeting that is associated with the group.</p>
 </li>
 <li>
-<p>Step 2.2. If the select type is <code>SELECT_TYPE_PERSON</code>, a <code>JumpToListRequestEvent</code> is sent to the UI to select the person card.</p>
+<p>Step 2.2. If the select type is <code>SELECT_TYPE_MEETING</code>, a <code>JumpToMeetingListRequestEvent</code> is sent to the UI to select the meeting card.</p>
+</li>
+<li>
+<p>Step 2.3. If the select type is <code>SELECT_TYPE_PERSON</code>, a <code>JumpToListRequestEvent</code> is sent to the UI to select the person card.</p>
 </li>
 </ul>
 </div>
@@ -1606,45 +1621,66 @@ and <code>Model#updateFilteredPersonList</code> is called to filter <code>Unique
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a group is selected, calling <code>select</code> command with <code>SELECT_TYPE_PERSON</code> will only select the person in the filtered <code>UniquePersonList</code> that contains only person in the selected group.
+If a group is selected, subsequent <code>select</code> calls to person and meeting list will only select the person or meeting in the filtered
+<code>UniquePersonList</code> or <code>UniqueMeetingList</code> respectively.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a <code>select</code> command:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/SelectGroupSequenceDiagram.png" alt="SelectGroupSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 21. Select group sequence diagram when user executes select group 1</div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="650">
+<img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="800">
 </div>
+<div class="title">Figure 22. Select command activity diagram</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.12.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-select-executes"><a class="link" href="#aspect-how-select-executes">Aspect: How select executes</a></h5>
+<h5 id="aspect-data-structure-to-support-the-select-command"><a class="link" href="#aspect-data-structure-to-support-the-select-command">Aspect: Data structure to support the select command</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use prefix to differentiate between selecting group or person.</p>
+<p><strong>Alternative 1 (current choice):</strong> Use prefix to differentiate between selecting group, meeting or person, and use a
+single select class to perform all select operations.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement.</p>
+<p>Pros: Easy to implement as there are fewer lines of code required.</p>
 </li>
 <li>
-<p>Cons: Select command becomes too generalized.</p>
+<p>Cons: Harder to extend if need to implement select command for other items, select class will become bloated if too
+many items require select command.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Individual command for selecting group and person.</p>
+<p><strong>Alternative 2:</strong> Individual command for selecting group, meeting and person.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Structurally correct as each command is specialized to executing a specific task.</p>
+<p>Pros: Easy to extend functionality to select other items as all select commands are independent.</p>
+</li>
+<li>
+<p>Cons: Requires more code to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> Abstract select class containing required variables and methods without implementation, and select
+commands inherit from the abstract class and implement the execution functionality.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Good data structure.</p>
 </li>
 <li>
 <p>Cons: Requires more code to implement.</p>
@@ -1685,7 +1721,7 @@ If there is no filepath provided, <code>export</code> command will return an inv
 <div class="content">
 <img src="images/exportCommandSeqDiagram.png" alt="exportCommandSeqDiagram" width="1000">
 </div>
-<div class="title">Figure 21. Sequence diagram of ExportCommand</div>
+<div class="title">Figure 23. Sequence diagram of ExportCommand</div>
 </div>
 <div class="paragraph">
 <p>The program will raise a <code>MeetingBookExportEvent</code> to <code>EventCenter</code>. <code>StorageManager</code> which subscribed to the <code>EventCenter</code> will trigger <code>StorageManager#handleMeetingBookExportEvent</code> when received <code>MeetingBookExportEvent</code>.
@@ -1703,7 +1739,7 @@ As MeetingBook stores <code>Person</code>, <code>Group</code>, <code>Meeting</co
 <div class="content">
 <img src="images/xmlAdaptedClassDiagram.png" alt="xmlAdaptedClassDiagram">
 </div>
-<div class="title">Figure 22. Class diagram of XmlAdapted classes and their associations</div>
+<div class="title">Figure 24. Class diagram of XmlAdapted classes and their associations</div>
 </div>
 </div>
 </div>
@@ -1781,7 +1817,7 @@ The imported <code>MeetingBook</code> will then merge with the current <code>Mee
 <div class="content">
 <img src="images/xmlAdaptedClassDiagram.png" alt="xmlAdaptedClassDiagram">
 </div>
-<div class="title">Figure 23. Class diagram of XmlAdapted classes and their associations</div>
+<div class="title">Figure 25. Class diagram of XmlAdapted classes and their associations</div>
 </div>
 </div>
 </div>
@@ -1937,7 +1973,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 24. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 26. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -3713,4 +3749,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-04 18:04:08 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-05 07:14:47 UTC</div></div></div></body></html>
