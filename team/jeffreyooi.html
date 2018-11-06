@@ -1,6 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Ooi Heng Seng - Project Portfolio</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Ooi Heng Seng - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">MeetingBook</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-W17-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Ooi Heng Seng - Project Portfolio</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">MeetingBook</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-W17-3/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Ooi Heng Seng - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Welcome to my project portfolio! I am Ooi Heng Seng, a year 3 Computer Science student in National University of Singapore.</p>
@@ -36,7 +37,7 @@ in Java, and has about 10kLoC.</p>
 <p>How it looks like:</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ui.png" alt="Ui" width="800">
+<img src="../images/Ui.png" alt="Ui" width="600">
 </div>
 </div>
 </li>
@@ -58,13 +59,20 @@ interface elements. It requires user to enter additional parameter to commands m
 </div>
 </li>
 <li>
-<p>Minor enhancement:</p>
+<p>Major enhancement: updated the select command</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Updated select command to select between groups, meetings or persons. Select groups will filter meeting and person
 lists to show only relevant information of the group.</p>
 </li>
+</ul>
+</div>
+</li>
+<li>
+<p>Minor enhancement:</p>
+<div class="ulist">
+<ul>
 <li>
 <p>Updated list command to show all groups, meetings or persons.</p>
 </li>
@@ -168,7 +176,7 @@ end-users.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UiExplanation.png" alt="UiExplanation" width="800">
+<img src="../images/UiExplanation.png" alt="UiExplanation" width="800">
 </div>
 </div>
 <div class="olist arabic">
@@ -294,7 +302,7 @@ and the technical depth of my contributions to the project.</p>
 <h3 id="ui-component"><a class="link" href="#ui-component">UI component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
+<img src="../images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
 </div>
 <div class="title">Figure 1. Structure of the UI Component</div>
 </div>
@@ -326,16 +334,27 @@ and the technical depth of my contributions to the project.</p>
 </div>
 <div class="sect2">
 <h3 id="select-feature"><a class="link" href="#select-feature">Select feature</a></h3>
+<div class="paragraph">
+<p>The select command selects the <code>GroupCard</code>, <code>MeetingCard</code> or <code>PersonCard</code> in the <code>ObservableList&lt;Group&gt;</code>, <code>ObservableList&lt;Meeting&gt;</code>,
+or <code>ObservableList&lt;Person&gt;</code> respectively in <code>Model</code> that is bounded to the UI. This section will explain current implementation
+of select command, execution sequence, and design considerations of multiple implementations.</p>
+</div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
 <p>The select mechanism is facilitated by <code>ModelManager</code>.
-It extends <code>Model</code> with two lists, <code>UniquePersonList</code> and <code>UniqueGroupList</code> and implements the following operations:</p>
+It extends <code>Model</code> with three lists, <code>UniquePersonList</code>, <code>UniqueMeetingList</code> and <code>UniqueGroupList</code> and implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>Model#updateFilteredPersonList</code>&#8201;&#8212;&#8201;Updates person list with a specific <code>Predicate</code>.</p>
+</li>
+<li>
+<p><code>Model#updateFilteredGroupList</code>&#8201;&#8212;&#8201;Updates group list with specific <code>Predicate</code>.</p>
+</li>
+<li>
+<p><code>Model#updateFilteredMeetingList</code>&#8201;&#8212;&#8201;Updates meeting list with specific <code>Predicate</code>.</p>
 </li>
 </ul>
 </div>
@@ -344,20 +363,24 @@ It extends <code>Model</code> with two lists, <code>UniquePersonList</code> and 
 </div>
 <div class="paragraph">
 <p>Step 1. The user launches the application for the first time.
-The <code>ModelManager</code> will be initialized with the initial address book state, and both <code>UniquePersonList</code> and <code>UniqueGroupList</code> contains all person and group without filter.</p>
+The <code>ModelManager</code> will be initialized with the initial MeetingBook state, and <code>UniquePersonList</code>, <code>UniqueMeetingList</code> and <code>UniqueGroupList</code> contains all person, meetings and groups respectively without filter.</p>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>select g/1</code> command to select the 1st group in the address book.
+<p>Step 2. The user executes <code>select</code> command to select the item type with the specified index in the MeetingBook.
 The <code>SelectCommandParser</code> parses the command to determine the select type, and the command calls executes the following steps:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>Step 2.1. If the select type is <code>SELECT_TYPE_GROUP</code>, a <code>JumpToGroupListRequestEvent</code> is sent to update the UI to select the group card,
-and <code>Model#updateFilteredPersonList</code> is called to filter <code>UniquePersonList</code> to contain only person that are associated with the group.</p>
+<code>Model#updateFilteredPersonList</code> is called to filter <code>UniquePersonList</code> to contain only person that are associated with the group,
+and <code>Model#updateFilteredMeetingList</code> is called to filter <code>UniqueMeetingList</code> to show only meeting that is associated with the group.</p>
 </li>
 <li>
-<p>Step 2.2. If the select type is <code>SELECT_TYPE_PERSON</code>, a <code>JumpToListRequestEvent</code> is sent to the UI to select the person card.</p>
+<p>Step 2.2. If the select type is <code>SELECT_TYPE_MEETING</code>, a <code>JumpToMeetingListRequestEvent</code> is sent to the UI to select the meeting card.</p>
+</li>
+<li>
+<p>Step 2.3. If the select type is <code>SELECT_TYPE_PERSON</code>, a <code>JumpToListRequestEvent</code> is sent to the UI to select the person card.</p>
 </li>
 </ul>
 </div>
@@ -368,20 +391,77 @@ and <code>Model#updateFilteredPersonList</code> is called to filter <code>Unique
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a group is selected, calling <code>select</code> command with <code>SELECT_TYPE_PERSON</code> will only select the person in the filtered <code>UniquePersonList</code> that contains only person in the selected group.
+If a group is selected, subsequent <code>select</code> calls to person and meeting list will only select the person or meeting in the filtered
+<code>UniquePersonList</code> or <code>UniqueMeetingList</code> respectively.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a <code>select</code> command:</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SelectGroupSequenceDiagram.png" alt="SelectGroupSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 2. Select group sequence diagram when user executes select group 1</div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="650">
+<img src="../images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="800">
+</div>
+<div class="title">Figure 3. Select command activity diagram</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-select-command"><a class="link" href="#aspect-data-structure-to-support-the-select-command">Aspect: Data structure to support the select command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use prefix to differentiate between selecting group, meeting or person, and use a
+single select class to perform all select operations.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement as there are fewer lines of code required.</p>
+</li>
+<li>
+<p>Cons: Harder to extend if need to implement select command for other items, select class will become bloated if too
+many items require select command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Individual command for selecting group, meeting and person.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to extend functionality to select other items as all select commands are independent.</p>
+</li>
+<li>
+<p>Cons: Requires more code to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> Abstract select class containing required variables and methods without implementation, and select
+commands inherit from the abstract class and implement the execution functionality.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Good data structure.</p>
+</li>
+<li>
+<p>Cons: Requires more code to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 12:16:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 14:36:46 UTC</div></div></div></body></html>

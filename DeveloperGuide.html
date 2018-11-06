@@ -41,11 +41,12 @@
 <li><a href="#finding-a-group-person-meeting-code-find-code">3.10. Finding a group / person / meeting: <code>find</code></a></li>
 <li><a href="#undo-redo-feature">3.11. Undo/Redo feature</a></li>
 <li><a href="#select-feature">3.12. Select feature</a></li>
-<li><a href="#export-feature">3.13. Export feature</a></li>
-<li><a href="#import-feature">3.14. Import feature</a></li>
-<li><a href="#proposed-data-encryption">3.15. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.16. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.17. Configuration</a></li>
+<li><a href="#list-feature">3.13. List feature</a></li>
+<li><a href="#export-feature">3.14. Export feature</a></li>
+<li><a href="#import-feature">3.15. Import feature</a></li>
+<li><a href="#proposed-data-encryption">3.16. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.17. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.18. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1597,20 +1598,20 @@ The <code>ModelManager</code> will be initialized with the initial MeetingBook s
 </div>
 <div class="paragraph">
 <p>Step 2. The user executes <code>select</code> command to select the item type with the specified index in the MeetingBook.
-The <code>SelectCommandParser</code> parses the command to determine the select type, and the command calls executes the following steps:</p>
+The <code>SelectCommandParser</code> parses the command to determine the select type, and the command executes the following steps:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Step 2.1. If the select type is <code>SELECT_TYPE_GROUP</code>, a <code>JumpToGroupListRequestEvent</code> is sent to update the UI to select the group card,
+<p>Step 2.1. If the prefix is <code>g/</code>, a <code>JumpToGroupListRequestEvent</code> is sent to update the UI to select the group card,
 <code>Model#updateFilteredPersonList</code> is called to filter <code>UniquePersonList</code> to contain only person that are associated with the group,
 and <code>Model#updateFilteredMeetingList</code> is called to filter <code>UniqueMeetingList</code> to show only meeting that is associated with the group.</p>
 </li>
 <li>
-<p>Step 2.2. If the select type is <code>SELECT_TYPE_MEETING</code>, a <code>JumpToMeetingListRequestEvent</code> is sent to the UI to select the meeting card.</p>
+<p>Step 2.2. If the prefix is <code>m/</code>, a <code>JumpToMeetingListRequestEvent</code> is sent to the UI to select the meeting card.</p>
 </li>
 <li>
-<p>Step 2.3. If the select type is <code>SELECT_TYPE_PERSON</code>, a <code>JumpToListRequestEvent</code> is sent to the UI to select the person card.</p>
+<p>Step 2.3. If the prefix is <code>p/</code>, a <code>JumpToListRequestEvent</code> is sent to the UI to select the person card.</p>
 </li>
 </ul>
 </div>
@@ -1647,8 +1648,7 @@ If a group is selected, subsequent <code>select</code> calls to person and meeti
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use prefix to differentiate between selecting group, meeting or person, and use a
-single select class to perform all select operations.</p>
+<p><strong>Alternative 1 (current choice):</strong> Use a single select class to perform all select operations.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1662,25 +1662,12 @@ many items require select command.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Individual command for selecting group, meeting and person.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to extend functionality to select other items as all select commands are independent.</p>
-</li>
-<li>
-<p>Cons: Requires more code to implement.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 3:</strong> Abstract select class containing required variables and methods without implementation, and select
+<p><strong>Alternative 2:</strong> Abstract select class containing required variables and methods without implementation, and select
 commands inherit from the abstract class and implement the execution functionality.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Good data structure.</p>
+<p>Pros: Good data structure, easy to extend functionality to select other items.</p>
 </li>
 <li>
 <p>Cons: Requires more code to implement.</p>
@@ -1694,9 +1681,109 @@ commands inherit from the abstract class and implement the execution functionali
 </div>
 </div>
 <div class="sect2">
-<h3 id="export-feature"><a class="link" href="#export-feature">3.13. Export feature</a></h3>
+<h3 id="list-feature"><a class="link" href="#list-feature">3.13. List feature</a></h3>
+<div class="paragraph">
+<p>The <code>list</code> command removes any filters applied to <code>UniqueGroupList</code>, <code>UniquePersonList</code> and <code>UniqueMeetingList</code> by other
+commands. This section will explain current implementation of list command and design considerations during development
+phase.</p>
+</div>
 <div class="sect3">
-<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.13.1. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.13.1. Current implementation</a></h4>
+<div class="paragraph">
+<p>The list mechanism is facilitated by <code>ModelManager</code>. It uses the same operations as mentioned in <code>select</code> feature,
+namely <code>Model#updateFilteredPersonList</code>, <code>Model#updateFilteredGroupList</code> and <code>Model#updateFilteredMeetingList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and operations executed by list mechanism at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application. <code>ModelManager</code> will be initialized with initial MeetingBook state, and
+<code>UniquePersonList</code>, <code>UniqueMeetingList</code> and <code>UniqueGroupList</code> contains all person, meetings and groups respectively
+without filter.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>list</code> command with additional parameter to specify the list to show all items. Available
+parameters are <code>person</code>, <code>meeting</code> and <code>group</code>, or their shorthand equivalent <code>p</code>, <code>m</code> and <code>g</code>. <code>ListCommandParser</code>
+parses the command to determine the list type, and the command executes the following steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Step 2.1. If the parameter is <code>group</code> / <code>g</code>, <code>Model#updateFilteredGroupList</code> is called with
+<code>PREDICATE_SHOW_ALL_GROUPS</code> to remove any filters applied to <code>UniqueGroupList</code>.</p>
+</li>
+<li>
+<p>Step 2.1. If the parameter is <code>meeting</code> / <code>m</code>, <code>Model#updateFilteredMeetingList</code> is called with
+<code>PREDICATE_SHOW_ALL_MEETINGS</code> to remove any filters applied to <code>UniqueMeetingList</code>.</p>
+</li>
+<li>
+<p>Step 2.1. If the parameter is <code>person</code> / <code>p</code>, <code>Model#updateFilteredPersonList</code> is called with
+<code>PREDICATE_SHOW_ALL_PERSONS</code> to remove any filters applied to <code>UniquePersonList</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+List will remain unchanged if it does not have any filters applied before executing <code>list</code> command.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ListCommandSequenceDiagram.png" alt="ListCommandSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 23. List group sequence diagram</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.13.2. Design considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-list-command"><a class="link" href="#aspect-data-structure-to-support-the-list-command">Aspect: Data structure to support the list command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong> : Use a single list class to perform all list operations.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement as fewer lines of code are required.</p>
+</li>
+<li>
+<p>Cons: Harder to extend list functionality if need to implement list command for other items, list class will become
+bloated if too many items require list command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong> : Abstract list class containing required variables and methods without implementation, and specific
+list commands inherit from the abstract class and implement the execution functionality.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Good data structure, easy to extend functionality to other items that require list command.</p>
+</li>
+<li>
+<p>Cons: Requires more lines of code to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="export-feature"><a class="link" href="#export-feature">3.14. Export feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.14.1. Current Implementation</a></h4>
 <div class="sect4">
 <h5 id="overview"><a class="link" href="#overview">Overview</a></h5>
 <div class="paragraph">
@@ -1721,7 +1808,7 @@ If there is no filepath provided, <code>export</code> command will return an inv
 <div class="content">
 <img src="images/exportCommandSeqDiagram.png" alt="exportCommandSeqDiagram" width="1000">
 </div>
-<div class="title">Figure 23. Sequence diagram of ExportCommand</div>
+<div class="title">Figure 24. Sequence diagram of ExportCommand</div>
 </div>
 <div class="paragraph">
 <p>The program will raise a <code>MeetingBookExportEvent</code> to <code>EventCenter</code>. <code>StorageManager</code> which subscribed to the <code>EventCenter</code> will trigger <code>StorageManager#handleMeetingBookExportEvent</code> when received <code>MeetingBookExportEvent</code>.
@@ -1739,12 +1826,12 @@ As MeetingBook stores <code>Person</code>, <code>Group</code>, <code>Meeting</co
 <div class="content">
 <img src="images/xmlAdaptedClassDiagram.png" alt="xmlAdaptedClassDiagram">
 </div>
-<div class="title">Figure 24. Class diagram of XmlAdapted classes and their associations</div>
+<div class="title">Figure 25. Class diagram of XmlAdapted classes and their associations</div>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.13.2. Design Consideration</a></h4>
+<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.14.2. Design Consideration</a></h4>
 <div class="sect4">
 <h5 id="aspect-make-export-undoable"><a class="link" href="#aspect-make-export-undoable">Aspect: Make export undoable</a></h5>
 <div class="ulist">
@@ -1794,9 +1881,9 @@ As MeetingBook stores <code>Person</code>, <code>Group</code>, <code>Meeting</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="import-feature"><a class="link" href="#import-feature">3.14. Import feature</a></h3>
+<h3 id="import-feature"><a class="link" href="#import-feature">3.15. Import feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.14.1. Current Implementation</a></h4>
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">3.15.1. Current Implementation</a></h4>
 <div class="sect4">
 <h5 id="overview-2"><a class="link" href="#overview-2">Overview</a></h5>
 <div class="paragraph">
@@ -1817,12 +1904,12 @@ The imported <code>MeetingBook</code> will then merge with the current <code>Mee
 <div class="content">
 <img src="images/xmlAdaptedClassDiagram.png" alt="xmlAdaptedClassDiagram">
 </div>
-<div class="title">Figure 25. Class diagram of XmlAdapted classes and their associations</div>
+<div class="title">Figure 26. Class diagram of XmlAdapted classes and their associations</div>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">3.14.2. Design Consideration</a></h4>
+<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">3.15.2. Design Consideration</a></h4>
 <div class="sect4">
 <h5 id="aspect-handling-of-conflict-files"><a class="link" href="#aspect-handling-of-conflict-files">Aspect: Handling of conflict files</a></h5>
 <div class="ulist">
@@ -1863,20 +1950,20 @@ This will also cause <code>find</code> command to not work as expected. <code>fi
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.15. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.16. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.16. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.17. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.17, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.18, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1907,7 +1994,7 @@ This will also cause <code>find</code> command to not work as expected. <code>fi
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.17. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.18. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1973,7 +2060,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 26. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 27. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -3749,4 +3836,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 12:16:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 14:36:46 UTC</div></div></div></body></html>
