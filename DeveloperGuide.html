@@ -1818,13 +1818,13 @@ This method will then attempt to export the data as a XML file using <code>Model
 <div class="sect4">
 <h5 id="export-to-a-xml-file"><a class="link" href="#export-to-a-xml-file">Export to a XML file</a></h5>
 <div class="paragraph">
-<p>Translation from MeetingBook to XML formatted file is handled by <code>XmlFileStorage#saveDataToFile</code>.
+<p>The translation from MeetingBook to XML formatted file is handled by <code>XmlFileStorage#saveDataToFile</code>.
 As MeetingBook stores <code>Person</code>, <code>Group</code>, <code>Meeting</code> as <code>Object</code>s, these information have to be properly formatted into Java Architecture for XML Binding (JAXB)-friendly version before it can be successfully saved.
 <code>Object</code>s are modelled using their respective <code>XMLAdapted</code> classes which contain directions for it to parse into JAXB-friendly version. <code>Marshal</code> Object will then marshal all the JAXB-friendly version of <code>Person</code>, <code>Meeting</code>, <code>Group</code> and assemble it into a XML file.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/xmlAdaptedClassDiagram.png" alt="xmlAdaptedClassDiagram">
+<img src="images/xmlAdaptedMarshalDiagram.png" alt="xmlAdaptedMarshalDiagram">
 </div>
 <div class="title">Figure 25. Class diagram of XmlAdapted classes and their associations</div>
 </div>
@@ -1844,7 +1844,7 @@ As MeetingBook stores <code>Person</code>, <code>Group</code>, <code>Meeting</co
 <p>Pros: Easy to implement and verify if the command is executed successfully.</p>
 </li>
 <li>
-<p>Cons: User have to manually navigate through the directory to delete the XML file to achieve the same result as undoing the command.</p>
+<p>Cons: Hard for the user as the user have to manually navigate through the directory to delete the XML file to achieve the same result as undoing the command.</p>
 </li>
 </ul>
 </div>
@@ -1883,7 +1883,7 @@ As MeetingBook stores <code>Person</code>, <code>Group</code>, <code>Meeting</co
 <div class="sect2">
 <h3 id="import-feature"><a class="link" href="#import-feature">3.15. Import feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">3.15.1. Current Implementation</a></h4>
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">3.15.1. Current implementation</a></h4>
 <div class="sect4">
 <h5 id="overview-2"><a class="link" href="#overview-2">Overview</a></h5>
 <div class="paragraph">
@@ -1895,27 +1895,137 @@ The end result of this command is entries of <code>Person</code>, <code>Group</c
 <div class="sect4">
 <h5 id="import-from-xml-file"><a class="link" href="#import-from-xml-file">Import from XML file</a></h5>
 <div class="paragraph">
-<p>Translation from XML formatted file to <code>MeetingBook</code> is handled by <code>XmlFileStorage#loadDataToFile</code>.
+<p>The translation from XML formatted file to <code>MeetingBook</code> is handled by <code>XmlFileStorage#loadDataToFile</code>.
 As MeetingBook consists <code>Person</code>, <code>Group</code>, <code>Meeting</code> as <code>Object</code>s, these information have to be properly formatted back into Java Architecture for XML Binding (JAXB)-friendly version before it can then modelled into its respective classes (i.e. <code>xmlAdaptedPerson</code> modelled back into <code>Person</code> object).
 Each <code>Object</code>s has their respective <code>XMLAdapted</code> class which contain directions to model back from JAXB-friendly version . <code>Unmarshal</code> Object is solely responsible for disassemble the XML file into  JAXB-friendly versions of <code>Person</code>, <code>Meeting</code>, <code>Group</code>, which will then be feed as parameters to create another instance of <code>MeetingBook</code>.
 The imported <code>MeetingBook</code> will then merge with the current <code>MeetingBook</code> using <code>MeetingBook#merge</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/xmlAdaptedClassDiagram.png" alt="xmlAdaptedClassDiagram">
+<img src="images/xmlAdaptedUnmarshalDiagram.png" alt="xmlAdaptedUnmarshalDiagram">
 </div>
 <div class="title">Figure 26. Class diagram of XmlAdapted classes and their associations</div>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">3.15.2. Design Consideration</a></h4>
+<h4 id="handling-of-conflicting-entries"><a class="link" href="#handling-of-conflicting-entries">3.15.2. Handling of conflicting entries</a></h4>
+<div class="paragraph">
+<p>The default behavior of handling conflicting entries is to ignore any conflicting entries. However, user can choose to change this behavior to overwrite any conflicting entries using <code>--force</code> option when entering the command.
+An example of the command set to the overwriting behaviour is <code>import --force f/backup.xml</code>.</p>
+</div>
+<div class="paragraph">
+<p>The code snippet below showcase how MeetingBook toggle between the behaviour.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> merge(ReadOnlyMeetingBook imported, <span class="type">boolean</span> overwrite) {
+    <span class="comment">// If Both book contains same entries</span>
+    <span class="keyword">if</span> (equals(imported)) {
+        <span class="keyword">return</span>;
+    }
+    <span class="keyword">if</span> (imported <span class="keyword">instanceof</span> MeetingBook) {
+        MeetingBook importedBook = (MeetingBook) imported;
+        <span class="predefined-type">Iterator</span>&lt;Person&gt; personItr = importedBook.persons.iterator();
+        <span class="keyword">while</span> (personItr.hasNext()) {
+            Person importPerson = personItr.next();
+            <span class="keyword">if</span> (!hasPerson(importPerson)) {
+                addPerson(importPerson);
+            } <span class="keyword">else</span> {
+                <span class="keyword">if</span> (overwrite) {
+                    Person samePerson = getPersonByName(importPerson.getName());
+                    updatePerson(samePerson, importPerson);
+                }
+            }
+        }
+
+      <span class="comment">// ... Do likewise for group...</span>
+
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="handling-of-irrelevant-imported-data"><a class="link" href="#handling-of-irrelevant-imported-data">3.15.3. Handling of irrelevant imported data</a></h4>
+<div class="paragraph">
+<p>The behaviour when importing data that is incorrectly formatted differs on where the incorrect data detected. If the data imported is wrong in entirety, <code>DataConversionException</code> is thrown and the error message, "Data file provided is not in the correct format." is shown to the user.</p>
+</div>
+<div class="paragraph">
+<p>However, when a XML file which is valid yet incorrectly formatted (e.g. <code>persons</code> stored in <code>groups</code> is not stored also in <code>persons</code>), the <code>persons</code> inside the <code>members</code> tag of the XML file is ignored. This removes and prevents the addition of the association between <code>Person</code> and <code>Group</code> to the current MeetingBook.</p>
+</div>
+<div class="paragraph">
+<p>Also, when <code>--force</code> is not used in the command and integrating the imported groups into the current MeetingBook, the <code>persons</code> inside the <code>members</code> tag may not be available in the current MeetingBook. The behaviour to handle this situation is the same as how it handles valid yet incorrectly formatted XML.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of correctly Formatted XML file.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
+<span class="tag">&lt;meetingbook&gt;</span>
+    <span class="tag">&lt;persons&gt;</span>
+        <span class="tag">&lt;name&gt;</span>Alex Yeoh<span class="tag">&lt;/name&gt;</span>
+        // Meeting info..
+    <span class="tag">&lt;/persons&gt;</span>
+    <span class="tag">&lt;groups&gt;</span>
+        <span class="tag">&lt;title&gt;</span>CS2101<span class="tag">&lt;/title&gt;</span>
+        <span class="tag">&lt;meeting&gt;</span>
+            // Meeting info...
+        <span class="tag">&lt;/meeting&gt;</span>
+        <span class="tag">&lt;members&gt;</span>
+            <span class="tag">&lt;name&gt;</span>Alex Yeoh<span class="tag">&lt;/name&gt;</span>
+            // Person info...
+        <span class="tag">&lt;/members&gt;</span>
+    <span class="tag">&lt;/groups&gt;</span>
+<span class="tag">&lt;/meetingbook&gt;</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>Person</code> is available as it is also contained as <code>persons</code> in this XML file  as well as in <code>members</code>.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example of Incorrectly Formatted XML file where Unknown Person contained inside Group</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
+<span class="tag">&lt;meetingbook&gt;</span>
+    <span class="tag">&lt;persons&gt;</span>
+        <span class="tag">&lt;name&gt;</span>Alex Yeoh<span class="tag">&lt;/name&gt;</span>
+        // Person info...
+    <span class="tag">&lt;/persons&gt;</span>
+    <span class="tag">&lt;groups&gt;</span>
+        <span class="tag">&lt;title&gt;</span>CS2101<span class="tag">&lt;/title&gt;</span>
+        <span class="tag">&lt;meeting&gt;</span>
+          // Meeting info...
+        <span class="tag">&lt;/meeting&gt;</span>
+        <span class="tag">&lt;members&gt;</span>
+            <span class="tag">&lt;name&gt;</span>Incorrect User<span class="tag">&lt;/name&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+            // Person info
+        <span class="tag">&lt;/members&gt;</span>
+    <span class="tag">&lt;/groups&gt;</span>
+<span class="tag">&lt;/meetingbook&gt;</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>Person</code> is not available as is not contained as <code>persons</code> in this XML file but only in <code>members</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration-3"><a class="link" href="#design-consideration-3">3.15.4. Design Consideration</a></h4>
 <div class="sect4">
-<h5 id="aspect-handling-of-conflict-files"><a class="link" href="#aspect-handling-of-conflict-files">Aspect: Handling of conflict files</a></h5>
+<h5 id="aspect-handling-of-conflict-entries"><a class="link" href="#aspect-handling-of-conflict-entries">Aspect: Handling of conflict entries</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Either ignore or overwrite conflicting files.</p>
+<p><strong>Alternative 1 (current choice):</strong> Either ignore or overwrite conflicting entries.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1924,7 +2034,7 @@ The imported <code>MeetingBook</code> will then merge with the current <code>Mee
 <li>
 <p>Cons: Loss of data as information is destroyed or lost when importing.
 When we choose to ignore, we lose data from the XML file as they are not imported in.
-If we were to overwrite conflicting files, we lose information in our current MeetingBook as they are overwritten by the imported data.</p>
+If we were to overwrite conflicting entries, we lose information in our current MeetingBook as they are overwritten by the imported data.</p>
 </li>
 </ul>
 </div>
@@ -3836,4 +3946,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 18:06:38 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 02:57:26 UTC</div></div></div></body></html>
