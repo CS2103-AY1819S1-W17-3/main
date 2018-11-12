@@ -5,11 +5,7 @@
 <div class="paragraph">
 <p>Here you can find details on my contributions to various Software Engineering projects.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-meetingbook"><a class="link" href="#project-meetingbook">1. PROJECT: MeetingBook</a></h2>
-<div class="sectionbody">
+<h2 id="project-meetingbook" class="discrete">PROJECT: MeetingBook</h2>
 <div class="paragraph">
 <p>MeetingBook is a desktop scheduler application developed in a course of 6 weeks under a module which aims to improve our proficiency in Software Engineering. MeetingBook is targeted at university students involved in multiple Co-Curricular Activities and Project-Based modules. MeetingBook is written by a team of 5 students from National University of Singapore&#8217;s School of Computing. We modified a contact book, forked from <a href="https://github.com/nus-cs2103-AY1819S1/addressbook-level4">AddressBook-Level4</a> written by <a href="https://se-edu.github.io/">SE-EDU</a>, to includes features such as grouping of contacts and assign meetings to such groups.</p>
 </div>
@@ -19,7 +15,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">2. Summary of contributions</a></h2>
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">1. Summary of contributions</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -103,7 +99,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">3. Contributions to the User Guide</a></h2>
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">2. Contributions to the User Guide</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -116,7 +112,7 @@
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">3.1. Exporting data : <code>export</code></a></h3>
+<h3 id="exporting-data-code-export-code"><a class="link" href="#exporting-data-code-export-code">2.1. Exporting data : <code>export</code></a></h3>
 <div class="paragraph">
 <p>User is able to export data to store as backup elsewhere or send data to other users of MeetingBook.<br>
 A XML file containing MeetingBook data will be created at the filepath indicated by the user.</p>
@@ -144,7 +140,7 @@ A XML file containing MeetingBook data will be created at the filepath indicated
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">3.2. Importing data : <code>import</code></a></h3>
+<h3 id="importing-data-code-import-code"><a class="link" href="#importing-data-code-import-code">2.2. Importing data : <code>import</code></a></h3>
 <div class="paragraph">
 <p>User is able to import other data.<br></p>
 </div>
@@ -177,7 +173,7 @@ A XML file containing MeetingBook data will be created at the filepath indicated
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-storage-location-code-filepath-code"><a class="link" href="#changing-storage-location-code-filepath-code">3.3. Changing Storage Location: <code>filepath</code></a></h3>
+<h3 id="changing-storage-location-code-filepath-code"><a class="link" href="#changing-storage-location-code-filepath-code">2.3. Changing Storage Location: <code>filepath</code></a></h3>
 <div class="paragraph">
 <p>Change the storage location of MeetingBook.<br></p>
 </div>
@@ -222,7 +218,7 @@ User can also check the current path where MeetingBook store its data using <cod
 </div>
 </div>
 <div class="sect1">
-<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">4. Contributions to the Developer Guide</a></h2>
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">3. Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -235,11 +231,11 @@ User can also check the current path where MeetingBook store its data using <cod
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="export-feature"><a class="link" href="#export-feature">4.1. Export feature</a></h3>
+<h3 id="export-feature"><a class="link" href="#export-feature">3.1. Export feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">4.1.1. Current Implementation</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
 <div class="sect4">
-<h5 id="overview"><a class="link" href="#overview">4.1.1.1. Overview</a></h5>
+<h5 id="overview"><a class="link" href="#overview">3.1.1.1. Overview</a></h5>
 <div class="paragraph">
 <p>The export mechanism is facilitated by <code>ExportCommand</code>. <code>ExportCommandParser</code> is responsible for parsing the input arguments. The end result of this command is a Xtensible Markup Language (XML) file containing data of MeetingBook when is executed successfully.<br></p>
 </div>
@@ -270,7 +266,7 @@ This method will then attempt to export the data as a XML file using <code>Model
 </div>
 </div>
 <div class="sect4">
-<h5 id="export-to-a-xml-file"><a class="link" href="#export-to-a-xml-file">4.1.1.2. Export to a XML file</a></h5>
+<h5 id="export-to-a-xml-file"><a class="link" href="#export-to-a-xml-file">3.1.1.2. Export to a XML file</a></h5>
 <div class="paragraph">
 <p>The translation from MeetingBook to XML formatted file is handled by <code>XmlFileStorage#saveDataToFile</code>.
 As MeetingBook stores <code>Person</code>, <code>Group</code>, <code>Meeting</code> as <code>Object</code>s, these information have to be properly formatted into Java Architecture for XML Binding (JAXB)-friendly version before it can be successfully saved.
@@ -285,9 +281,9 @@ As MeetingBook stores <code>Person</code>, <code>Group</code>, <code>Meeting</co
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration"><a class="link" href="#design-consideration">4.1.2. Design Consideration</a></h4>
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.1.2. Design Consideration</a></h4>
 <div class="sect4">
-<h5 id="aspect-make-export-undoable"><a class="link" href="#aspect-make-export-undoable">4.1.2.1. Aspect: Make export undoable</a></h5>
+<h5 id="aspect-make-export-undoable"><a class="link" href="#aspect-make-export-undoable">3.1.2.1. Aspect: Make export undoable</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -335,11 +331,11 @@ As MeetingBook stores <code>Person</code>, <code>Group</code>, <code>Meeting</co
 </div>
 </div>
 <div class="sect2">
-<h3 id="import-feature"><a class="link" href="#import-feature">4.2. Import feature</a></h3>
+<h3 id="import-feature"><a class="link" href="#import-feature">3.2. Import feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.2.1. Current implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current implementation</a></h4>
 <div class="sect4">
-<h5 id="overview-2"><a class="link" href="#overview-2">4.2.1.1. Overview</a></h5>
+<h5 id="overview-2"><a class="link" href="#overview-2">3.2.1.1. Overview</a></h5>
 <div class="paragraph">
 <p>The import command allow the user to import a XML file containing of MeetingBook data into his MeetingBook.
 This is facilitated by is facilitated by <code>ImportCommand</code>. <code>ImportCommandParser</code> is responsible for parsing the input arguments.
@@ -347,7 +343,7 @@ The end result of this command is entries of <code>Person</code>, <code>Group</c
 </div>
 </div>
 <div class="sect4">
-<h5 id="import-from-xml-file"><a class="link" href="#import-from-xml-file">4.2.1.2. Import from XML file</a></h5>
+<h5 id="import-from-xml-file"><a class="link" href="#import-from-xml-file">3.2.1.2. Import from XML file</a></h5>
 <div class="paragraph">
 <p>The translation from XML formatted file to <code>MeetingBook</code> is handled by <code>XmlFileStorage#loadDataToFile</code>.
 As MeetingBook consists <code>Person</code>, <code>Group</code>, <code>Meeting</code> as <code>Object</code>s, these information have to be properly formatted back into Java Architecture for XML Binding (JAXB)-friendly version before it can then modelled into its respective classes (i.e. <code>xmlAdaptedPerson</code> modelled back into <code>Person</code> object).
@@ -363,7 +359,7 @@ The imported <code>MeetingBook</code> will then merge with the current <code>Mee
 </div>
 </div>
 <div class="sect3">
-<h4 id="handling-of-conflicting-entries"><a class="link" href="#handling-of-conflicting-entries">4.2.2. Handling of conflicting entries</a></h4>
+<h4 id="handling-of-conflicting-entries"><a class="link" href="#handling-of-conflicting-entries">3.2.2. Handling of conflicting entries</a></h4>
 <div class="paragraph">
 <p>The default behavior of handling conflicting entries is to ignore any conflicting entries. However, user can choose to change this behavior to overwrite any conflicting entries using <code>--force</code> option when entering the command.
 An example of the command set to the overwriting behaviour is <code>import --force f/backup.xml</code>.</p>
@@ -374,108 +370,64 @@ An example of the command set to the overwriting behaviour is <code>import --for
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> merge(ReadOnlyMeetingBook imported, <span class="type">boolean</span> overwrite) {
-    <span class="comment">// If Both book contains same entries</span>
-    <span class="keyword">if</span> (equals(imported)) {
-        <span class="keyword">return</span>;
-    }
-    <span class="keyword">if</span> (imported <span class="keyword">instanceof</span> MeetingBook) {
-        MeetingBook importedBook = (MeetingBook) imported;
-        <span class="predefined-type">Iterator</span>&lt;Person&gt; personItr = importedBook.persons.iterator();
-        <span class="keyword">while</span> (personItr.hasNext()) {
-            Person importPerson = personItr.next();
-            <span class="keyword">if</span> (!hasPerson(importPerson)) {
-                addPerson(importPerson);
-            } <span class="keyword">else</span> {
-                <span class="keyword">if</span> (overwrite) {
-                    Person samePerson = getPersonByName(importPerson.getName());
-                    updatePerson(samePerson, importPerson);
-                }
-            }
+        <span class="comment">// If Both book contains same entries</span>
+        <span class="keyword">if</span> (equals(imported)) {
+            <span class="keyword">return</span>;
         }
 
-      <span class="comment">// ... Do likewise for group...</span>
+        <span class="keyword">if</span> (!(imported <span class="keyword">instanceof</span> MeetingBook)) {
+            <span class="keyword">return</span>;
+        }
+        MeetingBook importedBook = (MeetingBook) imported;
+        importedBook.persons.iterator()
+                .forEachRemaining((person) -&gt; mergePerson(person, overwrite));
 
-    }
-}</code></pre>
+        importedBook.groups.iterator()
+                .forEachRemaining((group) -&gt; mergeGroup(group, overwrite));
+    }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="handling-of-irrelevant-imported-data"><a class="link" href="#handling-of-irrelevant-imported-data">4.2.3. Handling of irrelevant imported data</a></h4>
+<h4 id="handling-of-irrelevant-imported-data"><a class="link" href="#handling-of-irrelevant-imported-data">3.2.3. Handling of irrelevant imported data</a></h4>
 <div class="paragraph">
-<p>The behaviour when importing data that is incorrectly formatted differs on where the incorrect data detected. If the data imported is wrong in entirety, <code>DataConversionException</code> is thrown and the error message, "Data file provided is not in the correct format." is shown to the user.</p>
+<p>The default conflicting resolving behavior (ignoring any conflict files) may cause <code>Person</code> to lose their association with <code>Group</code>.</p>
 </div>
 <div class="paragraph">
-<p>However, when a XML file which is valid yet incorrectly formatted (e.g. <code>persons</code> stored in <code>groups</code> is not stored also in <code>persons</code>), the <code>persons</code> inside the <code>members</code> tag of the XML file is ignored. This removes and prevents the addition of the association between <code>Person</code> and <code>Group</code> to the current MeetingBook.</p>
+<p>Take this case for example. Current MeetingBook and the imported MeetingBook both have a Person named "Alex Lim" with the following attributes.</p>
 </div>
-<div class="paragraph">
-<p>Also, when <code>--force</code> is not used in the command and integrating the imported groups into the current MeetingBook, the <code>persons</code> inside the <code>members</code> tag may not be available in the current MeetingBook. The behaviour to handle this situation is the same as how it handles valid yet incorrectly formatted XML.</p>
-</div>
-<div class="listingblock">
-<div class="title">Example of correctly Formatted XML file.</div>
+<div class="imageblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
-<span class="tag">&lt;meetingbook&gt;</span>
-    <span class="tag">&lt;persons&gt;</span>
-        <span class="tag">&lt;name&gt;</span>Alex Yeoh<span class="tag">&lt;/name&gt;</span>
-        // Meeting info..
-    <span class="tag">&lt;/persons&gt;</span>
-    <span class="tag">&lt;groups&gt;</span>
-        <span class="tag">&lt;title&gt;</span>CS2101<span class="tag">&lt;/title&gt;</span>
-        <span class="tag">&lt;meeting&gt;</span>
-            // Meeting info...
-        <span class="tag">&lt;/meeting&gt;</span>
-        <span class="tag">&lt;members&gt;</span>
-            <span class="tag">&lt;name&gt;</span>Alex Yeoh<span class="tag">&lt;/name&gt;</span>
-            // Person info...
-        <span class="tag">&lt;/members&gt;</span>
-    <span class="tag">&lt;/groups&gt;</span>
-<span class="tag">&lt;/meetingbook&gt;</span></code></pre>
+<img src="../images/AlexLimObjectDiagram.png" alt="AlexLimObjectDiagram">
 </div>
+<div class="title">Figure 4. Object Diagram of "Alex Lim" <code>Person</code> Object in current MeetingBook and imported MeetingBook</div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The <code>Person</code> is available as it is also contained as <code>persons</code> in this XML file  as well as in <code>members</code>.</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>When the default conflicting resolving behaviour is used, "Alex Lim" of the imported MeetingBook will not be imported into current MeetingBook.</p>
 </div>
-<div class="listingblock">
-<div class="title">Example of Incorrectly Formatted XML file where Unknown Person contained inside Group</div>
+<div class="paragraph">
+<p>However, "Alex Lim" of the imported MeetingBook belongs to a <code>Group</code>.</p>
+</div>
+<div class="imageblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
-<span class="tag">&lt;meetingbook&gt;</span>
-    <span class="tag">&lt;persons&gt;</span>
-        <span class="tag">&lt;name&gt;</span>Alex Yeoh<span class="tag">&lt;/name&gt;</span>
-        // Person info...
-    <span class="tag">&lt;/persons&gt;</span>
-    <span class="tag">&lt;groups&gt;</span>
-        <span class="tag">&lt;title&gt;</span>CS2101<span class="tag">&lt;/title&gt;</span>
-        <span class="tag">&lt;meeting&gt;</span>
-          // Meeting info...
-        <span class="tag">&lt;/meeting&gt;</span>
-        <span class="tag">&lt;members&gt;</span>
-            <span class="tag">&lt;name&gt;</span>Incorrect User<span class="tag">&lt;/name&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-            // Person info
-        <span class="tag">&lt;/members&gt;</span>
-    <span class="tag">&lt;/groups&gt;</span>
-<span class="tag">&lt;/meetingbook&gt;</span></code></pre>
+<img src="../images/BeforeImportAlexLimGroup.png" alt="BeforeImportAlexLimGroup">
 </div>
+<div class="title">Figure 5. Object Diagram of "Alex Lim" <code>Person</code> of imported MeetingBook belonging to a <code>Group</code> before merging to current MeetingBook</div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The <code>Person</code> is not available as is not contained as <code>persons</code> in this XML file but only in <code>members</code>.</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Therefore, when importing the <code>Group</code> that "Alex Lim" of the imported MeetingBook is in, the <code>Group</code> will be imported without "Alex Lim" of the imported MeetingBook. The <code>Group</code> will not contains "Alex Lim" of the current MeetingBook as these two "Alex Lim" are not of the same <code>Person</code>. Even if "Alex Lim" of the imported MeetingBook is the sole member of the <code>Group</code>, the <code>Group</code> will still be created but with no members instead.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AfterImportAlexLimGroup.png" alt="AfterImportAlexLimGroup">
+</div>
+<div class="title">Figure 6. Object Diagram of "Alex Lim" <code>Person</code> of imported MeetingBook belonging to a <code>Group</code> after merging to current MeetingBook</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">4.2.4. Design Consideration</a></h4>
+<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.2.4. Design Consideration</a></h4>
 <div class="sect4">
-<h5 id="aspect-handling-of-conflict-entries"><a class="link" href="#aspect-handling-of-conflict-entries">4.2.4.1. Aspect: Handling of conflict entries</a></h5>
+<h5 id="aspect-handling-of-conflict-entries"><a class="link" href="#aspect-handling-of-conflict-entries">3.2.4.1. Aspect: Handling of conflict entries</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -514,4 +466,4 @@ This will also cause <code>find</code> command to not work as expected. <code>fi
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:41:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:45:58 UTC</div></div></div></body></html>
