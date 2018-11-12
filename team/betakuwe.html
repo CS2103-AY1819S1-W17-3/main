@@ -332,187 +332,12 @@ whose title does not contain <code>basketball</code>.</p>
 detail how the sort and find commands are implemented.</p>
 </div>
 <div class="sect3">
-<h4 id="code-sort-code-command-usage"><a class="link" href="#code-sort-code-command-usage"><code>sort</code> command usage</a></h4>
-
-</div>
-</div>
-<div class="sect2">
-<h3 id="sorting-the-list-of-displayed-persons-code-sort-code-2"><a class="link" href="#sorting-the-list-of-displayed-persons-code-sort-code-2">Sorting the list of displayed persons: <code>sort</code></a></h3>
-<div class="paragraph">
-<p>The <code>sort</code> command sorts the list in the display of persons.
-The user can specify whether to sort by name, phone number, email address, or home address,
-in lexicographical order or numerical order.<br></p>
-</div>
-<div class="paragraph">
-<p>Format:<br>
-<code>sort &lt;name|phone|email|address&gt;</code><br></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>&lt;name|phone|email|address&gt;</code>: this parameter specifies whether to sort by name, phone, email
-address, or home address in lexicographical order or numerical order.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:<br></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>sort name</code>: Sorts the list of persons by name in lexicographical order.</p>
-</li>
-<li>
-<p><code>sort phone</code>: Sorts the list of persons by phone number in numerical order.</p>
-</li>
-<li>
-<p><code>sort email</code>: Sorts the list of persons by email address in lexicographical order.</p>
-</li>
-<li>
-<p><code>sort address</code>: Sorts the list of persons by home address in lexicographical order.</p>
-</li>
-</ul>
-</div>
-<div class="sect3">
-<h4 id="code-find-code-command-usage"><a class="link" href="#code-find-code-command-usage"><code>find</code> command usage</a></h4>
-
-</div>
-</div>
-<div class="sect2">
-<h3 id="finding-a-group-person-meeting-code-find-code-2"><a class="link" href="#finding-a-group-person-meeting-code-find-code-2">Finding a group / person / meeting: <code>find</code></a></h3>
-<div class="paragraph">
-<p>The <code>find</code> command searches the MeetingBook for specified person, group, or meeting, and displays the results on
-the panel.<br></p>
-</div>
-<div class="paragraph">
-<p>Format:<br>
-Longhand: <code>find &lt;person|group|meeting&gt; [a/KEYWORDS] [s/KEYWORDS] [n/KEYWORDS]</code><br>
-Shorthand: <code>find &lt;p|g|m&gt; [KEYWORDS]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>&lt;person|group|meeting&gt;</code>, <code>&lt;p|g|m&gt;</code>: this parameter specifies whether to search for persons, groups, or meetings.
-This parameter is required to execute this command.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>person</code>, <code>p</code>: specifies to search for persons.</p>
-</li>
-<li>
-<p><code>group</code>, <code>g</code>: specifies to search for groups.</p>
-</li>
-<li>
-<p><code>meeting</code>, <code>m</code>: specifies to search for meetings.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>KEYWORDS</code>: this tag contains any number of keywords separated by a <kbd>space</kbd>.</p>
-</li>
-<li>
-<p><code>[all]</code>, <code>[a]</code>: this parameter specifies that the results must contain every keyword specified in <code>&lt;keywords&gt;</code>.
-This parameter may be omitted.</p>
-</li>
-<li>
-<p><code>[some]</code>, <code>[s]</code>: this parameter specifies that the results must contain at least one keyword specified in <code>&lt;keywords&gt;</code>.
-This parameter may be omitted.</p>
-</li>
-<li>
-<p><code>[none]</code>, <code>[n]</code>: this parameter specifies that the results must not contain any keyword specified in <code>&lt;keywords&gt;</code>.
-This parameter may be omitted.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>When the shorthand format is used, the keywords will be placed in the <code>a/</code> parameter.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:<br></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/findCommandAllExample.png" alt="findCommandAllExample" width="300">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>find p Alex</code>: finds all persons whose name contains <code>Alex</code>. (Refer to diagram above)<br></p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/findCommandSomeExample.png" alt="findCommandSomeExample" width="300">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>find p s/yu li</code>: finds all persons whose name contains one of <code>yu</code> or <code>li</code>. (Refer to diagram above)<br></p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/findCommandNoneExample.png" alt="findCommandNoneExample" width="300">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>find p n/Alex Bernice</code>: finds all persons whose name does not contain <code>Alex</code> or <code>Bernice</code> (Refer to diagram above)<br></p>
-</li>
-<li>
-<p><code>find p Betty Charles</code>: finds all persons whose name contains <code>Betty</code> and <code>Charles</code>.<br></p>
-</li>
-<li>
-<p><code>find p s/David Eric n/James</code>: finds all persons whose name contains one of <code>David</code> or <code>Eric</code>,
-and whose name does not contain <code>James</code>.<br></p>
-</li>
-<li>
-<p><code>find group project</code>: finds all groups whose title contains <code>project</code>.<br></p>
-</li>
-<li>
-<p><code>find g a/team n/school</code>: finds all groups whose title contains <code>team</code> and whose title
-does not contain <code>school</code>.<br></p>
-</li>
-<li>
-<p><code>find meeting s/official important</code>: finds all meetings whose title contains one of
-<code>official</code> or <code>important</code>.</p>
-</li>
-<li>
-<p><code>find m a/urgent n/basketball</code>: finds all meetings whose titles contains <code>urgent</code> and
-whose title does not contain <code>basketball</code>.</p>
-</li>
-</ul>
-</div>
-<div class="sect3">
 <h4 id="implementation-of-code-find-code-command"><a class="link" href="#implementation-of-code-find-code-command">Implementation of <code>find</code> command</a></h4>
 <div class="sect4">
 <h5 id="structure-of-code-find-code-command"><a class="link" href="#structure-of-code-find-code-command">Structure of <code>find</code> command</a></h5>
 <div class="imageblock">
 <div class="content">
-<img src="../images/FindCommandClassDiagram.png" alt="FindCommandClassDiagram" width="200">
+<img src="../images/FindCommandClassDiagram.png" alt="FindCommandClassDiagram" width="400">
 </div>
 </div>
 <div class="paragraph">
@@ -554,7 +379,7 @@ When the <code>find</code> command is executed, a predicate is passed into the r
 <h5 id="structure-of-predicates"><a class="link" href="#structure-of-predicates">Structure of Predicates</a></h5>
 <div class="imageblock">
 <div class="content">
-<img src="../images/PredicateClassDiagram.png" alt="PredicateClassDiagram" width="200">
+<img src="../images/PredicateClassDiagram.png" alt="PredicateClassDiagram" width="400">
 </div>
 </div>
 <div class="paragraph">
@@ -566,9 +391,9 @@ When the <code>find</code> command is executed, a predicate is passed into the r
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">abstract</span> <span class="type">class</span> <span class="class">EntityContainsKeywordsPredicate</span>&lt;E&gt; <span class="directive">implements</span> <span class="predefined-type">Predicate</span>&lt;E&gt; {
-    <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; allKeywords; <span class="comment">// the list of keywords that the tested element has to match all of</span>
-    <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; someKeywords; <span class="comment">// the list of keywords that the tested element has to match some of</span>
-    <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; noneKeywords; <span class="comment">// the list of keywords that the tested element cannot match any of</span>
+    <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; allKeywords;
+    <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; someKeywords;
+    <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; noneKeywords;
 
     <span class="directive">private</span> <span class="directive">final</span> Function&lt;E, <span class="predefined-type">Predicate</span>&lt;<span class="predefined-type">String</span>&gt;&gt; testKeywordPredicateGetter;
 
@@ -611,7 +436,7 @@ to test the elements in the list.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/sortedList-filteredList-persons.png" alt="sortedList filteredList persons" width="100">
+<img src="../images/sortedList-filteredList-persons.png" alt="sortedList filteredList persons" width="200">
 </div>
 </div>
 <div class="paragraph">
@@ -665,4 +490,4 @@ As can be seen in the diagram, the sorting order remains even after executing th
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:33:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:34:44 UTC</div></div></div></body></html>
