@@ -115,7 +115,8 @@ lists to show only relevant information of the group.</p>
 </li>
 <li>
 <p>Updated contents of Developer Guide: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/32">#32</a>,
-<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/115">#115</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/118">#118</a></p>
+<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/115">#115</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/118">#118</a>,
+<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/193">#193</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/195">#195</a></p>
 </li>
 </ul>
 </div>
@@ -132,7 +133,10 @@ lists to show only relevant information of the group.</p>
 <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/94">#94</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/96">#96</a>,
 <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/112">#112</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/117">#117</a>,
 <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/134">#134</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/135">#135</a>,
-<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/154">#154</a></p>
+<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/154">#154</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/157">#157</a>,
+<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/199">#199</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/201">#201</a>,
+<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/202">#202</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/205">#205</a>,
+<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/210">#210</a></p>
 </li>
 <li>
 <p>Reported bugs and suggestions for team members: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/issues/64">#64</a>,
@@ -145,7 +149,7 @@ lists to show only relevant information of the group.</p>
 <li>
 <p>Fixed bugs: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/115">#115</a>,
 <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/118">#118</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/132">#132</a>,
-<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/142">#142</a></p>
+<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/142">#142</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/159">#159</a></p>
 </li>
 </ul>
 </div>
@@ -454,5 +458,128 @@ commands inherit from the abstract class and implement the execution functionali
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="list-feature"><a class="link" href="#list-feature">List feature</a></h3>
+<div class="paragraph">
+<p>The <code>list</code> command removes any filters applied to <code>UniqueGroupList</code>, <code>UniquePersonList</code> and <code>UniqueMeetingList</code> by other
+commands. This section will explain current implementation of list command and design considerations during development
+phase.</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:34:44 UTC</div></div></div></body></html>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current implementation</a></h4>
+<div class="paragraph">
+<p>The list mechanism is facilitated by <code>ModelManager</code>. It uses the same operations as mentioned in <code>select</code> feature,
+namely <code>Model#updateFilteredPersonList</code>, <code>Model#updateFilteredGroupList</code> and <code>Model#updateFilteredMeetingList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and operations executed by list mechanism at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application. <code>ModelManager</code> will be initialized with initial MeetingBook state, and
+<code>UniquePersonList</code>, <code>UniqueMeetingList</code> and <code>UniqueGroupList</code> contains all person, meetings and groups respectively
+without filter.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The user executes <code>list</code> command with additional parameter to specify the list to show all items. Available
+parameters are <code>person</code>, <code>meeting</code>, <code>group</code> and <code>all</code>, or their shorthand equivalent <code>p</code>, <code>m</code>, <code>g</code> and <code>a</code>.
+<code>ListCommandParser</code> parses the command to determine the list type, and the command executes the following steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Step 2.1. If the parameter is <code>group</code> / <code>g</code>, <code>Model#updateFilteredGroupList</code> is called with
+<code>PREDICATE_SHOW_ALL_GROUPS</code> to remove any filters applied to <code>UniqueGroupList</code>.</p>
+</li>
+<li>
+<p>Step 2.2. If the parameter is <code>meeting</code> / <code>m</code>, <code>Model#updateFilteredMeetingList</code> is called with
+<code>PREDICATE_SHOW_ALL_MEETINGS</code> to remove any filters applied to <code>UniqueMeetingList</code>.</p>
+</li>
+<li>
+<p>Step 2.3. If the parameter is <code>person</code> / <code>p</code>, <code>Model#updateFilteredPersonList</code> is called with
+<code>PREDICATE_SHOW_ALL_PERSONS</code> to remove any filters applied to <code>UniquePersonList</code>.</p>
+</li>
+<li>
+<p>Step 2.4. If the parameter is <code>all</code> / <code>a</code> / empty, steps 2.1., 2.2. and 2.3. will be executed.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+List will remain unchanged if it does not have any filters applied before executing <code>list</code> command.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ListCommandSequenceDiagram.png" alt="ListCommandSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 4. List group sequence diagram</div>
+</div>
+<div class="paragraph">
+<p>Below is the pseudo code of <code>list</code> command execution.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> CommandResult execute(Model model, CommandHistory history) {
+    requireNonNull(model);
+    <span class="keyword">switch</span> (listCommandType) {
+        <span class="keyword">case</span> PERSON:
+            <span class="comment">// Show all persons, return success</span>
+        <span class="keyword">case</span> GROUP:
+            <span class="comment">// Show all groups, return success</span>
+        <span class="keyword">case</span> MEETING:
+            <span class="comment">// Show all meetings, return success</span>
+        <span class="keyword">default</span>:
+            <span class="comment">// Show all persons, groups and meetings, return success</span>
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-list-command"><a class="link" href="#aspect-data-structure-to-support-the-list-command">Aspect: Data structure to support the list command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong> : Use a single list class to perform all list operations.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement as fewer lines of code are required.</p>
+</li>
+<li>
+<p>Cons: Harder to extend list functionality if need to implement list command for other items, list class will become
+bloated if too many items require list command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong> : Abstract list class containing required variables and methods without implementation, and specific
+list commands inherit from the abstract class and implement the execution functionality.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Good data structure, easy to extend functionality to other items that require list command.</p>
+</li>
+<li>
+<p>Cons: Requires more lines of code to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:36:14 UTC</div></div></div></body></html>
