@@ -548,11 +548,13 @@ meeting list will be filtered to show only meeting scheduled for the group.</p>
 <ol class="arabic">
 <li>
 <p><code>meet Presentation2101 n/Demo Rehearsal t/26-10-2018@12:30 l/COM1-0218 d/Meeting for Project Demo</code><br>
-(This schedules the meeting)<br></p>
-</li>
-<li>
-<p><code>list meeting</code><br>
-(This displays the list of meetings)</p>
+(This schedules the meeting)</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandUserGuideStep1.png" alt="meetCommandUserGuideStep1" width="500">
+</div>
+<div class="title">Figure 1. Result of the command, note the meeting 'Demo Rehearsal'.</div>
+</div>
 </li>
 </ol>
 </div>
@@ -564,17 +566,22 @@ meeting list will be filtered to show only meeting scheduled for the group.</p>
 <li>
 <p><code>meet Presentation2101 n/Demo Rehearsal t/26-10-2018@12:30 l/COM1-0218 d/Meeting for Project Demo</code><br>
 (This schedules the meeting)<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandUserGuideStep1.png" alt="meetCommandUserGuideStep1" width="500">
+</div>
+<div class="title">Figure 2. Result of the command, note the meeting 'Demo Rehearsal'.</div>
+</div>
 </li>
 <li>
-<p><code>list meeting</code><br>
-(This displays <code>Demo Rehearsal</code> as the meeting associated with <code>Presentation 2101</code>)<br></p>
-</li>
-<li>
-<p><code>meet Presentation2101 n/Discussion on Slides t/26-10-2018@12:30 l/COM1-0218 d/Some slides are wrong</code><br>
-(This overwrites <code>Demo Rehearsal</code> with <code>Discussion on Slides</code>)<br></p>
-</li>
-<li>
-<p><code>list meeting</code> (<code>Emergency Meeting</code> is displayed instead of <code>Demo Rehearsal</code>)</p>
+<p><code>meet Presentation2101 n/Emergency Meeting t/26-10-2018@12:30 l/COM1-0218 d/Some slides are wrong</code><br>
+(This overwrites <code>Demo Rehearsal</code> with <code>Emergency Meeting</code>)<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandUserGuideStep2.png" alt="meetCommandUserGuideStep2" width="500">
+</div>
+<div class="title">Figure 3. Result of the command, note the 'Emergency Meeting' now replaces 'Demo Rehearsal'.</div>
+</div>
 </li>
 </ol>
 </div>
@@ -584,8 +591,14 @@ meeting list will be filtered to show only meeting scheduled for the group.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>meet OtherGroup &#8230;&#8203;</code><br>
+<p><code>meet OtherGroup n/Emergency Meeting t/26-10-2018@12:30 l/COM1-0218 d/Some slides are wrong</code><br>
 (This fails because <code>OtherGroup</code> is not in the MeetingBook)</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/meetCommandUserGuideError.png" alt="meetCommandUserGuideError" width="500">
+</div>
+<div class="title">Figure 4. Result of the command, note the error message'.</div>
+</div>
 </li>
 </ol>
 </div>
@@ -965,4 +978,4 @@ e.g. <code>list meeting</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:43:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:48:56 UTC</div></div></div></body></html>

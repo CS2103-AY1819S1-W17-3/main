@@ -886,61 +886,46 @@ through <code>ModelManager</code>.</p>
 <div class="paragraph">
 <p><code>Meeting</code> is one of the central feature of this application. It allows the user to create a reminder of an upcoming event associated with a <code>Group</code>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-A <code>Group</code> can only have a maximum of one <code>Meeting</code> at any given time.
-</td>
-</tr>
-</table>
-</div>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.6.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Meetings are encapsulated using the <code>Meeting</code> class.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/meetingClassDiagram.png" alt="meetingClassDiagram" width="300">
 </div>
-<div class="title">Figure 17. The Meeting class</div>
+<div class="title">Figure 17. Diagram of the meeting class</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/tree/master/src/main/java/seedu/meeting/model/group/Meeting.java"><code>Meeting.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Meeting</code>,</p>
-</div>
-<div class="paragraph">
-<p>Meeting encapsulates information of a meeting.</p>
+<p><code>Meeting</code> have the following properties:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>contains the title, time, location and description of a meeting.</p>
+<p>It contains the title, time, location and description of the meeting it describes.</p>
 </li>
 <li>
-<p>resides in <code>Group</code> objects and can be assigned to a group using the <code>meet</code> command which utilises the <code>updateGroup</code> method of the <code>Model</code> interface.</p>
+<p>Each <code>Group</code> object can have a maximum of one meeting.</p>
 </li>
 <li>
-<p>each <code>Group</code> object can have a maximum of one meeting.</p>
-</li>
-<li>
-<p>two <code>Meetings</code> are considered similar if they share the same title, time, and location</p>
+<p>Two <code>Meetings</code> are considered similar if they share the same title, time, and location.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="usage-of-meeting-class"><a class="link" href="#usage-of-meeting-class">3.6.2. Usage of Meeting class</a></h4>
+<h4 id="using-the-meeting-class"><a class="link" href="#using-the-meeting-class">3.6.2. Using the Meeting class</a></h4>
 <div class="paragraph">
 <p>In the current implementation, <code>Meeting</code> is related to <code>Group</code> by composition. To facilitate the meeting feature, <code>Group</code> implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Group#hasMeeting</code>&#8201;&#8212;&#8201;This returns <code>true</code> if there is a meeting associated with the group.</p>
+<p><code>Group#hasMeeting()</code>&#8201;&#8212;&#8201;This returns <code>true</code> if there is a meeting associated with the group</p>
 </li>
 <li>
 <p><code>Group#getMeeting()</code>&#8201;&#8212;&#8201;This group&#8217;s meeting or <code>null</code> if the group has no meeting.</p>
@@ -954,18 +939,41 @@ A <code>Group</code> can only have a maximum of one <code>Meeting</code> at any 
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations can be accessed by retreiving the list of groups using <code>Model#getGroupList()</code> and performing these operations on its members.</p>
+<p>These operations can be accessed through the model using the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#setMeeting(Group group, Meeting meeting)</code>&#8201;&#8212;&#8201;This assigns the meeting <code>meeting</code> to the group <code>group</code>.</p>
+</li>
+<li>
+<p><code>Model#cancelMeeting(Group group)</code>&#8201;&#8212;&#8201;This cancels the meeting associated with the group <code>group</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><strong>Given below is an example usage scenario and how the model behaves at each step.</strong></p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application. For simplicity, we assume that the groups <code>Project2103</code>, <code>Presentation</code> and <code>FrisbeeTeam</code> are present in the MeetingBook. None of these groups have a meeting scheduled.</p>
+<p>Step 1. The application is launched.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We assumes that the groups <code>Project2103</code>, <code>Presentation</code> and <code>FrisbeeTeam</code> are present in the MeetingBook, and that none of the groups mentioned has a meeting scheduled.
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/meetCommandStep1Diagram.png" alt="meetCommandStep1Diagram" width="600">
 </div>
+<div class="title">Figure 18. The UniqueGroupList after Step 1.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -980,28 +988,34 @@ Meeting field in a group without a meeting is an empty <code>Optional</code>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>meet FrisbeeTeam n/Sunday Practice t/28-10-2018@10:00 l/UTown Green d/Practice for Inter-College Games</code> to schedule a meeting named <code>Sunday Practice</code> associated with the group <code>FrisbeeTeam</code>.</p>
+<p>Step 2. The command <code>meet FrisbeeTeam n/Sunday Practice t/28-10-2018@10:00 l/UTown Green d/Practice for Inter-College Games</code> is executed. This schedules a meeting named <code>Sunday Practice</code> with the group <code>FrisbeeTeam</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/meetCommandStep2Diagram.png" alt="meetCommandStep2Diagram" width="600">
 </div>
+<div class="title">Figure 19. The UniqueGroupList after Step 2.</div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user then executes <code>meet Project2103 n/Weekly Meeting&#8230;&#8203;</code> to schedule a meeting called <code>Weekly Meeting</code> with the <code>Project2103</code> Group.</p>
+<p>Step 3. The command <code>meet Project2103 n/Weekly Meeting&#8230;&#8203;</code> is executed. This schedules a meeting named <code>Weekly Meeting</code> with the group <code>Project2103</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>&#8230;&#8203;</code> represents any valid arguments that legally completes the command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/meetCommandStep3Diagram.png" alt="meetCommandStep3Diagram" width="600">
 </div>
+<div class="title">Figure 20. The UniqueGroupList after Step 3.</div>
 </div>
 <div class="paragraph">
-<p>Step 4. The user then found out that the meeting <code>Sunday Practice</code> with <code>FrisbeeTeam</code> has been cancelled. Thus, the user calls <code>cancel FrisbeeTeam</code> to cancel meeting with the <code>FrisbeeTeam</code> group.</p>
+<p>Step 4. The command <code>cancel FrisbeeTeam</code> is executed. This removes the meeting <code>Sunday Practice</code> from the group <code>FrisbeeTeam</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/meetCommandStep4Diagram.png" alt="meetCommandStep4Diagram" width="600">
 </div>
+<div class="title">Figure 21. The UniqueGroupList after Step 4.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1028,12 +1042,13 @@ calling <code>meet GROUP_NAME</code> without argument is equivalent to calling <
 </table>
 </div>
 <div class="paragraph">
-<p>Step 5. The user then discovers that the topic of the meeting with <code>Project2103</code> changed to rehearsal for the upcoming software demo. Therefore, the user calls <code>meet Project2103 n/Demo Preparation&#8230;&#8203;</code> to change the detail of the meeting This overwrites the meeting <code>Weekly Meeting</code> with the new meeting <code>Demo Preparation</code>.</p>
+<p>Step 5. The command <code>meet Project2103 n/Demo Preparation&#8230;&#8203;</code> is executed. This overwrites the meeting <code>Weekly Meeting</code> associated with the group <code>Project2103</code> with the new meeting named <code>Demo Preparation</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/meetCommandStep5Diagram.png" alt="meetCommandStep5Diagram" width="600">
 </div>
+<div class="title">Figure 22. The UniqueGroupList after Step 5.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1054,13 +1069,13 @@ This operation creates a new <code>Meeting</code> object which replaces the old 
 <div class="content">
 <img src="images/MeetCommandSequenceDiagram.png" alt="MeetCommandSequenceDiagram" width="300">
 </div>
-<div class="title">Figure 18. Sequence diagram for meet command</div>
+<div class="title">Figure 23. Sequence diagram for meet command</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/cancelCommandSequenceDiagram.png" alt="cancelCommandSequenceDiagram" width="300">
 </div>
-<div class="title">Figure 19. Sequence diagram for cancel command</div>
+<div class="title">Figure 24. Sequence diagram for cancel command</div>
 </div>
 </div>
 <div class="sect3">
@@ -1743,13 +1758,13 @@ If a group is selected, subsequent <code>select</code> calls to person and meeti
 <div class="content">
 <img src="images/SelectGroupSequenceDiagram.png" alt="SelectGroupSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 20. Select group sequence diagram when user executes select group 1</div>
+<div class="title">Figure 25. Select group sequence diagram when user executes select group 1</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/SelectActivityDiagram.png" alt="SelectActivityDiagram" width="800">
 </div>
-<div class="title">Figure 21. Select command activity diagram</div>
+<div class="title">Figure 26. Select command activity diagram</div>
 </div>
 </div>
 <div class="sect3">
@@ -1852,7 +1867,7 @@ List will remain unchanged if it does not have any filters applied before execut
 <div class="content">
 <img src="images/ListCommandSequenceDiagram.png" alt="ListCommandSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 22. List group sequence diagram</div>
+<div class="title">Figure 27. List group sequence diagram</div>
 </div>
 <div class="paragraph">
 <p>Below is the pseudo code of <code>list</code> command execution.</p>
@@ -1942,7 +1957,7 @@ If there is no filepath provided, <code>export</code> command will return an inv
 <div class="content">
 <img src="images/exportCommandSeqDiagram.png" alt="exportCommandSeqDiagram" width="1000">
 </div>
-<div class="title">Figure 23. Sequence diagram of ExportCommand</div>
+<div class="title">Figure 28. Sequence diagram of ExportCommand</div>
 </div>
 <div class="paragraph">
 <p>The program will raise a <code>MeetingBookExportEvent</code> to <code>EventCenter</code>. <code>StorageManager</code> which subscribed to the <code>EventCenter</code> will trigger <code>StorageManager#handleMeetingBookExportEvent</code> when received <code>MeetingBookExportEvent</code>.
@@ -1960,7 +1975,7 @@ As MeetingBook stores <code>Person</code>, <code>Group</code>, <code>Meeting</co
 <div class="content">
 <img src="images/xmlAdaptedMarshalDiagram.png" alt="xmlAdaptedMarshalDiagram">
 </div>
-<div class="title">Figure 24. Class diagram of XmlAdapted classes and their associations</div>
+<div class="title">Figure 29. Class diagram of XmlAdapted classes and their associations</div>
 </div>
 </div>
 </div>
@@ -2038,7 +2053,7 @@ The imported <code>MeetingBook</code> will then merge with the current <code>Mee
 <div class="content">
 <img src="images/xmlAdaptedUnmarshalDiagram.png" alt="xmlAdaptedUnmarshalDiagram">
 </div>
-<div class="title">Figure 25. Class diagram of XmlAdapted classes and their associations</div>
+<div class="title">Figure 30. Class diagram of XmlAdapted classes and their associations</div>
 </div>
 </div>
 </div>
@@ -2084,7 +2099,7 @@ An example of the command set to the overwriting behaviour is <code>import --for
 <div class="content">
 <img src="images/AlexLimObjectDiagram.png" alt="AlexLimObjectDiagram">
 </div>
-<div class="title">Figure 26. Object Diagram of "Alex Lim" <code>Person</code> Object in current MeetingBook and imported MeetingBook</div>
+<div class="title">Figure 31. Object Diagram of "Alex Lim" <code>Person</code> Object in current MeetingBook and imported MeetingBook</div>
 </div>
 <div class="paragraph">
 <p>When the default conflicting resolving behaviour is used, "Alex Lim" of the imported MeetingBook will not be imported into current MeetingBook.</p>
@@ -2096,7 +2111,7 @@ An example of the command set to the overwriting behaviour is <code>import --for
 <div class="content">
 <img src="images/BeforeImportAlexLimGroup.png" alt="BeforeImportAlexLimGroup">
 </div>
-<div class="title">Figure 27. Object Diagram of "Alex Lim" <code>Person</code> of imported MeetingBook belonging to a <code>Group</code> before merging to current MeetingBook</div>
+<div class="title">Figure 32. Object Diagram of "Alex Lim" <code>Person</code> of imported MeetingBook belonging to a <code>Group</code> before merging to current MeetingBook</div>
 </div>
 <div class="paragraph">
 <p>Therefore, when importing the <code>Group</code> that "Alex Lim" of the imported MeetingBook is in, the <code>Group</code> will be imported without "Alex Lim" of the imported MeetingBook. The <code>Group</code> will not contains "Alex Lim" of the current MeetingBook as these two "Alex Lim" are not of the same <code>Person</code>. If "Alex Lim" of the imported MeetingBook is the sole member of the <code>Group</code>, the <code>Group</code> will still be created but with no members instead.</p>
@@ -2105,7 +2120,7 @@ An example of the command set to the overwriting behaviour is <code>import --for
 <div class="content">
 <img src="images/AfterImportAlexLimGroup.png" alt="AfterImportAlexLimGroup">
 </div>
-<div class="title">Figure 28. Object Diagram of "Alex Lim" <code>Person</code> of imported MeetingBook belonging to a <code>Group</code> after merging to current MeetingBook</div>
+<div class="title">Figure 33. Object Diagram of "Alex Lim" <code>Person</code> of imported MeetingBook belonging to a <code>Group</code> after merging to current MeetingBook</div>
 </div>
 </div>
 <div class="sect3">
@@ -2260,7 +2275,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 29. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 34. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -4036,4 +4051,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:43:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:48:56 UTC</div></div></div></body></html>

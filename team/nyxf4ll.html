@@ -13,11 +13,17 @@
 <div class="sect1">
 <h2 id="project-meetingbook"><a class="link" href="#project-meetingbook">PROJECT: MeetingBook</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="1-overview"><a class="link" href="#1-overview">1. Overview</a></h3>
 <div class="paragraph">
-<p>MeetingBook is a desktop scheduler application targeted at university students involved in multiple Co-Curricular Activities and Project-Based modules. The application is a modified contact book with features to group contacts and assign meetings to such groups. MeetingBook is written by a team of 5 students from National University of Singapore&#8217;s School of Computing. It is forked from <a href="https://github.com/nus-cs2103-AY1819S1/addressbook-level4">AddressBook-Level4</a> written by <a href="https://se-edu.github.io/">SE-EDU</a>.</p>
+<p>MeetingBook is a desktop scheduler and contact book hybrid designed for university students involved in multiple Co-Curricular Activities and Project-Based modules. By using our application, you can group your contacts according to their project groups, and create reminders on upcoming meetings with the groups you created, so that you don&#8217;t miss your meeting again.</p>
+</div>
+<div class="paragraph">
+<p>MeetingBook is forked from <a href="https://github.com/nus-cs2103-AY1819S1/addressbook-level4">AddressBook-Level4</a> written by <a href="https://se-edu.github.io/">SE-EDU</a> by our team which composed of 5 students from National University of Singapore&#8217;s School of Computing.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h3>
+<h3 id="2-summary-of-contributions"><a class="link" href="#2-summary-of-contributions">2. Summary of contributions</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -28,16 +34,13 @@
 <p>What it does: allows the user to add/remove meetings from the specified group.</p>
 </li>
 <li>
-<p>Justification: This feature is essential to morph the AddressBook into a meetingscheduler.</p>
+<p>Justification: This feature is essential to morph the AddressBook into a meeting scheduler.</p>
 </li>
 <li>
 <p>Highlights: This enhancement requires major modifications to the Model and addition of new classes such as <a href="https://github.com/CS2103-AY1819S1-W17-3/main/blob/master/src/main/java/seedu/address/model/meeting/Meeting.java">Meeting</a> and <a href="https://github.com/CS2103-AY1819S1-W17-3/main/blob/master/src/main/java/seedu/address/model/meeting/TimeStamp.java">TimeStamp</a>. The implementation is also challenging as it requires extensive coordination between team members due to the level of dependency it has on the group feature.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
 </li>
 <li>
 <p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=nyxf4ll&amp;sort=displayName&amp;since=2018-09-12&amp;until=2018-11-05&amp;timeframe=day&amp;reverse=false&amp;repoSort=true">code</a>]</p>
@@ -56,6 +59,9 @@
 <li>
 <p>Reorganized files in the Model folder to increase consistency: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/107">#107</a></p>
 </li>
+<li>
+<p>Added more sample data to the application: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/213">#213</a></p>
+</li>
 </ul>
 </div>
 </li>
@@ -67,7 +73,7 @@
 <p>Modified Readme.adoc: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/34">#34</a></p>
 </li>
 <li>
-<p>Updated User Guide and Developer Guide: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/137">#137</a></p>
+<p>Updated User Guide and Developer Guide: <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/137">#137</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/217">#217</a></p>
 </li>
 </ul>
 </div>
@@ -77,7 +83,8 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/120">#120</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/126">#126</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/128">#128</a></p>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/116">#116</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/120">#120</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/126">#126</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/128">#128</a>,
+<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/202">#202</a>, <a href="https://github.com/CS2103-AY1819S1-W17-3/main/pull/209">#209</a>,</p>
 </li>
 </ul>
 </div>
@@ -89,7 +96,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h3>
+<h3 id="3-contributions-to-the-user-guide"><a class="link" href="#3-contributions-to-the-user-guide">3. Contributions to the User Guide</a></h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -101,7 +108,7 @@
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="schedule-meetings-code-meet-code"><a class="link" href="#schedule-meetings-code-meet-code">Schedule meetings: <code>meet</code></a></h4>
+<h4 id="3-1-schedule-meetings-code-meet-code"><a class="link" href="#3-1-schedule-meetings-code-meet-code">3.1. Schedule meetings: <code>meet</code></a></h4>
 <div class="paragraph">
 <p>To schedule a meeting, use the <code>meet</code> command.</p>
 </div>
@@ -147,11 +154,13 @@
 <ol class="arabic">
 <li>
 <p><code>meet Presentation2101 n/Demo Rehearsal t/26-10-2018@12:30 l/COM1-0218 d/Meeting for Project Demo</code><br>
-(This schedules the meeting)<br></p>
-</li>
-<li>
-<p><code>list meeting</code><br>
-(This displays the list of meetings)</p>
+(This schedules the meeting)</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/meetCommandUserGuideStep1.png" alt="meetCommandUserGuideStep1" width="500">
+</div>
+<div class="title">Figure 1. Result of the command, note the meeting 'Demo Rehearsal'.</div>
+</div>
 </li>
 </ol>
 </div>
@@ -163,17 +172,22 @@
 <li>
 <p><code>meet Presentation2101 n/Demo Rehearsal t/26-10-2018@12:30 l/COM1-0218 d/Meeting for Project Demo</code><br>
 (This schedules the meeting)<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/meetCommandUserGuideStep1.png" alt="meetCommandUserGuideStep1" width="500">
+</div>
+<div class="title">Figure 2. Result of the command, note the meeting 'Demo Rehearsal'.</div>
+</div>
 </li>
 <li>
-<p><code>list meeting</code><br>
-(This displays <code>Demo Rehearsal</code> as the meeting associated with <code>Presentation 2101</code>)<br></p>
-</li>
-<li>
-<p><code>meet Presentation2101 n/Discussion on Slides t/26-10-2018@12:30 l/COM1-0218 d/Some slides are wrong</code><br>
-(This overwrites <code>Demo Rehearsal</code> with <code>Discussion on Slides</code>)<br></p>
-</li>
-<li>
-<p><code>list meeting</code> (<code>Emergency Meeting</code> is displayed instead of <code>Demo Rehearsal</code>)</p>
+<p><code>meet Presentation2101 n/Emergency Meeting t/26-10-2018@12:30 l/COM1-0218 d/Some slides are wrong</code><br>
+(This overwrites <code>Demo Rehearsal</code> with <code>Emergency Meeting</code>)<br></p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/meetCommandUserGuideStep2.png" alt="meetCommandUserGuideStep2" width="500">
+</div>
+<div class="title">Figure 3. Result of the command, note the 'Emergency Meeting' now replaces 'Demo Rehearsal'.</div>
+</div>
 </li>
 </ol>
 </div>
@@ -183,8 +197,14 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>meet OtherGroup &#8230;&#8203;</code><br>
+<p><code>meet OtherGroup n/Emergency Meeting t/26-10-2018@12:30 l/COM1-0218 d/Some slides are wrong</code><br>
 (This fails because <code>OtherGroup</code> is not in the MeetingBook)</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/meetCommandUserGuideError.png" alt="meetCommandUserGuideError" width="500">
+</div>
+<div class="title">Figure 4. Result of the command, note the error message'.</div>
+</div>
 </li>
 </ol>
 </div>
@@ -205,7 +225,7 @@ It is assumed that the group <code>Presentation2101</code> is present and is the
 </div>
 </div>
 <div class="sect3">
-<h4 id="cancel-meetings-code-cancel-code"><a class="link" href="#cancel-meetings-code-cancel-code">Cancel meetings: <code>cancel</code></a></h4>
+<h4 id="3-2-cancel-meetings-code-cancel-code"><a class="link" href="#3-2-cancel-meetings-code-cancel-code">3.2. Cancel meetings: <code>cancel</code></a></h4>
 <div class="paragraph">
 <p>To cancel a meeting, use the <code>cancel</code> command.</p>
 </div>
@@ -253,7 +273,7 @@ calling <code>meet GROUP_NAME</code> without argument is equivalent to calling <
 </div>
 </div>
 <div class="sect2">
-<h3 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h3>
+<h3 id="4-contributions-to-the-developer-guide"><a class="link" href="#4-contributions-to-the-developer-guide">4. Contributions to the Developer Guide</a></h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -266,31 +286,50 @@ calling <code>meet GROUP_NAME</code> without argument is equivalent to calling <
 </table>
 </div>
 <div class="sect2">
-<h3 id="meeting-feature"><a class="link" href="#meeting-feature">Meeting Feature</a></h3>
+<h3 id="4-1-meeting-feature"><a class="link" href="#4-1-meeting-feature">4.1. Meeting Feature</a></h3>
 <div class="paragraph">
 <p><code>Meeting</code> is one of the central feature of this application. It allows the user to create a reminder of an upcoming event associated with a <code>Group</code>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-A <code>Group</code> can only have a maximum of one <code>Meeting</code> at any given time.
-</td>
-</tr>
-</table>
+<div class="sect3">
+<h4 id="4-1-1-current-implementation"><a class="link" href="#4-1-1-current-implementation">4.1.1. Current implementation</a></h4>
+<div class="paragraph">
+<p>Meetings are encapsulated using the <code>Meeting</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/meetingClassDiagram.png" alt="meetingClassDiagram" width="300">
+</div>
+<div class="title">Figure 5. Diagram of the meeting class</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W17-3/main/src/main/java/seedu/meeting/model/group/Meeting.java"><code>Meeting.java</code></a></p>
+</div>
+<div class="paragraph">
+<p><code>Meeting</code> have the following properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It contains the title, time, location and description of the meeting it describes.</p>
+</li>
+<li>
+<p>Each <code>Group</code> object can have a maximum of one meeting.</p>
+</li>
+<li>
+<p>Two <code>Meetings</code> are considered similar if they share the same title, time, and location.</p>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">Current implementation</a></h4>
+<h4 id="4-1-2-using-the-meeting-class"><a class="link" href="#4-1-2-using-the-meeting-class">4.1.2. Using the Meeting class</a></h4>
 <div class="paragraph">
 <p>In the current implementation, <code>Meeting</code> is related to <code>Group</code> by composition. To facilitate the meeting feature, <code>Group</code> implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Group#hasMeeting</code>&#8201;&#8212;&#8201;This returns <code>true</code> if there is a meeting associated with the group</p>
+<p><code>Group#hasMeeting()</code>&#8201;&#8212;&#8201;This returns <code>true</code> if there is a meeting associated with the group</p>
 </li>
 <li>
 <p><code>Group#getMeeting()</code>&#8201;&#8212;&#8201;This group&#8217;s meeting or <code>null</code> if the group has no meeting.</p>
@@ -304,18 +343,41 @@ A <code>Group</code> can only have a maximum of one <code>Meeting</code> at any 
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations can be accessed by retreiving the list of groups using <code>Model#getGroupList()</code> and performing these operations on its members.</p>
+<p>These operations can be accessed through the model using the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#setMeeting(Group group, Meeting meeting)</code>&#8201;&#8212;&#8201;This assigns the meeting <code>meeting</code> to the group <code>group</code>.</p>
+</li>
+<li>
+<p><code>Model#cancelMeeting(Group group)</code>&#8201;&#8212;&#8201;This cancels the meeting associated with the group <code>group</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><strong>Given below is an example usage scenario and how the model behaves at each step.</strong></p>
 </div>
 <div class="paragraph">
-<p>Step 1. The user launches the application. For simplicity, we assume that the groups <code>Project2103</code>, <code>Presentation</code> and <code>FrisbeeTeam</code> are present in the meeting book. None of these groups have a meeting scheduled.</p>
+<p>Step 1. The application is launched.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We assumes that the groups <code>Project2103</code>, <code>Presentation</code> and <code>FrisbeeTeam</code> are present in the MeetingBook, and that none of the groups mentioned has a meeting scheduled.
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/meetCommandStep1Diagram.png" alt="meetCommandStep1Diagram" width="600">
 </div>
+<div class="title">Figure 6. The UniqueGroupList after Step 1.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -330,28 +392,34 @@ Meeting field in a group without a meeting is an empty <code>Optional</code>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>meet FrisbeeTeam n/Sunday Practice t/28-10-2018@10:00 l/UTown Green d/Practice for Inter-College Games</code> to schedule a meeting named <code>Sunday Practice</code> associated with the group <code>FrisbeeTeam</code>.</p>
+<p>Step 2. The command <code>meet FrisbeeTeam n/Sunday Practice t/28-10-2018@10:00 l/UTown Green d/Practice for Inter-College Games</code> is executed. This schedules a meeting named <code>Sunday Practice</code> with the group <code>FrisbeeTeam</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/meetCommandStep2Diagram.png" alt="meetCommandStep2Diagram" width="600">
 </div>
+<div class="title">Figure 7. The UniqueGroupList after Step 2.</div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user then executes <code>meet Project2103 n/Weekly Meeting&#8230;&#8203;</code> to schedule a meeting called <code>Weekly Meeting</code> with the <code>Project2103</code> Group.</p>
+<p>Step 3. The command <code>meet Project2103 n/Weekly Meeting&#8230;&#8203;</code> is executed. This schedules a meeting named <code>Weekly Meeting</code> with the group <code>Project2103</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>&#8230;&#8203;</code> represents any valid arguments that legally completes the command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/meetCommandStep3Diagram.png" alt="meetCommandStep3Diagram" width="600">
 </div>
+<div class="title">Figure 8. The UniqueGroupList after Step 3.</div>
 </div>
 <div class="paragraph">
-<p>Step 4. The user then found out that the meeting <code>Sunday Practice</code> with <code>FrisbeeTeam</code> has been cancelled. Thus, the user calls <code>cancel FrisbeeTeam</code> to cancel meeting with the <code>FrisbeeTeam</code> group.</p>
+<p>Step 4. The command <code>cancel FrisbeeTeam</code> is executed. This removes the meeting <code>Sunday Practice</code> from the group <code>FrisbeeTeam</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/meetCommandStep4Diagram.png" alt="meetCommandStep4Diagram" width="600">
 </div>
+<div class="title">Figure 9. The UniqueGroupList after Step 4.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -372,18 +440,19 @@ Calling <code>cancel</code> on a group without meeting returns an error
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-calling <code>meet GROUP_NAME</code> without argument is equivalent to calling <code>cancel GROUP_NAME</code>.
+calling <code>meet GROUP_NAME</code> without any arguments is equivalent to calling <code>cancel GROUP_NAME</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 5. The user then discovers that the topic of the meeting with <code>Project2103</code> changed to rehearsal for the upcoming software demo. Therefore, the user calls <code>meet Project2103 n/Demo Preparation&#8230;&#8203;</code> to change the detail of the meeting This overwrites the meeting <code>Weekly Meeting</code> with the new meeting <code>Demo Preparation</code>.</p>
+<p>Step 5. The command <code>meet Project2103 n/Demo Preparation&#8230;&#8203;</code> is executed. This overwrites the meeting <code>Weekly Meeting</code> associated with the group <code>Project2103</code> with the new meeting named <code>Demo Preparation</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/meetCommandStep5Diagram.png" alt="meetCommandStep5Diagram" width="600">
 </div>
+<div class="title">Figure 10. The UniqueGroupList after Step 5.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -404,17 +473,17 @@ This operation creates a new <code>Meeting</code> object which replaces the old 
 <div class="content">
 <img src="../images/MeetCommandSequenceDiagram.png" alt="MeetCommandSequenceDiagram" width="300">
 </div>
-<div class="title">Figure 1. Sequence diagram for meet command</div>
+<div class="title">Figure 11. Sequence diagram for meet command</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/cancelCommandSequenceDiagram.png" alt="cancelCommandSequenceDiagram" width="300">
 </div>
-<div class="title">Figure 2. Sequence diagram for cancel command</div>
+<div class="title">Figure 12. Sequence diagram for cancel command</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<h4 id="4-1-3-design-considerations"><a class="link" href="#4-1-3-design-considerations">4.1.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-storage-of-meetings"><a class="link" href="#aspect-storage-of-meetings">Aspect: Storage of meetings</a></h5>
 <div class="ulist">
@@ -484,4 +553,4 @@ This operation creates a new <code>Meeting</code> object which replaces the old 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:43:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:48:56 UTC</div></div></div></body></html>
