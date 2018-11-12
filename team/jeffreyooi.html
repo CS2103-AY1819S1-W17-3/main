@@ -80,7 +80,7 @@ lists to show only relevant information of the group.</p>
 </div>
 </li>
 <li>
-<p>Code contributed:&#8201;&#8212;&#8201;To be added&#8201;&#8212;&#8201;</p>
+<p>Code contributed: [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=jeffreyooi&amp;sort=displayName&amp;since=2018-09-12&amp;until=2018-11-08&amp;timeframe=day&amp;reverse=false&amp;repoSort=false">RepoSense</a>][<a href="https://github.com/CS2103-AY1819S1-W17-3/main/pulls?q=is%3Apr+author%3Ajeffreyooi">Pull Requests</a>]</p>
 </li>
 <li>
 <p>Other contributions:</p>
@@ -254,7 +254,8 @@ meeting list will be filtered to show only meeting scheduled for the group.</p>
 <p>Display all existing groups on the group list / meetings on the meeting list / persons on the person list display.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>list [group|meeting|person]</code></p>
+<p>Format: <code>list &lt;group|meeting|person|all&gt;</code><br>
+Shorthand: <code>list &lt;g|m|p|a&gt;</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -264,6 +265,7 @@ meeting list will be filtered to show only meeting scheduled for the group.</p>
 </td>
 <td class="content">
 If the list is unfiltered, the list will remain the same.
+If list command does not have parameters entered, it will execute list all by default.
 </td>
 </tr>
 </table>
@@ -277,10 +279,13 @@ If the list is unfiltered, the list will remain the same.
 <p><code>list group</code>: list all groups.</p>
 </li>
 <li>
-<p><code>list meeting</code>: list all meetings.</p>
+<p><code>list m</code>: list all meetings.</p>
 </li>
 <li>
 <p><code>list person</code>: list all persons.</p>
+</li>
+<li>
+<p><code>list a</code>: list all groups, meetings and persons.</p>
 </li>
 </ul>
 </div>
@@ -367,20 +372,20 @@ The <code>ModelManager</code> will be initialized with the initial MeetingBook s
 </div>
 <div class="paragraph">
 <p>Step 2. The user executes <code>select</code> command to select the item type with the specified index in the MeetingBook.
-The <code>SelectCommandParser</code> parses the command to determine the select type, and the command calls executes the following steps:</p>
+The <code>SelectCommandParser</code> parses the command to determine the select type, and the command executes the following steps:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Step 2.1. If the select type is <code>SELECT_TYPE_GROUP</code>, a <code>JumpToGroupListRequestEvent</code> is sent to update the UI to select the group card,
+<p>Step 2.1. If the prefix is <code>g/</code>, a <code>JumpToGroupListRequestEvent</code> is sent to update the UI to select the group card,
 <code>Model#updateFilteredPersonList</code> is called to filter <code>UniquePersonList</code> to contain only person that are associated with the group,
 and <code>Model#updateFilteredMeetingList</code> is called to filter <code>UniqueMeetingList</code> to show only meeting that is associated with the group.</p>
 </li>
 <li>
-<p>Step 2.2. If the select type is <code>SELECT_TYPE_MEETING</code>, a <code>JumpToMeetingListRequestEvent</code> is sent to the UI to select the meeting card.</p>
+<p>Step 2.2. If the prefix is <code>m/</code>, a <code>JumpToMeetingListRequestEvent</code> is sent to the UI to select the meeting card.</p>
 </li>
 <li>
-<p>Step 2.3. If the select type is <code>SELECT_TYPE_PERSON</code>, a <code>JumpToListRequestEvent</code> is sent to the UI to select the person card.</p>
+<p>Step 2.3. If the prefix is <code>p/</code>, a <code>JumpToListRequestEvent</code> is sent to the UI to select the person card.</p>
 </li>
 </ul>
 </div>
@@ -417,8 +422,7 @@ If a group is selected, subsequent <code>select</code> calls to person and meeti
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use prefix to differentiate between selecting group, meeting or person, and use a
-single select class to perform all select operations.</p>
+<p><strong>Alternative 1 (current choice):</strong> Use a single select class to perform all select operations.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -432,25 +436,12 @@ many items require select command.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Individual command for selecting group, meeting and person.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to extend functionality to select other items as all select commands are independent.</p>
-</li>
-<li>
-<p>Cons: Requires more code to implement.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 3:</strong> Abstract select class containing required variables and methods without implementation, and select
+<p><strong>Alternative 2:</strong> Abstract select class containing required variables and methods without implementation, and select
 commands inherit from the abstract class and implement the execution functionality.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Good data structure.</p>
+<p>Pros: Good data structure, easy to extend functionality to select other items.</p>
 </li>
 <li>
 <p>Cons: Requires more code to implement.</p>
@@ -464,4 +455,4 @@ commands inherit from the abstract class and implement the execution functionali
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 04:34:42 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 04:35:59 UTC</div></div></div></body></html>
